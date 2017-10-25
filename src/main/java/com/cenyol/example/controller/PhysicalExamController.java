@@ -32,7 +32,7 @@ public class PhysicalExamController {
     private PhysicalExaminationItemRepository physicalExaminationItemRepository;
 
     @Autowired
-    private ImagingExaminationItemOptionRepository imagingExaminationItemOptionRepository;
+    private PhysicalExaminationItemOptionRepository physicalExaminationItemOptionRepository;
 
 
     // 添加体格检查部位页面
@@ -90,8 +90,47 @@ public class PhysicalExamController {
                 physicalExaminationRecordEntity.getPhysicalExaminationItemOptionSubName(),
                 physicalExaminationRecordEntity.getUserId());
         Integer userId = physicalExaminationRecordEntity.getUserId();
+//        return "redirect:/showUser/" + userId;
+        return "redirect:/exam/addPhysicalItemOptionRecord/" + userId + "/item/" + itemId;
+    }
+
+    // 添体格检查事项选项页面
+    @RequestMapping(value = "/exam/addPhysicalItemOptionRecord/{userId}/item/{itemId}", method = RequestMethod.GET)
+    public String addPhysicalRecordItemOption(@PathVariable("userId") Integer userId, @PathVariable("itemId") Integer itemId, ModelMap modelMap) {
+        UserEntity userEntity = userRepository.findOne(userId);
+        modelMap.addAttribute("user", userEntity);
+
+        List<PhysicalExaminationItemOptionEntity> optionEntityList = physicalExaminationItemOptionRepository.searchPatientPhysicalExaminationItemOption(itemId);
+        modelMap.addAttribute("optionList", optionEntityList);
+
+
+        return "addPhysicalRecordItemOption";
+    }
+
+    // 添加体格检查事项选项处理
+    @RequestMapping(value = "/exam/addPhysicalRecordItemOptionPost", method = RequestMethod.POST)
+    public String addPhysicalRecordItemOptionPost(@ModelAttribute("user") PatientPhysicalExaminationRecordEntity physicalExaminationRecordEntity) {
+        Integer optionId = physicalExaminationRecordEntity.getPhysicalExaminationItemOptionId();
+        PhysicalExaminationItemOptionEntity optionEntity = physicalExaminationItemOptionRepository.findOne(optionId);
+        Integer itemId = optionEntity.getPhysicalExaminationItemId();
+        PhysicalExaminationItemEntity itemEntity = physicalExaminationItemRepository.findOne(itemId);
+        physicalExaminationRecordEntity.setPhysicalExaminationCategoryId(itemEntity.getPhysicalExaminationCategoryId());
+        physicalExaminationRecordEntity.setPhysicalExaminationCategoryName(itemEntity.getPhysicalExaminationCategoryName());
+        physicalExaminationRecordEntity.setPhysicalExaminationItemName(itemEntity.getPhysicalExaminationItemName());
+        physicalExaminationRecordEntity.setPhysicalExaminationItemOptionId(optionEntity.getPhysicalExaminationItemId());
+        physicalExaminationRecordEntity.setPhysicalExaminationItemOptionName(optionEntity.getPhysicalExaminationItemOptionName());
+        patientPhysicalExaminationRecordRepository.updateRecord(
+                physicalExaminationRecordEntity.getPhysicalExaminationCategoryId(),
+                physicalExaminationRecordEntity.getPhysicalExaminationCategoryName(),
+                physicalExaminationRecordEntity.getPhysicalExaminationItemId(),
+                physicalExaminationRecordEntity.getPhysicalExaminationItemName(),
+                physicalExaminationRecordEntity.getPhysicalExaminationItemOptionId(),
+                physicalExaminationRecordEntity.getPhysicalExaminationItemOptionName(),
+                physicalExaminationRecordEntity.getPhysicalExaminationItemOptionSubId(),
+                physicalExaminationRecordEntity.getPhysicalExaminationItemOptionSubName(),
+                physicalExaminationRecordEntity.getUserId());
+        Integer userId = physicalExaminationRecordEntity.getUserId();
         return "redirect:/showUser/" + userId;
 //        return "redirect:/exam/addPhysicalRecord/" + userId + "/item/" + itemId;
     }
-
 }
