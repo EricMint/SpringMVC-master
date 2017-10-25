@@ -1,13 +1,9 @@
 package com.cenyol.example.controller;
 
-import com.cenyol.example.model.ImagingExaminationCategoryEntity;
-import com.cenyol.example.model.PatientImagingExaminationRecordEntity;
-import com.cenyol.example.model.UserEntity;
+import com.cenyol.example.model.*;
 import com.cenyol.example.model.aspectj.Performance;
 import com.cenyol.example.model.aspectj.PerformanceImpl;
-import com.cenyol.example.repository.ImagingExaminationCategoryRepository;
-import com.cenyol.example.repository.PatientImagingExaminationRecordRepository;
-import com.cenyol.example.repository.UserRepository;
+import com.cenyol.example.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -33,6 +29,12 @@ public class MainController {
 
     @Autowired
     private ImagingExaminationCategoryRepository imagingExaminationCategoryRepository;
+
+    @Autowired
+    private ImagingExaminationItemRepository imagingExaminationItemRepository;
+
+    @Autowired
+    private ImagingExaminationItemOptionRepository imagingExaminationItemOptionRepository;
 
     // 首页
     @RequestMapping(value = "/", method = RequestMethod.GET)
@@ -74,11 +76,10 @@ public class MainController {
         return "redirect:/users/";
     }
 
-    // 添加用户影像检查信息页面
+    // 添加影像检查部位页面
     @RequestMapping(value = "/addImagingRecord/{id}", method = RequestMethod.GET)
     public String addImagingRecord(@PathVariable("id") Integer userId, ModelMap modelMap) {
         UserEntity userEntity = userRepository.findOne(userId);
-
         modelMap.addAttribute("user", userEntity);
 
         List<ImagingExaminationCategoryEntity> categoryEntityList = imagingExaminationCategoryRepository.findAll();
@@ -87,19 +88,89 @@ public class MainController {
         return "addImagingRecord";
     }
 
-    // 添加用户影像检查信息处理
+    // 添加影像检查部位处理
     @RequestMapping(value = "/addImagingRecordPost", method = RequestMethod.POST)
     public String addImagingRecordPost(@ModelAttribute("user") PatientImagingExaminationRecordEntity imagingExaminationRecordEntity) {
-        // 向数据库添加一个用户
-//        patientImagingExaminationRecordRepository.save(imagingExaminationRecordEntity);
-
-        // 向数据库添加一个用户，并将内存中缓存区的数据刷新，立即写入数据库，之后才可以进行访问读取
+        Integer categoryId = imagingExaminationRecordEntity.getImagingExaminationCategoryId();
+        ImagingExaminationCategoryEntity categoryEntity = imagingExaminationCategoryRepository.findOne(categoryId);
+        imagingExaminationRecordEntity.setImagingExaminationCategoryName(categoryEntity.getImagingExaminationCategoryName());
         patientImagingExaminationRecordRepository.saveAndFlush(imagingExaminationRecordEntity);
+        Integer userId = imagingExaminationRecordEntity.getUserId();
+        return "redirect:/addImagingRecord/" + userId + "/category/" + categoryId;
+    }
 
-        // 返回重定向页面
+    // 添影像检查具体事项页面
+    @RequestMapping(value = "/addImagingRecord/{userId}/category/{categoryId}", method = RequestMethod.GET)
+    public String addImagingRecordItem(@PathVariable("userId") Integer userId, @PathVariable("categoryId") Integer categoryId, ModelMap modelMap) {
+        UserEntity userEntity = userRepository.findOne(userId);
+        modelMap.addAttribute("user", userEntity);
+
+        List<ImagingExaminationItemEntity> itemEntityList = imagingExaminationItemRepository.searchPatientImagingExaminationItem(categoryId);
+        modelMap.addAttribute("itemList", itemEntityList);
+
+
+        return "addImagingRecordItem";
+    }
+
+    // 添加影像检查具体事项处理
+    @RequestMapping(value = "/addImagingRecordItemPost", method = RequestMethod.POST)
+    public String addImagingRecordItemPost(@ModelAttribute("user") PatientImagingExaminationRecordEntity imagingExaminationRecordEntity) {
+        Integer itemId = imagingExaminationRecordEntity.getImagingExaminationItemId();
+        ImagingExaminationItemEntity itemEntity = imagingExaminationItemRepository.findOne(itemId);
+        imagingExaminationRecordEntity.setImagingExaminationCategoryId(itemEntity.getImagingExaminationCategoryId());
+        imagingExaminationRecordEntity.setImagingExaminationCategoryName(itemEntity.getImagingExaminationCategoryName());
+        imagingExaminationRecordEntity.setImagingExaminationItemName(itemEntity.getImagingExaminationItemName());
+        patientImagingExaminationRecordRepository.updateRecord(
+                imagingExaminationRecordEntity.getImagingExaminationCategoryId(),
+                imagingExaminationRecordEntity.getImagingExaminationCategoryName(),
+                imagingExaminationRecordEntity.getImagingExaminationItemId(),
+                imagingExaminationRecordEntity.getImagingExaminationItemName(),
+                imagingExaminationRecordEntity.getImagingExaminationItemOptionId(),
+                imagingExaminationRecordEntity.getImagingExaminationItemOptionName(),
+                imagingExaminationRecordEntity.getUserId());
+        Integer userId = imagingExaminationRecordEntity.getUserId();
+        return "redirect:/addImagingRecord/" + userId + "/item/" + itemId;
+    }
+
+    // 添影像检查具体事项选项页面
+    @RequestMapping(value = "/addImagingRecord/{userId}/item/{itemId}", method = RequestMethod.GET)
+    public String addImagingRecordItemOption(@PathVariable("userId") Integer userId, @PathVariable("itemId") Integer itemId, ModelMap modelMap) {
+        UserEntity userEntity = userRepository.findOne(userId);
+        modelMap.addAttribute("user", userEntity);
+
+        List<ImagingExaminationItemOptionEntity> optionEntityList = imagingExaminationItemOptionRepository.searchPatientImagingExaminationItemOption(itemId);
+        modelMap.addAttribute("optionList", optionEntityList);
+
+
+        return "addImagingRecordItemOption";
+    }
+
+    // 添加影像检查具体事项选项处理
+    @RequestMapping(value = "/addImagingRecordItemOptionPost", method = RequestMethod.POST)
+    public String addImagingRecordItemOptionPost(@ModelAttribute("user") PatientImagingExaminationRecordEntity imagingExaminationRecordEntity) {
+        Integer optionId = imagingExaminationRecordEntity.getImagingExaminationItemOptionId();
+        ImagingExaminationItemOptionEntity optionEntity = imagingExaminationItemOptionRepository.findOne(optionId);
+        Integer itemId = optionEntity.getImagingExaminationItemId();
+        ImagingExaminationItemEntity itemEntity = imagingExaminationItemRepository.findOne(itemId);
+
+        imagingExaminationRecordEntity.setImagingExaminationCategoryId(itemEntity.getImagingExaminationCategoryId());
+        imagingExaminationRecordEntity.setImagingExaminationCategoryName(itemEntity.getImagingExaminationCategoryName());
+        imagingExaminationRecordEntity.setImagingExaminationItemName(itemEntity.getImagingExaminationItemName());
+        imagingExaminationRecordEntity.setImagingExaminationItemId(itemEntity.getId());
+        imagingExaminationRecordEntity.setImagingExaminationItemOptionId(optionId);
+        imagingExaminationRecordEntity.setImagingExaminationItemOptionName(optionEntity.getImagingExaminationItemOptionName());
+        patientImagingExaminationRecordRepository.updateRecord(
+                imagingExaminationRecordEntity.getImagingExaminationCategoryId(),
+                imagingExaminationRecordEntity.getImagingExaminationCategoryName(),
+                imagingExaminationRecordEntity.getImagingExaminationItemId(),
+                imagingExaminationRecordEntity.getImagingExaminationItemName(),
+                imagingExaminationRecordEntity.getImagingExaminationItemOptionId(),
+                imagingExaminationRecordEntity.getImagingExaminationItemOptionName(),
+                imagingExaminationRecordEntity.getUserId());
         Integer userId = imagingExaminationRecordEntity.getUserId();
         return "redirect:/showUser/" + userId;
     }
+
 
     // 查看用户详细信息
     // @PathVariable可以收集url中的变量，需匹配的变量用{}括起来

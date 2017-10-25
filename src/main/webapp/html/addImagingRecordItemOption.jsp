@@ -64,16 +64,16 @@
     </table>
 
 
-    <form:form action="/addImagingRecordPost" method="post" role="form">
+    <form:form action="/addImagingRecordItemOptionPost" method="post" role="form">
         <input type="hidden" id="patientNumber" name="patientNumber" value="${user.patientNumber}"/>
         <input type="hidden" id="userId" name="userId" value="${user.id}"/>
 
         <div class="form-group">
-            <label for="imagingExaminationCategoryId">影像检查部位:</label>
-            <select id="imagingExaminationCategoryId" name="imagingExaminationCategoryId">
+            <label for="imagingExaminationItemOptionId">影像检查具体事项:</label>
+            <select id="imagingExaminationItemOptionId" name="imagingExaminationItemOptionId">
                 <option value="">请选择</option>
-                <c:forEach items="${categoryList}" var="category">
-                    <option value="${category.id}">${category.imagingExaminationCategoryName}</option>
+                <c:forEach items="${optionList}" var="option">
+                    <option value="${option.id}">${option.imagingExaminationItemOptionName}</option>
                 </c:forEach>
             </select>
         </div>

@@ -11,9 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-/**
- * Created by sjj on 2015/10/24 0024.
- */
-@Repository // 添加注解
+
+@Repository
 public interface ImagingExaminationCategoryRepository extends JpaRepository<ImagingExaminationCategoryEntity, Integer> {
 }

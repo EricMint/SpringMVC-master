@@ -64,20 +64,39 @@
     </table>
 
 
-    <form:form action="/addImagingRecordPost" method="post" role="form">
+    <form:form action="/addImagingRecordItemPost" method="post" role="form">
         <input type="hidden" id="patientNumber" name="patientNumber" value="${user.patientNumber}"/>
         <input type="hidden" id="userId" name="userId" value="${user.id}"/>
 
         <div class="form-group">
-            <label for="imagingExaminationCategoryId">影像检查部位:</label>
-            <select id="imagingExaminationCategoryId" name="imagingExaminationCategoryId">
+            <label for="imagingExaminationItemId">影像检查具体事项:</label>
+            <select id="imagingExaminationItemId" name="imagingExaminationItemId">
                 <option value="">请选择</option>
-                <c:forEach items="${categoryList}" var="category">
-                    <option value="${category.id}">${category.imagingExaminationCategoryName}</option>
+                <c:forEach items="${itemList}" var="item">
+                    <option value="${item.id}">${item.imagingExaminationItemName}</option>
                 </c:forEach>
             </select>
         </div>
 
+
+        <%--<div class="form-group">--%>
+            <%--<label for="imagingExaminationItemName">影像检查具体事项:</label>--%>
+            <%--<select id="imagingExaminationItemName" name="imagingExaminationItemName" hidden>--%>
+                <%--<option value="">请选择</option>--%>
+                <%--<option value="髋关节">髋关节</option>--%>
+                <%--<option value="膝关节">膝关节</option>--%>
+                <%--<option value="踝关节">踝关节</option>--%>
+            <%--</select>--%>
+        <%--</div>--%>
+
+        <%--<div class="form-group">--%>
+            <%--<label for="imagingExaminationItemOptionName">影像检查事项选项:</label>--%>
+            <%--<select id="imagingExaminationItemOptionName" name="imagingExaminationItemOptionName">--%>
+                <%--<option value="">请选择</option>--%>
+                <%--<option value="左侧">左侧</option>--%>
+                <%--<option value="右侧">右侧</option>--%>
+            <%--</select>--%>
+        <%--</div>--%>
         <div class="form-group">
             <button type="submit" class="btn btn-sm btn-success">提交</button>
         </div>
