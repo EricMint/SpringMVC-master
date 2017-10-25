@@ -28,6 +28,9 @@ public class MainController {
     private PatientImagingExaminationRecordRepository patientImagingExaminationRecordRepository;
 
     @Autowired
+    private PatientPhysicalExaminationRecordRepository patientPhysicalExaminationRecordRepository;
+
+    @Autowired
     private ImagingExaminationCategoryRepository imagingExaminationCategoryRepository;
 
     @Autowired
@@ -183,6 +186,8 @@ public class MainController {
             Integer patientNumber = userEntity.getPatientNumber();
             List<PatientImagingExaminationRecordEntity> recordEntityList = patientImagingExaminationRecordRepository.searchPatientImagingExaminationRecord(patientNumber);
             modelMap.addAttribute("recordEntityList", recordEntityList);
+            List<PatientPhysicalExaminationRecordEntity> physicalRecordList = patientPhysicalExaminationRecordRepository.searchPatientPhysicalExaminationRecord(patientNumber);
+            modelMap.addAttribute("physicalRecordList", physicalRecordList);
         }
 
         return "userDetail";

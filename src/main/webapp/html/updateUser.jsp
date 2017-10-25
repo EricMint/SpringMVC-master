@@ -28,7 +28,7 @@
 </head>
 <body>
 <div class="container">
-    <h1>SpringMVC 更新用户信息</h1>
+    <h1>修改用户信息</h1>
     <hr/>
 
     <form:form action="/updateUserPost" method="post" commandName="user" role="form">

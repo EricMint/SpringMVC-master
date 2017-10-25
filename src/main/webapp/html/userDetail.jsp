@@ -80,6 +80,7 @@
         </p>
     </c:if>
     <c:if test="${!empty recordEntityList}">
+        <h1>影像检查记录</h1>
         <table class="table table-bordered table-striped">
             <tr>
                 <th>ID</th>
@@ -94,16 +95,49 @@
                     <td>${imagingExaminationRecord.imagingExaminationCategoryName}</td>
                     <td>${imagingExaminationRecord.imagingExaminationItemName}</td>
                     <td>${imagingExaminationRecord.imagingExaminationItemOptionName}</td>
-                    <%--<td>--%>
+                        <%--<td>--%>
                         <%--<a href="/showUser/${user.id}" type="button" class="btn btn-sm btn-success">详情</a>--%>
                         <%--<a href="/updateUser/${user.id}" type="button" class="btn btn-sm btn-warning">修改</a>--%>
                         <%--<a href="/deleteUser/${user.id}" type="button" class="btn btn-sm btn-danger">删除</a>--%>
-                    <%--</td>--%>
+                        <%--</td>--%>
                 </tr>
             </c:forEach>
         </table>
     </c:if>
 
+    <c:if test="${empty physicalRecordList}">
+        <p class="bg-warning">
+            <br/>
+            无体格检查记录 <a href="/exam/addPhysicalRecord/${user.id}" type="button" class="btn btn-sm btn-success">添加</a>
+            <br/>
+            <br/>
+        </p>
+    </c:if>
+    <c:if test="${!empty physicalRecordList}">
+        <h1>体格检查记录</h1>
+        <table class="table table-bordered table-striped">
+            <tr>
+                <th>ID</th>
+                <th>影像检查部位</th>
+                <th>具体部位</th>
+                <th>方位</th>
+            </tr>
+
+            <c:forEach items="${physicalRecordList}" var="physicalRecord">
+                <tr>
+                    <td>${physicalRecord.id}</td>
+                    <td>${physicalRecord.physicalExaminationCategoryName}</td>
+                    <td>${physicalRecord.physicalExaminationItemName}</td>
+                    <td>${physicalRecord.physicalExaminationItemOptionName}</td>
+                        <%--<td>--%>
+                        <%--<a href="/showUser/${user.id}" type="button" class="btn btn-sm btn-success">详情</a>--%>
+                        <%--<a href="/updateUser/${user.id}" type="button" class="btn btn-sm btn-warning">修改</a>--%>
+                        <%--<a href="/deleteUser/${user.id}" type="button" class="btn btn-sm btn-danger">删除</a>--%>
+                        <%--</td>--%>
+                </tr>
+            </c:forEach>
+        </table>
+    </c:if>
     <a href="/users" type="button" class="btn btn-sm btn-success">返回列表页</a>
 
 </div>
