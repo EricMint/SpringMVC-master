@@ -39,9 +39,9 @@
     <table class="table table-bordered table-striped">
         <tr>
             <th>ID</th>
-            <th>姓名</th>
             <th>人员编号</th>
-            <th>身份证号</th>
+            <th>姓名</th>
+            <th>疾病类型</th>
             <th>民族</th>
             <th>性别</th>
             <th>年龄</th>
@@ -50,30 +50,29 @@
         </tr>
 
         <tr>
-            <td>${user.id}</td>
-            <td>${user.realName}</td>
-            <td>${user.patientNumber}</td>
-            <td>${user.idNumber}</td>
-            <td>${user.ethnicity}</td>
-            <td>${user.gender}</td>
-            <td>${user.age}</td>
-            <td>${user.height}</td>
-            <td>${user.weight}</td>
+            <td>${patient.id}</td>
+            <td>${patient.patientNumber}</td>
+            <td>${patient.realName}</td>
+            <td>${patient.disease}</td>
+            <td>${patient.ethnicity}</td>
+            <td>${patient.gender}</td>
+            <td>${patient.age}</td>
+            <td>${patient.height}</td>
+            <td>${patient.weight}</td>
         </tr>
 
     </table>
 
 
-    <form:form action="/addImagingRecordPost" method="post" role="form">
-        <input type="hidden" id="patientNumber" name="patientNumber" value="${user.patientNumber}"/>
-        <input type="hidden" id="userId" name="userId" value="${user.id}"/>
+    <form:form action="/imageRecord/createPost" method="post" role="form">
+        <input type="hidden" id="patientId" name="patientId" value="${patient.id}"/>
 
         <div class="form-group">
-            <label for="imagingExaminationCategoryId">影像检查部位:</label>
-            <select id="imagingExaminationCategoryId" name="imagingExaminationCategoryId">
+            <label for="imageClassAId">影像检查部位:</label>
+            <select id="imageClassAId" name="imageClassAId">
                 <option value="">请选择</option>
-                <c:forEach items="${categoryList}" var="category">
-                    <option value="${category.id}">${category.imagingExaminationCategoryName}</option>
+                <c:forEach items="${imageClassAList}" var="imageClassA">
+                    <option value="${imageClassA.imageClassAId}">${imageClassA.imageClassAName}</option>
                 </c:forEach>
             </select>
         </div>
@@ -86,6 +85,8 @@
 
 <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
 <script src="/js/bootstrap.min.js"></script>
+<script src="/js/jquery.form.js"/>
+<script src="/js/common.js" />
 <script>
 //    $(document).ready(function() {
 //

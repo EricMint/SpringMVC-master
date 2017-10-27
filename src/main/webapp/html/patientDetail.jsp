@@ -74,7 +74,7 @@
     <c:if test="${empty recordEntityList}">
         <p class="bg-warning">
             <br/>
-            无影像检查记录 <a href="/addImagingRecord/${user.id}" type="button" class="btn btn-sm btn-success">添加</a>
+            无影像检查记录 <a href="/imageRecord/create/${patient.id}" type="button" class="btn btn-sm btn-success">添加</a>
             <br/>
             <br/>
         </p>

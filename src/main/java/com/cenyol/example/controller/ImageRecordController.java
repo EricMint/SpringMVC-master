@@ -16,9 +16,11 @@ import java.util.List;
 @Controller
 public class ImageRecordController {
 
-    // 自动装配
     @Autowired
     private PatientRepository patientRepository;
+
+    @Autowired
+    private ImageRecordRepository imageRecordRepository;
 
     @Autowired
     private PatientImagingExaminationRecordRepository patientImagingExaminationRecordRepository;
@@ -30,6 +32,9 @@ public class ImageRecordController {
     private ImagingExaminationCategoryRepository imagingExaminationCategoryRepository;
 
     @Autowired
+    private ImageClassARepository imageClassARepository;
+
+    @Autowired
     private ImagingExaminationItemRepository imagingExaminationItemRepository;
 
     @Autowired
@@ -37,26 +42,26 @@ public class ImageRecordController {
 
 
     // 添加影像检查部位页面
-    @RequestMapping(value = "/addImagingRecord/{id}", method = RequestMethod.GET)
-    public String addImagingRecord(@PathVariable("id") Integer userId, ModelMap modelMap) {
-        PatientEntity patientEntity = patientRepository.findOne(userId);
-        modelMap.addAttribute("user", patientEntity);
+    @RequestMapping(value = "/imageRecord/create/{patientId}", method = RequestMethod.GET)
+    public String addImagingRecord(@PathVariable("patientId") Integer patientId, ModelMap modelMap) {
+        PatientEntity patientEntity = patientRepository.findOne(patientId);
+        modelMap.addAttribute("patient", patientEntity);
 
-        List<ImagingExaminationCategoryEntity> categoryEntityList = imagingExaminationCategoryRepository.findAll();
-        modelMap.addAttribute("categoryList", categoryEntityList);
+        List<ImageClassAEntity> imageClassAEntityList = imageClassARepository.findAll();
+        modelMap.addAttribute("imageClassAList", imageClassAEntityList);
 
-        return "addImagingRecord";
+        return "imageRecordCreate";
     }
 
     // 添加影像检查部位处理
-    @RequestMapping(value = "/addImagingRecordPost", method = RequestMethod.POST)
-    public String addImagingRecordPost(@ModelAttribute("user") PatientImagingExaminationRecordEntity imagingExaminationRecordEntity) {
-        Integer categoryId = imagingExaminationRecordEntity.getImagingExaminationCategoryId();
-        ImagingExaminationCategoryEntity categoryEntity = imagingExaminationCategoryRepository.findOne(categoryId);
-        imagingExaminationRecordEntity.setImagingExaminationCategoryName(categoryEntity.getImagingExaminationCategoryName());
-        patientImagingExaminationRecordRepository.saveAndFlush(imagingExaminationRecordEntity);
-        Integer userId = imagingExaminationRecordEntity.getUserId();
-        return "redirect:/addImagingRecord/" + userId + "/category/" + categoryId;
+    @RequestMapping(value = "/imageRecord/createPost", method = RequestMethod.POST)
+    public String addImagingRecordPost(@ModelAttribute("user") ImageRecordEntity imageRecordEntity) {
+        ImageClassAEntity classAEntity = imageClassARepository.findOne(imageRecordEntity.getImageClassAId());
+        imageRecordEntity.setImageClassAName(classAEntity.getImageClassAName());
+        ImageRecordEntity savedEntity = imageRecordRepository.save(imageRecordEntity);
+        imageRecordRepository.flush();
+        Integer imageRecordId = savedEntity.getImageRecordId();
+        return "redirect:/addImagingRecord/" + imageRecordId;
     }
 
     // 添影像检查具体事项页面
