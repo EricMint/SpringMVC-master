@@ -3,16 +3,13 @@ package com.cenyol.example.model;
 import javax.persistence.*;
 import java.util.Collection;
 
-/**
- * Created by sjj on 2015/10/24 0024.
- */
 @Entity
 @Table(name = "patient")
-public class UserEntity {
+public class PatientEntity {
     private int id;
     private int patientNumber;
-    private String idNumber;
     private String realName;
+    private String disease;
     private String ethnicity;
     private String gender;
     private int age;
@@ -20,7 +17,8 @@ public class UserEntity {
     private int weight;
 
     @Id
-    @Column(name = "id", nullable = false, insertable = true, updatable = true)
+    @GeneratedValue
+    @Column(name = "id", nullable = false, insertable = true, updatable = false)
     public int getId() {
         return id;
     }
@@ -40,13 +38,13 @@ public class UserEntity {
     }
 
     @Basic
-    @Column(name = "id_number", nullable = true, insertable = true, updatable = true, length = 200)
-    public String getIdNumber() {
-        return idNumber;
+    @Column(name = "disease", nullable = true, insertable = true, updatable = true, length = 200)
+    public String getDisease() {
+        return disease;
     }
 
-    public void setIdNumber(String idNumber) {
-        this.idNumber = idNumber;
+    public void setDisease(String disease) {
+        this.disease = disease;
     }
 
     @Basic
@@ -115,7 +113,7 @@ public class UserEntity {
 //        if (this == o) return true;
 //        if (o == null || getClass() != o.getClass()) return false;
 //
-//        UserEntity that = (UserEntity) o;
+//        PatientEntity that = (PatientEntity) o;
 //
 //        if (id != that.id) return false;
 //        if (firstName != null ? !firstName.equals(that.firstName) : that.firstName != null) return false;

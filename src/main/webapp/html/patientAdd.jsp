@@ -30,18 +30,18 @@
 <div class="container">
   <h1>添加用户</h1>
   <hr/>
-  <form:form action="/addUserPost" method="post" role="form">
+  <form:form action="/patient/addPost" method="post" role="form">
     <div class="form-group">
-      <label for="patientNumber">人员编号:</label>
-      <input type="text" class="form-control" id="patientNumber" name="patientNumber" placeholder="请输入人员编号:"/>
-    </div>
-    <div class="form-group">
-      <label for="idNumber">身份证号:</label>
-      <input type="text" class="form-control" id="idNumber" name="idNumber" placeholder="请输入身份证号:"/>
+      <label for="patientNumber">病人编号:</label>
+      <input type="text" class="form-control" id="patientNumber" name="patientNumber" placeholder="请输入病人编号:"/>
     </div>
     <div class="form-group">
       <label for="realName">姓名:</label>
       <input type="text" class="form-control" id="realName" name="realName" placeholder="请输入姓名:"/>
+    </div>
+    <div class="form-group">
+      <label for="disease">疾病类型:</label>
+      <input type="text" class="form-control" id="disease" name="disease" placeholder="请输入疾病类型:"/>
     </div>
     <div class="form-group">
       <label for="ethnicity">民族:</label>

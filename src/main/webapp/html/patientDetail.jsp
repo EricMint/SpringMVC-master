@@ -14,7 +14,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <title>用户详情</title>
+    <title>病人详情</title>
 
     <!-- 新 Bootstrap 核心 CSS 文件 -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -34,39 +34,39 @@
     <table class="table tavble-bordered table-striped">
         <tr>
             <th>ID</th>
-            <td>${user.id}</td>
+            <td>${patient.id}</td>
         </tr>
         <tr>
             <th>人员编号</th>
-            <td>${user.patientNumber}</td>
-        </tr>
-        <tr>
-            <th>身份证号</th>
-            <td>${user.idNumber}</td>
+            <td>${patient.patientNumber}</td>
         </tr>
         <tr>
             <th>姓名</th>
-            <td>${user.realName}</td>
+            <td>${patient.realName}</td>
+        </tr>
+        <tr>
+            <th>疾病类型</th>
+            <td>${patient.disease}</td>
         </tr>
         <tr>
             <th>民族</th>
-            <td>${user.ethnicity}</td>
+            <td>${patient.ethnicity}</td>
         </tr>
         <tr>
             <th>性别</th>
-            <td>${user.gender}</td>
+            <td>${patient.gender}</td>
         </tr>
         <tr>
             <th>年龄</th>
-            <td>${user.age}</td>
+            <td>${patient.age}</td>
         </tr>
         <tr>
             <th>身高</th>
-            <td>${user.height}</td>
+            <td>${patient.height}</td>
         </tr>
         <tr>
             <th>体重</th>
-            <td>${user.weight}</td>
+            <td>${patient.weight}</td>
         </tr>
 
     </table>
@@ -96,9 +96,9 @@
                     <td>${imagingExaminationRecord.imagingExaminationItemName}</td>
                     <td>${imagingExaminationRecord.imagingExaminationItemOptionName}</td>
                         <%--<td>--%>
-                        <%--<a href="/showUser/${user.id}" type="button" class="btn btn-sm btn-success">详情</a>--%>
-                        <%--<a href="/updateUser/${user.id}" type="button" class="btn btn-sm btn-warning">修改</a>--%>
-                        <%--<a href="/deleteUser/${user.id}" type="button" class="btn btn-sm btn-danger">删除</a>--%>
+                        <%--<a href="/showPatientDetail/${user.id}" type="button" class="btn btn-sm btn-success">详情</a>--%>
+                        <%--<a href="/updatePatient/${user.id}" type="button" class="btn btn-sm btn-warning">修改</a>--%>
+                        <%--<a href="/deletePatient/${user.id}" type="button" class="btn btn-sm btn-danger">删除</a>--%>
                         <%--</td>--%>
                 </tr>
             </c:forEach>
@@ -130,15 +130,15 @@
                     <td>${physicalRecord.physicalExaminationItemName}</td>
                     <td>${physicalRecord.physicalExaminationItemOptionName}</td>
                         <%--<td>--%>
-                        <%--<a href="/showUser/${user.id}" type="button" class="btn btn-sm btn-success">详情</a>--%>
-                        <%--<a href="/updateUser/${user.id}" type="button" class="btn btn-sm btn-warning">修改</a>--%>
-                        <%--<a href="/deleteUser/${user.id}" type="button" class="btn btn-sm btn-danger">删除</a>--%>
+                        <%--<a href="/showPatientDetail/${user.id}" type="button" class="btn btn-sm btn-success">详情</a>--%>
+                        <%--<a href="/updatePatient/${user.id}" type="button" class="btn btn-sm btn-warning">修改</a>--%>
+                        <%--<a href="/deletePatient/${user.id}" type="button" class="btn btn-sm btn-danger">删除</a>--%>
                         <%--</td>--%>
                 </tr>
             </c:forEach>
         </table>
     </c:if>
-    <a href="/users" type="button" class="btn btn-sm btn-success">返回列表页</a>
+    <a href="/patient/list" type="button" class="btn btn-sm btn-success">返回列表页</a>
 
 </div>
 

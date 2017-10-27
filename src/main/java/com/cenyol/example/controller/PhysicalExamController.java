@@ -20,7 +20,7 @@ public class PhysicalExamController {
 
     // 自动装配
     @Autowired
-    private UserRepository userRepository;
+    private PatientRepository patientRepository;
 
     @Autowired
     private PatientPhysicalExaminationRecordRepository patientPhysicalExaminationRecordRepository;
@@ -38,8 +38,8 @@ public class PhysicalExamController {
     // 添加体格检查部位页面
     @RequestMapping(value = "/exam/addPhysicalRecord/{userId}", method = RequestMethod.GET)
     public String addImagingRecord(@PathVariable("userId") Integer userId, ModelMap modelMap) {
-        UserEntity userEntity = userRepository.findOne(userId);
-        modelMap.addAttribute("user", userEntity);
+        PatientEntity patientEntity = patientRepository.findOne(userId);
+        modelMap.addAttribute("user", patientEntity);
 
         List<PhysicalExaminationCategoryEntity> categoryEntityList = physicalExaminationCategoryRepository.findAll();
         modelMap.addAttribute("categoryList", categoryEntityList);
@@ -61,8 +61,8 @@ public class PhysicalExamController {
     // 添体格检查具体事项页面
     @RequestMapping(value = "/exam/addPhysicalItemRecord/{userId}/category/{categoryId}", method = RequestMethod.GET)
     public String addPhysicalRecordItem(@PathVariable("userId") Integer userId, @PathVariable("categoryId") Integer categoryId, ModelMap modelMap) {
-        UserEntity userEntity = userRepository.findOne(userId);
-        modelMap.addAttribute("user", userEntity);
+        PatientEntity patientEntity = patientRepository.findOne(userId);
+        modelMap.addAttribute("user", patientEntity);
 
         List<PhysicalExaminationItemEntity> itemEntityList = physicalExaminationItemRepository.searchPatientPhysicalExaminationItem(categoryId);
         modelMap.addAttribute("itemList", itemEntityList);
@@ -90,15 +90,15 @@ public class PhysicalExamController {
                 physicalExaminationRecordEntity.getPhysicalExaminationItemOptionSubName(),
                 physicalExaminationRecordEntity.getUserId());
         Integer userId = physicalExaminationRecordEntity.getUserId();
-//        return "redirect:/showUser/" + userId;
+//        return "redirect:/showPatientDetail/" + userId;
         return "redirect:/exam/addPhysicalItemOptionRecord/" + userId + "/item/" + itemId;
     }
 
     // 添体格检查事项选项页面
     @RequestMapping(value = "/exam/addPhysicalItemOptionRecord/{userId}/item/{itemId}", method = RequestMethod.GET)
     public String addPhysicalRecordItemOption(@PathVariable("userId") Integer userId, @PathVariable("itemId") Integer itemId, ModelMap modelMap) {
-        UserEntity userEntity = userRepository.findOne(userId);
-        modelMap.addAttribute("user", userEntity);
+        PatientEntity patientEntity = patientRepository.findOne(userId);
+        modelMap.addAttribute("user", patientEntity);
 
         List<PhysicalExaminationItemOptionEntity> optionEntityList = physicalExaminationItemOptionRepository.searchPatientPhysicalExaminationItemOption(itemId);
         modelMap.addAttribute("optionList", optionEntityList);
@@ -130,7 +130,7 @@ public class PhysicalExamController {
                 physicalExaminationRecordEntity.getPhysicalExaminationItemOptionSubName(),
                 physicalExaminationRecordEntity.getUserId());
         Integer userId = physicalExaminationRecordEntity.getUserId();
-        return "redirect:/showUser/" + userId;
+        return "redirect:/showPatientDetail/" + userId;
 //        return "redirect:/exam/addPhysicalRecord/" + userId + "/item/" + itemId;
     }
 }

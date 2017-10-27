@@ -28,29 +28,28 @@
 </head>
 <body>
 <div class="container">
-    <h1>北医三院-用户管理</h1>
+    <h1>北医三院-病人列表</h1>
     <hr/>
 
-    <h3>所有用户 <a href="/addUser" type="button" class="btn btn-default btn-sm">添加</a></h3>
+    <h3>所有用户 <a href="/patient/add" type="button" class="btn btn-default btn-sm">添加</a></h3>
 
-    <!-- 如果用户列表为空 -->
-    <c:if test="${empty userList}">
+    <c:if test="${empty patientList}">
         <p class="bg-warning">
             <br/>
-            无用户信息，请<a href="/addUser" type="button" class="btn btn-default btn-sm">添加</a>
+            无病人信息
+            <%--，请<a href="/patient/add" type="button" class="btn btn-default btn-sm">添加</a>--%>
             <br/>
             <br/>
         </p>
     </c:if>
 
-    <!-- 如果用户列表非空 -->
-    <c:if test="${!empty userList}">
+    <c:if test="${!empty patientList}">
         <table class="table table-bordered table-striped">
             <tr>
                 <th>ID</th>
-                <th>姓名</th>
                 <th>人员编号</th>
-                <th>身份证号</th>
+                <th>姓名</th>
+                <th>疾病类型</th>
                 <th>民族</th>
                 <th>性别</th>
                 <th>年龄</th>
@@ -58,21 +57,21 @@
                 <th>体重</th>
             </tr>
 
-            <c:forEach items="${userList}" var="user">
+            <c:forEach items="${patientList}" var="patient">
                 <tr>
-                    <td>${user.id}</td>
-                    <td>${user.realName}</td>
-                    <td>${user.patientNumber}</td>
-                    <td>${user.idNumber}</td>
-                    <td>${user.ethnicity}</td>
-                    <td>${user.gender}</td>
-                    <td>${user.age}</td>
-                    <td>${user.height}</td>
-                    <td>${user.weight}</td>
+                    <td>${patient.id}</td>
+                    <td>${patient.patientNumber}</td>
+                    <td>${patient.realName}</td>
+                    <td>${patient.disease}</td>
+                    <td>${patient.ethnicity}</td>
+                    <td>${patient.gender}</td>
+                    <td>${patient.age}</td>
+                    <td>${patient.height}</td>
+                    <td>${patient.weight}</td>
                     <td>
-                        <a href="/showUser/${user.id}" type="button" class="btn btn-sm btn-success">详情</a>
-                        <a href="/updateUser/${user.id}" type="button" class="btn btn-sm btn-warning">修改</a>
-                        <a href="/deleteUser/${user.id}" type="button" class="btn btn-sm btn-danger">删除</a>
+                        <a href="/patient/detail/${patient.id}" type="button" class="btn btn-sm btn-success">详情</a>
+                        <a href="/patient/update/${patient.id}" type="button" class="btn btn-sm btn-warning">修改</a>
+                        <a href="/patient/delete/${patient.id}" type="button" class="btn btn-sm btn-danger">删除</a>
                     </td>
                 </tr>
             </c:forEach>

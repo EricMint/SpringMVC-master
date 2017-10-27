@@ -11,7 +11,7 @@ public class BlogEntity {
     private int id;
     private String title;
     private String content;
-    private UserEntity userByUserid;
+    private PatientEntity userByUserid;
 
     @Id
     @Column(name = "id", nullable = false, insertable = true, updatable = true)
@@ -67,11 +67,11 @@ public class BlogEntity {
 
     @ManyToOne
     @JoinColumn(name = "userid", referencedColumnName = "id")
-    public UserEntity getUserByUserid() {
+    public PatientEntity getUserByUserid() {
         return userByUserid;
     }
 
-    public void setUserByUserid(UserEntity userByUserid) {
+    public void setUserByUserid(PatientEntity userByUserid) {
         this.userByUserid = userByUserid;
     }
 }

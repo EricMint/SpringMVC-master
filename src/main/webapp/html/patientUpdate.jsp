@@ -28,52 +28,52 @@
 </head>
 <body>
 <div class="container">
-    <h1>修改用户信息</h1>
+    <h1>修改病人信息</h1>
     <hr/>
 
-    <form:form action="/updateUserPost" method="post" commandName="user" role="form">
+    <form:form action="/patient/updatePost" method="post" commandName="patient" role="form">
         <div class="form-group">
             <label for="patientNumber">人员编号:</label>
             <input type="text" class="form-control" id="patientNumber" name="patientNumber" placeholder="请输入人员编号:"
-                   value="${user.patientNumber}"/>
-        </div>
-        <div class="form-group">
-            <label for="idNumber">身份证号:</label>
-            <input type="text" class="form-control" id="idNumber" name="idNumber" placeholder="请输入身份证号:"
-                   value="${user.idNumber}"/>
+                   value="${patient.patientNumber}"/>
         </div>
         <div class="form-group">
             <label for="realName">姓名:</label>
             <input type="text" class="form-control" id="realName" name="realName" placeholder="请输入姓名:"
-                   value="${user.realName}"/>
+                   value="${patient.realName}"/>
+        </div>
+        <div class="form-group">
+            <label for="disease">疾病类型:</label>
+            <input type="text" class="form-control" id="disease" name="disease" placeholder="请输入疾病类型:"
+                   value="${patient.disease}"/>
         </div>
         <div class="form-group">
             <label for="ethnicity">民族:</label>
             <input type="text" class="form-control" id="ethnicity" name="ethnicity" placeholder="请输入民族:"
-                   value="${user.ethnicity}"/>
+                   value="${patient.ethnicity}"/>
         </div>
         <div class="form-group">
             <label for="gender">性别:</label>
             <input type="text" class="form-control" id="gender" name="gender" placeholder="请输入性别:"
-                   value="${user.gender}"/>
+                   value="${patient.gender}"/>
         </div>
         <div class="form-group">
             <label for="age">年龄:</label>
             <input type="text" class="form-control" id="age" name="age" placeholder="请输入年龄:"
-                   value="${user.age}"/>
+                   value="${patient.age}"/>
         </div>
         <div class="form-group">
             <label for="height">身高:</label>
             <input type="text" class="form-control" id="height" name="height" placeholder="请输入身高:"
-                   value="${user.height}"/>
+                   value="${patient.height}"/>
         </div>
         <div class="form-group">
             <label for="weight">体重:</label>
             <input type="text" class="form-control" id="weight" name="weight" placeholder="请输入体重:"
-                   value="${user.weight}"/>
+                   value="${patient.weight}"/>
         </div>
         <!-- 把 id 一并写入 userP 中 -->
-        <input type="hidden" id="id" name="id" value="${user.id}"/>
+        <input type="hidden" id="id" name="id" value="${patient.id}"/>
 
         <div class="form-group">
             <button type="submit" class="btn btn-sm btn-success">提交</button>
