@@ -66,14 +66,14 @@
 
     <c:if test="${empty physicalRecordList}">
         <p class="bg-warning">
-            <br/>
-            无体格检查记录 <a href="/physicalRecord/create/${patient.id}" type="button" class="btn btn-sm btn-success">添加</a>
-            <br/>
-            <br/>
+        <h1>无体格检查记录 <a href="/physicalRecord/create/${patient.id}" type="button" class="btn btn-default btn-sm">添加</a>
+        </h1>
+        <br/>
         </p>
     </c:if>
     <c:if test="${!empty physicalRecordList}">
-        <h1>体格检查记录 <a href="/physicalRecord/create/${patient.id}" type="button" class="btn btn-default btn-sm">添加</a></h1>
+        <h1>体格检查记录 <a href="/physicalRecord/create/${patient.id}" type="button" class="btn btn-default btn-sm">添加</a>
+        </h1>
 
         <table class="table table-bordered table-striped">
             <tr>
@@ -94,8 +94,10 @@
                     <td>${physicalRecord.physicalClassDName}</td>
                     <td>${physicalRecord.result}</td>
                     <td>
-                        <a href="/physicalRecord/update/${physicalRecord.physicalRecordId}" type="button" class="btn btn-sm btn-warning">修改</a>
-                        <a href="/physicalRecord/delete/${physicalRecord.physicalRecordId}" type="button" class="btn btn-sm btn-danger">删除</a>
+                        <a href="/physicalRecord/update/${physicalRecord.physicalRecordId}" type="button"
+                           class="btn btn-sm btn-warning">修改</a>
+                        <a href="/physicalRecord/delete/${physicalRecord.physicalRecordId}" type="button"
+                           class="btn btn-sm btn-danger">删除</a>
                     </td>
                 </tr>
             </c:forEach>
@@ -104,10 +106,8 @@
 
     <c:if test="${empty imageRecordList}">
         <p class="bg-warning">
-            <br/>
-            无影像检查记录 <a href="/imageRecord/create/${patient.id}" type="button" class="btn btn-sm btn-success">添加</a>
-            <br/>
-            <br/>
+        <h1>无影像检查记录 <a href="/imageRecord/create/${patient.id}" type="button" class="btn btn-default btn-sm">添加</a></h1>
+        <br/>
         </p>
     </c:if>
     <c:if test="${!empty imageRecordList}">
@@ -133,8 +133,10 @@
                     <td>${imageRecord.imageClassEName}</td>
                     <td>${imageRecord.result}</td>
                     <td>
-                        <a href="/imageRecord/update/${imageRecord.imageRecordId}" type="button" class="btn btn-sm btn-warning">修改</a>
-                        <a href="/imageRecord/delete/${imageRecord.imageRecordId}" type="button" class="btn btn-sm btn-danger">删除</a>
+                        <a href="/imageRecord/update/${imageRecord.imageRecordId}" type="button"
+                           class="btn btn-sm btn-warning">修改</a>
+                        <a href="/imageRecord/delete/${imageRecord.imageRecordId}" type="button"
+                           class="btn btn-sm btn-danger">删除</a>
                     </td>
                 </tr>
             </c:forEach>
