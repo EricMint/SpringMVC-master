@@ -2,9 +2,6 @@ package com.cenyol.example.model;
 
 import javax.persistence.*;
 
-/**
- * Created by sjj on 2015/10/24 0024.
- */
 @Entity
 @Table(name = "image_class_a")
 public class ImageClassAEntity {

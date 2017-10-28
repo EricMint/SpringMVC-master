@@ -2,14 +2,13 @@ package com.cenyol.example.controller;
 
 import com.cenyol.example.model.*;
 import com.cenyol.example.repository.*;
+import com.cenyol.example.response.ImageClassBResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
+import java.io.Serializable;
 import java.util.List;
 
 
@@ -33,6 +32,9 @@ public class ImageRecordController {
 
     @Autowired
     private ImageClassARepository imageClassARepository;
+
+    @Autowired
+    private ImageClassBRepository imageClassBRepository;
 
     @Autowired
     private ImagingExaminationItemRepository imagingExaminationItemRepository;
@@ -63,6 +65,17 @@ public class ImageRecordController {
         Integer imageRecordId = savedEntity.getImageRecordId();
         return "redirect:/addImagingRecord/" + imageRecordId;
     }
+
+
+    @RequestMapping(value = "/image/classB/{imageClassAId}", method = RequestMethod.GET)
+    @ResponseBody
+    public ImageClassBResponse listClassB(@PathVariable("imageClassAId") Integer imageClassAId) {
+        List<ImageClassBEntity> classBEntityList = imageClassBRepository.searchClassB(imageClassAId);
+        ImageClassBResponse response = new ImageClassBResponse();
+        response.setClassBEntityList(classBEntityList);
+        return response;
+    }
+
 
     // 添影像检查具体事项页面
     @RequestMapping(value = "/addImagingRecord/{userId}/category/{categoryId}", method = RequestMethod.GET)

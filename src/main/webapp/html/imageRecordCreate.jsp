@@ -69,12 +69,35 @@
 
         <div class="form-group">
             <label for="imageClassAId">影像检查部位:</label>
-            <select id="imageClassAId" name="imageClassAId">
+            <select id="imageClassAId" name="imageClassAId" data-placeholder="请选择"
+                    onchange="initClassB(this.value);">
+                    <%--onchange="initClassB()">--%>
+                    <%--onchange="initClassB(this.options[this.options.selectedIndex].value)">--%>
                 <option value="">请选择</option>
                 <c:forEach items="${imageClassAList}" var="imageClassA">
                     <option value="${imageClassA.imageClassAId}">${imageClassA.imageClassAName}</option>
                 </c:forEach>
             </select>
+
+            <label for="imageClassBId">具体部位:</label>
+            <select id="imageClassBId" name="imageClassBId">
+                    <%--<option value="">请选择</option>--%>
+                    <%--<c:forEach items="${imageClassAList}" var="imageClassA">--%>
+                    <%--<option value="${imageClassA.imageClassAId}">${imageClassA.imageClassAName}</option>--%>
+                    <%--</c:forEach>--%>
+            </select>
+
+
+                <%--<select class="form-control custom-select-all" name="companyId" data-placeholder="请选择"--%>
+                <%--onchange="initDepartment(this.options[this.options.selectedIndex].value)">--%>
+                <%--<option value="">请选择</option>--%>
+                <%--<#if companyList??>--%>
+                <%--<#list companyList as company>--%>
+                <%--<option value="${company.id!}">${company.name!}</option>--%>
+                <%--</#list>--%>
+                <%--</#if>--%>
+                <%--</select>--%>
+
         </div>
 
         <div class="form-group">
@@ -85,32 +108,91 @@
 
 <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
 <script src="/js/bootstrap.min.js"></script>
-<script src="/js/jquery.form.js"/>
-<script src="/js/common.js" />
+<%--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>--%>
+<%--<script src="/js/jquery.form.js"/>--%>
+<%--<script src="/js/common.js"/>--%>
 <script>
-//    $(document).ready(function() {
+//    $(document).ready(function () {
 //
-//        $("#imagingExaminationCategoryName").change(function() {
-//
-//            var el = $(this) ;
-//
-//            if(el.val() === "下肢" ) {
-//                $("#imagingExaminationItemName").isShown;
-//            }
-//            else if(el.val() === "MANUAL" ) {
-//                $("#status option:last-child").remove() ; }
-//        });
-//
+////        initPageView();
+////        search();
+////        initSubmitEvent();
 //    });
-//
-//    $("#imagingExaminationCategoryName").change(function() {
-//
-//        var el = $(this) ;
-//
-//        if(el.val() === "下肢" ) {
-//            $("#imagingExaminationItemName").isShown;
+
+    //        function checkPhone() {
+    //            if($("#copyPhone").val().trim().length == 11) {
+    //                var data = {};
+    //                data.phone = ""+$("#copyPhone").val();
+    //                data.employeeId = "";
+    //                $.ajax({
+    //                            url: "/management/employee/checkPhone",
+    //                            type: "GET",
+    //                            data: data,
+    //                            contentType: "application/json;",
+    //                            success: function (result) {
+    //                                if (!result) {
+    //                                    swal({
+    //                                        title: "",
+    //                                        text: "{"+$("#copyPhone").val()+"}电话号码已经存在!",
+    //                                        confirmButtonText: "确定"
+    //                                    });
+    //                                    $("#copyPhone").val('');
+    //                                    $("#copyPhone").focus();
+    //                                }
+    //                            }
+    //                        }
+    //                );
+    //            }
+    //        }
+    //
+    //
+    //
+    //
+    //    function initPageView() {
+    //        btnClickEffect("#btn-search", " 搜索", 2000);
+    //        equalSearchBox();
+    //        searchPage();
+    //    }
+
+
+    function initClassB(imageClassAId) {
+//        var x = document.getElementById("imageClassAId").value;
+//        alert(x);
+//        alert(imageClassAId);
+//        document.getElementById("demo").innerHTML = "You selected: " + x;
+
+//        alert("The input value has changed. The new value is: " + imageClassAId);
+
+//        if (imageClassAId == "") {
+//            $("#imageClassAId").empty();
+//            $("#imageClassAId").append("<option value=''>请选择</option>");
+//            return;
 //        }
-//    });
+//        $("#imageClassBId").empty();
+        var url = "/image/classB/" + imageClassAId;
+        $.ajax({
+            url: url,
+            type: "GET",
+            contentType: "application/json",
+            dataType: "json",
+            success: function (result) {
+                console.log(result);
+                if (result != "") {
+                    var list = result.classBEntityList;
+                    var options = "<option value=''>请选择</option>";
+                    $.each(list, function (index, item) {
+                        options = options + "<option value='" + item["imageClassBId"] + "'>" + item["imageClassBName"] + "</option>";
+                    });
+                    $("#imageClassBId").append(options);
+                }
+            },
+            error: function(e){
+                console.log(e);
+            }
+        });
+    }
+
+
 </script>
 
 </body>
