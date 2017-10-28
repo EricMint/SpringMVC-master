@@ -2,13 +2,13 @@ package com.cenyol.example.controller;
 
 import com.cenyol.example.model.*;
 import com.cenyol.example.repository.*;
-import com.cenyol.example.response.ImageClassBResponse;
+import com.cenyol.example.response.ImageClassBListResponse;
+import com.cenyol.example.response.ImageClassCListResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.Serializable;
 import java.util.List;
 
 
@@ -35,6 +35,9 @@ public class ImageRecordController {
 
     @Autowired
     private ImageClassBRepository imageClassBRepository;
+
+    @Autowired
+    private ImageClassCRepository imageClassCRepository;
 
     @Autowired
     private ImagingExaminationItemRepository imagingExaminationItemRepository;
@@ -69,13 +72,21 @@ public class ImageRecordController {
 
     @RequestMapping(value = "/image/classB/{imageClassAId}", method = RequestMethod.GET)
     @ResponseBody
-    public ImageClassBResponse listClassB(@PathVariable("imageClassAId") Integer imageClassAId) {
+    public ImageClassBListResponse listClassB(@PathVariable("imageClassAId") Integer imageClassAId) {
         List<ImageClassBEntity> classBEntityList = imageClassBRepository.searchClassB(imageClassAId);
-        ImageClassBResponse response = new ImageClassBResponse();
-        response.setClassBEntityList(classBEntityList);
-        return response;
+        ImageClassBListResponse listResponse = new ImageClassBListResponse();
+        listResponse.setClassBEntityList(classBEntityList);
+        return listResponse;
     }
 
+    @RequestMapping(value = "/image/classC/{imageClassBId}", method = RequestMethod.GET)
+    @ResponseBody
+    public ImageClassCListResponse listClassC(@PathVariable("imageClassBId") Integer imageClassBId) {
+        List<ImageClassCEntity> classCEntityList = imageClassCRepository.searchClassC(imageClassBId);
+        ImageClassCListResponse listResponse = new ImageClassCListResponse();
+        listResponse.setClassCEntityList(classCEntityList);
+        return listResponse;
+    }
 
     // 添影像检查具体事项页面
     @RequestMapping(value = "/addImagingRecord/{userId}/category/{categoryId}", method = RequestMethod.GET)

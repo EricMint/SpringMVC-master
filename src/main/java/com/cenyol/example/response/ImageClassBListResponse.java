@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
-public class ImageClassBResponse implements Serializable {
+public class ImageClassBListResponse implements Serializable {
 
     private List<ImageClassBEntity> classBEntityList;
 
