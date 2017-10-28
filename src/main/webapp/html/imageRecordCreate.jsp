@@ -61,18 +61,26 @@
                     <option value="${imageClassA.imageClassAId}">${imageClassA.imageClassAName}</option>
                 </c:forEach>
             </select>
+        </div>
+        <div class="form-group">
 
             <label for="imageClassBId">检查关节:</label>
             <select id="imageClassBId" name="imageClassBId" data-placeholder="请选择"
                     onchange="initClassC(this.value);"></select>
+        </div>
+        <div class="form-group">
 
             <label for="imageClassCId">具体关节:</label>
             <select id="imageClassCId" name="imageClassCId" data-placeholder="请选择"
                     onchange="initClassD(this.value);"></select>
+        </div>
+        <div class="form-group">
 
             <label for="imageClassDId">关节方位:</label>
             <select id="imageClassDId" name="imageClassDId" data-placeholder="请选择"
                     onchange="initClassE(this.value);"></select>
+        </div>
+        <div class="form-group">
 
             <label for="imageClassEId">具体位置:</label>
             <select id="imageClassEId" name="imageClassEId"></select>
@@ -92,6 +100,13 @@
 <script>
 
     function initClassB(imageClassAId) {
+        if (imageClassAId == "") {
+            $("#imageClassBId").empty();
+            $("#imageClassBId").append("<option value=''>请选择</option>");
+            return;
+        }
+        $("#imageClassBId").empty();
+
         var url = "/image/classB/" + imageClassAId;
         $.ajax({
             url: url,
@@ -116,6 +131,12 @@
     }
 
     function initClassC(imageClassBId) {
+        if (imageClassBId == "") {
+            $("#imageClassCId").empty();
+            $("#imageClassCId").append("<option value=''>请选择</option>");
+            return;
+        }
+        $("#imageClassCId").empty();
         var url = "/image/classC/" + imageClassBId;
         $.ajax({
             url: url,
@@ -140,6 +161,12 @@
     }
 
     function initClassD(imageClassCId) {
+        if (imageClassCId == "") {
+            $("#imageClassDId").empty();
+            $("#imageClassDId").append("<option value=''>请选择</option>");
+            return;
+        }
+        $("#imageClassDId").empty();
         var url = "/image/classD/" + imageClassCId;
         $.ajax({
             url: url,
@@ -150,6 +177,9 @@
                 console.log(result);
                 if (result != "") {
                     var list = result.classDEntityList;
+                    if (list.length<1) {
+                        $("#imageClassDId").append("<option value=''>暂无可选</option>");
+                    }
                     var options = "<option value=''>请选择</option>";
                     $.each(list, function (index, item) {
                         options = options + "<option value='" + item["imageClassDId"] + "'>" + item["imageClassDName"] + "</option>";
@@ -164,6 +194,12 @@
     }
 
     function initClassE(imageClassDId) {
+        if (imageClassDId == "") {
+            $("#imageClassEId").empty();
+            $("#imageClassEId").append("<option value=''>请选择</option>");
+            return;
+        }
+        $("#imageClassEId").empty();
         var url = "/image/classE/" + imageClassDId;
         $.ajax({
             url: url,
@@ -174,6 +210,10 @@
                 console.log(result);
                 if (result != "") {
                     var list = result.classEEntityList;
+                    var list = result.classEEntityList;
+                    if (list.length<1) {
+                        $("#imageClassEId").append("<option value=''>暂无可选</option>");
+                    }
                     var options = "<option value=''>请选择</option>";
                     $.each(list, function (index, item) {
                         options = options + "<option value='" + item["imageClassEId"] + "'>" + item["imageClassEName"] + "</option>";
