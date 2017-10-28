@@ -22,20 +22,6 @@ public class MainController {
     @Autowired
     private ImageRecordRepository imageRecordRepository;
 
-//    @Autowired
-//    private PatientImagingExaminationRecordRepository patientImagingExaminationRecordRepository;
-//
-//    @Autowired
-//    private PatientPhysicalExaminationRecordRepository patientPhysicalExaminationRecordRepository;
-//
-//    @Autowired
-//    private ImagingExaminationCategoryRepository imagingExaminationCategoryRepository;
-//
-//    @Autowired
-//    private ImagingExaminationItemRepository imagingExaminationItemRepository;
-//
-//    @Autowired
-//    private ImagingExaminationItemOptionRepository imagingExaminationItemOptionRepository;
 
     // 首页
     @RequestMapping(value = "/", method = RequestMethod.GET)

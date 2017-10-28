@@ -1,7 +1,6 @@
 package com.cenyol.example.repository;
 
 import com.cenyol.example.model.ImageRecordEntity;
-import com.cenyol.example.model.PatientImagingExaminationRecordEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;

@@ -1,6 +1,5 @@
 package com.cenyol.example.repository;
 
-import com.cenyol.example.model.ImagingExaminationItemOptionEntity;
 import com.cenyol.example.model.PhysicalExaminationItemOptionEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

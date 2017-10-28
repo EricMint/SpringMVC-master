@@ -12,9 +12,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
 
-/**
- * Created by sjj on 2015/10/24 0024.
- */
 @Controller
 public class PhysicalExamController {
 
