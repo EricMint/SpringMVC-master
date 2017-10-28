@@ -54,8 +54,7 @@
 
         <div class="form-group">
             <label for="imageClassAId">影像检查部位:</label>
-            <select id="imageClassAId" name="imageClassAId" data-placeholder="请选择"
-                    onchange="initClassB(this.value);">
+            <select id="imageClassAId" name="imageClassAId" data-placeholder="请选择" onchange="initClassB(this.value);">
                 <option value="">请选择</option>
                 <c:forEach items="${imageClassAList}" var="imageClassA">
                     <option value="${imageClassA.imageClassAId}">${imageClassA.imageClassAName}</option>
@@ -63,28 +62,22 @@
             </select>
         </div>
         <div class="form-group">
-
             <label for="imageClassBId">检查关节:</label>
-            <select id="imageClassBId" name="imageClassBId" data-placeholder="请选择"
-                    onchange="initClassC(this.value);"></select>
+            <select id="imageClassBId" name="imageClassBId" data-placeholder="请选择" onchange="initClassC(this.value);"></select>
         </div>
         <div class="form-group">
 
             <label for="imageClassCId">具体关节:</label>
-            <select id="imageClassCId" name="imageClassCId" data-placeholder="请选择"
-                    onchange="initClassD(this.value);"></select>
+            <select id="imageClassCId" name="imageClassCId" data-placeholder="请选择" onchange="initClassD(this.value);"></select>
         </div>
         <div class="form-group">
 
             <label for="imageClassDId">关节方位:</label>
-            <select id="imageClassDId" name="imageClassDId" data-placeholder="请选择"
-                    onchange="initClassE(this.value);"></select>
+            <select id="imageClassDId" name="imageClassDId" data-placeholder="请选择" onchange="initClassE(this.value);"></select>
         </div>
         <div class="form-group">
-
             <label for="imageClassEId">具体位置:</label>
             <select id="imageClassEId" name="imageClassEId"></select>
-
         </div>
 
         <div class="form-group">
@@ -209,7 +202,6 @@
             success: function (result) {
                 console.log(result);
                 if (result != "") {
-                    var list = result.classEEntityList;
                     var list = result.classEEntityList;
                     if (list.length<1) {
                         $("#imageClassEId").append("<option value=''>暂无可选</option>");
