@@ -23,17 +23,19 @@ public interface ImageRecordRepository extends JpaRepository<ImageRecordEntity, 
             "imageRecordEntity.imageClassBId=:qImageClassBId, imageRecordEntity.imageClassBName=:qImageClassBName," +
             " imageRecordEntity.imageClassCId=:qImageClassCId, imageRecordEntity.imageClassCName=:qImageClassCName," +
             " imageRecordEntity.imageClassDId=:qImageClassDId, imageRecordEntity.imageClassDName=:qImageClassDName," +
-            " imageRecordEntity.imageClassCId=:qImageClassEId, imageRecordEntity.imageClassEName=:qImageClassEName where imageRecordEntity.patientId=:qPatientId")
+            " imageRecordEntity.imageClassCId=:qImageClassEId, imageRecordEntity.imageClassEName=:qImageClassEName,"+
+            "imageRecordEntity.result=:qResult where imageRecordEntity.imageRecordId=:qImageRecordId")
     public void updateImageRecord(@Param("qImageClassAId") Integer imageClassAId,
                                   @Param("qImageClassAName") String imageClassAName,
                                   @Param("qImageClassBId") Integer imageClassBId,
-                                  @Param("qImageClassBName") Integer imageClassBName,
+                                  @Param("qImageClassBName") String imageClassBName,
                                   @Param("qImageClassCId") Integer imageClassCId,
-                                  @Param("qImageClassCName") Integer imageClassCName,
+                                  @Param("qImageClassCName") String imageClassCName,
                                   @Param("qImageClassDId") Integer imageClassDId,
-                                  @Param("qImageClassDName") Integer imageClassDName,
+                                  @Param("qImageClassDName") String imageClassDName,
                                   @Param("qImageClassEId") Integer imageClassEId,
-                                  @Param("qImageClassEName") Integer imageClassEName,
-                                  @Param("qPatientId") Integer patientId);
+                                  @Param("qImageClassEName") String imageClassEName,
+                                  @Param("qResult") String result,
+                                  @Param("qImageRecordId") Integer imageRecordId);
 
 }

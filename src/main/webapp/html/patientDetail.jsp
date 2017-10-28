@@ -101,11 +101,10 @@
                     <td>${imageRecord.imageClassDName}</td>
                     <td>${imageRecord.imageClassEName}</td>
                     <td>${imageRecord.result}</td>
-                        <%--<td>--%>
-                        <%--<a href="/showPatientDetail/${user.id}" type="button" class="btn btn-sm btn-success">详情</a>--%>
-                        <%--<a href="/updatePatient/${user.id}" type="button" class="btn btn-sm btn-warning">修改</a>--%>
-                        <%--<a href="/deletePatient/${user.id}" type="button" class="btn btn-sm btn-danger">删除</a>--%>
-                        <%--</td>--%>
+                    <td>
+                        <a href="/imageRecord/update/${imageRecord.imageRecordId}" type="button" class="btn btn-sm btn-warning">修改</a>
+                        <a href="/imageRecord/delete/${imageRecord.imageRecordId}" type="button" class="btn btn-sm btn-danger">删除</a>
+                    </td>
                 </tr>
             </c:forEach>
         </table>

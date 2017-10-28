@@ -6,22 +6,22 @@ import javax.persistence.*;
 @Entity
 @Table(name = "image_record")
 public class ImageRecordEntity {
-    private int imageRecordId;
-    private int patientId;
+    private Integer imageRecordId;
+    private Integer patientId;
 
-    private int imageClassAId;
+    private Integer imageClassAId;
     private String imageClassAName;
 
-    private int imageClassBId;
+    private Integer imageClassBId;
     private String imageClassBName;
 
-    private int imageClassCId;
+    private Integer imageClassCId;
     private String imageClassCName;
 
-    private int imageClassDId;
+    private Integer imageClassDId;
     private String imageClassDName;
 
-    private int imageClassEId;
+    private Integer imageClassEId;
     private String imageClassEName;
 
     private String result;
@@ -29,31 +29,31 @@ public class ImageRecordEntity {
     @Id
     @GeneratedValue
     @Column(name = "image_record_id", nullable = false, insertable = true, updatable = true)
-    public int getImageRecordId() {
+    public Integer getImageRecordId() {
         return imageRecordId;
     }
 
-    public void setImageRecordId(int imageRecordId) {
+    public void setImageRecordId(Integer imageRecordId) {
         this.imageRecordId = imageRecordId;
     }
 
     @Basic
     @Column(name = "patient_id", nullable = true, insertable = true, updatable = true, length = 200)
-    public int getPatientId() {
+    public Integer getPatientId() {
         return patientId;
     }
 
-    public void setPatientId(int patientId) {
+    public void setPatientId(Integer patientId) {
         this.patientId = patientId;
     }
 
     @Basic
     @Column(name = "image_class_a_id", nullable = true, insertable = true, updatable = true, length = 200)
-    public int getImageClassAId() {
+    public Integer getImageClassAId() {
         return imageClassAId;
     }
 
-    public void setImageClassAId(int imageClassAId) {
+    public void setImageClassAId(Integer imageClassAId) {
         this.imageClassAId = imageClassAId;
     }
 
@@ -69,11 +69,11 @@ public class ImageRecordEntity {
 
     @Basic
     @Column(name = "image_class_b_id", nullable = true, insertable = true, updatable = true, length = 200)
-    public int getImageClassBId() {
+    public Integer getImageClassBId() {
         return imageClassBId;
     }
 
-    public void setImageClassBId(int imageClassBId) {
+    public void setImageClassBId(Integer imageClassBId) {
         this.imageClassBId = imageClassBId;
     }
 
@@ -89,11 +89,11 @@ public class ImageRecordEntity {
 
     @Basic
     @Column(name = "image_class_c_id", nullable = true, insertable = true, updatable = true, length = 200)
-    public int getImageClassCId() {
+    public Integer getImageClassCId() {
         return imageClassCId;
     }
 
-    public void setImageClassCId(int imageClassCId) {
+    public void setImageClassCId(Integer imageClassCId) {
         this.imageClassCId = imageClassCId;
     }
 
@@ -109,11 +109,11 @@ public class ImageRecordEntity {
 
     @Basic
     @Column(name = "image_class_d_id", nullable = true, insertable = true, updatable = true, length = 200)
-    public int getImageClassDId() {
+    public Integer getImageClassDId() {
         return imageClassDId;
     }
 
-    public void setImageClassDId(int imageClassDId) {
+    public void setImageClassDId(Integer imageClassDId) {
         this.imageClassDId = imageClassDId;
     }
 
@@ -129,11 +129,11 @@ public class ImageRecordEntity {
 
     @Basic
     @Column(name = "image_class_e_id", nullable = true, insertable = true, updatable = true, length = 200)
-    public int getImageClassEId() {
+    public Integer getImageClassEId() {
         return imageClassEId;
     }
 
-    public void setImageClassEId(int imageClassEId) {
+    public void setImageClassEId(Integer imageClassEId) {
         this.imageClassEId = imageClassEId;
     }
 
