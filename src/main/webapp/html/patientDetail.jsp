@@ -64,6 +64,43 @@
 
     </table>
 
+    <c:if test="${empty physicalRecordList}">
+        <p class="bg-warning">
+            <br/>
+            无体格检查记录 <a href="/physicalRecord/create/${patient.id}" type="button" class="btn btn-sm btn-success">添加</a>
+            <br/>
+            <br/>
+        </p>
+    </c:if>
+    <c:if test="${!empty physicalRecordList}">
+        <h1>体格检查记录</h1>
+        <table class="table table-bordered table-striped">
+            <tr>
+                <th>ID</th>
+                <th>影像检查部位</th>
+                <th>检查关节</th>
+                <th>具体关节</th>
+                <th>关节方位</th>
+                <th>测量数值</th>
+            </tr>
+
+            <c:forEach items="${physicalRecordList}" var="physicalRecord">
+                <tr>
+                    <td>${physicalRecord.physicalRecordId}</td>
+                    <td>${physicalRecord.physicalClassAName}</td>
+                    <td>${physicalRecord.physicalClassBName}</td>
+                    <td>${physicalRecord.physicalClassCName}</td>
+                    <td>${physicalRecord.physicalClassDName}</td>
+                    <td>${physicalRecord.result}</td>
+                    <td>
+                        <a href="/physicalRecord/update/${physicalRecord.physicalRecordId}" type="button" class="btn btn-sm btn-warning">修改</a>
+                        <a href="/physicalRecord/delete/${physicalRecord.physicalRecordId}" type="button" class="btn btn-sm btn-danger">删除</a>
+                    </td>
+                </tr>
+            </c:forEach>
+        </table>
+    </c:if>
+
     <c:if test="${empty imageRecordList}">
         <p class="bg-warning">
             <br/>
@@ -103,39 +140,6 @@
         </table>
     </c:if>
 
-    <c:if test="${empty physicalRecordList}">
-        <p class="bg-warning">
-            <br/>
-            无体格检查记录 <a href="/exam/addPhysicalRecord/${user.id}" type="button" class="btn btn-sm btn-success">添加</a>
-            <br/>
-            <br/>
-        </p>
-    </c:if>
-    <c:if test="${!empty physicalRecordList}">
-        <h1>体格检查记录</h1>
-        <table class="table table-bordered table-striped">
-            <tr>
-                <th>ID</th>
-                <th>影像检查部位</th>
-                <th>具体部位</th>
-                <th>方位</th>
-            </tr>
-
-            <c:forEach items="${physicalRecordList}" var="physicalRecord">
-                <tr>
-                    <td>${physicalRecord.id}</td>
-                    <td>${physicalRecord.physicalExaminationCategoryName}</td>
-                    <td>${physicalRecord.physicalExaminationItemName}</td>
-                    <td>${physicalRecord.physicalExaminationItemOptionName}</td>
-                        <%--<td>--%>
-                        <%--<a href="/showPatientDetail/${user.id}" type="button" class="btn btn-sm btn-success">详情</a>--%>
-                        <%--<a href="/updatePatient/${user.id}" type="button" class="btn btn-sm btn-warning">修改</a>--%>
-                        <%--<a href="/deletePatient/${user.id}" type="button" class="btn btn-sm btn-danger">删除</a>--%>
-                        <%--</td>--%>
-                </tr>
-            </c:forEach>
-        </table>
-    </c:if>
     <a href="/patient/list" type="button" class="btn btn-sm btn-success">返回列表页</a>
 
 </div>
