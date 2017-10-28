@@ -71,11 +71,6 @@ public class MainController {
             modelMap.addAttribute("imageRecordList", imageRecordEntityList);
             List<PhysicalRecordEntity> physicalRecordEntityList = physicalRecordRepository.searchPhysicalRecord(patientId);
             modelMap.addAttribute("physicalRecordList", physicalRecordEntityList);
-
-//            Integer patientNumber = patientEntity.getPatientNumber();
-//            List<PatientImagingExaminationRecordEntity> recordEntityList = patientImagingExaminationRecordRepository.searchPatientImagingExaminationRecord(patientNumber);
-//            List<PatientPhysicalExaminationRecordEntity> physicalRecordList = patientPhysicalExaminationRecordRepository.searchPatientPhysicalExaminationRecord(patientNumber);
-//            modelMap.addAttribute("physicalRecordList", physicalRecordList);
         }
 
         return "patientDetail";

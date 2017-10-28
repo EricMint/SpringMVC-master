@@ -77,7 +77,7 @@
         <table class="table table-bordered table-striped">
             <tr>
                 <th>ID</th>
-                <th>影像检查部位</th>
+                <th>体格检查部位</th>
                 <th>检查关节</th>
                 <th>具体关节</th>
                 <th>关节方位</th>

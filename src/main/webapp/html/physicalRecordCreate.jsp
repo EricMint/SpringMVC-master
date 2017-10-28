@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>添加用户影像检查信息</title>
+    <title>添加用户体格检查信息</title>
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
@@ -18,7 +18,7 @@
 <script src="/js/jquery.min.js"></script>
 
 <div class="container">
-    <h1>添加用户影像检查信息</h1>
+    <h1>添加用户体格检查信息</h1>
     <hr/>
 
     <table class="table table-bordered table-striped">
@@ -53,7 +53,7 @@
         <input type="hidden" id="patientId" name="patientId" value="${patient.id}"/>
 
         <div class="form-group">
-            <label for="physicalClassAId">影像检查部位:</label>
+            <label for="physicalClassAId">体格检查部位:</label>
             <select id="physicalClassAId" name="physicalClassAId" data-placeholder="请选择" onchange="initClassB(this.value);">
                 <option value="">请选择</option>
                 <c:forEach items="${physicalClassAList}" var="physicalClassA">
