@@ -19,6 +19,9 @@ public class MainController {
     @Autowired
     private PatientRepository patientRepository;
 
+    @Autowired
+    private ImageRecordRepository imageRecordRepository;
+
 //    @Autowired
 //    private PatientImagingExaminationRecordRepository patientImagingExaminationRecordRepository;
 //
@@ -74,10 +77,11 @@ public class MainController {
     public String showPatientDetail(@PathVariable("patientId") Integer patientId, ModelMap modelMap) {
         PatientEntity patientEntity = patientRepository.findOne(patientId);
         modelMap.addAttribute("patient", patientEntity);
-        if (null != patientEntity && null != (Integer) patientEntity.getPatientNumber()) {
-            Integer patientNumber = patientEntity.getPatientNumber();
+        if (null != patientEntity) {
+            List<ImageRecordEntity> imageRecordEntityList = imageRecordRepository.searchImageRecord(patientId);
+            modelMap.addAttribute("imageRecordList", imageRecordEntityList);
+//            Integer patientNumber = patientEntity.getPatientNumber();
 //            List<PatientImagingExaminationRecordEntity> recordEntityList = patientImagingExaminationRecordRepository.searchPatientImagingExaminationRecord(patientNumber);
-//            modelMap.addAttribute("recordEntityList", recordEntityList);
 //            List<PatientPhysicalExaminationRecordEntity> physicalRecordList = patientPhysicalExaminationRecordRepository.searchPatientPhysicalExaminationRecord(patientNumber);
 //            modelMap.addAttribute("physicalRecordList", physicalRecordList);
         }

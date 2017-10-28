@@ -71,7 +71,7 @@
 
     </table>
 
-    <c:if test="${empty recordEntityList}">
+    <c:if test="${empty imageRecordList}">
         <p class="bg-warning">
             <br/>
             无影像检查记录 <a href="/imageRecord/create/${patient.id}" type="button" class="btn btn-sm btn-success">添加</a>
@@ -79,22 +79,28 @@
             <br/>
         </p>
     </c:if>
-    <c:if test="${!empty recordEntityList}">
+    <c:if test="${!empty imageRecordList}">
         <h1>影像检查记录</h1>
         <table class="table table-bordered table-striped">
             <tr>
                 <th>ID</th>
                 <th>影像检查部位</th>
-                <th>具体部位</th>
-                <th>方位</th>
+                <th>检查关节</th>
+                <th>具体关节</th>
+                <th>关节方位</th>
+                <th>具体位置</th>
+                <th>测量数值</th>
             </tr>
 
-            <c:forEach items="${recordEntityList}" var="imagingExaminationRecord">
+            <c:forEach items="${imageRecordList}" var="imageRecord">
                 <tr>
-                    <td>${imagingExaminationRecord.id}</td>
-                    <td>${imagingExaminationRecord.imagingExaminationCategoryName}</td>
-                    <td>${imagingExaminationRecord.imagingExaminationItemName}</td>
-                    <td>${imagingExaminationRecord.imagingExaminationItemOptionName}</td>
+                    <td>${imageRecord.imageRecordId}</td>
+                    <td>${imageRecord.imageClassAName}</td>
+                    <td>${imageRecord.imageClassBName}</td>
+                    <td>${imageRecord.imageClassCName}</td>
+                    <td>${imageRecord.imageClassDName}</td>
+                    <td>${imageRecord.imageClassEName}</td>
+                    <td>${imageRecord.result}</td>
                         <%--<td>--%>
                         <%--<a href="/showPatientDetail/${user.id}" type="button" class="btn btn-sm btn-success">详情</a>--%>
                         <%--<a href="/updatePatient/${user.id}" type="button" class="btn btn-sm btn-warning">修改</a>--%>

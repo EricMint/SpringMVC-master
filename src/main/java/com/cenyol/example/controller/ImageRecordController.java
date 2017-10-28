@@ -54,7 +54,7 @@ public class ImageRecordController {
     private ImagingExaminationItemOptionRepository imagingExaminationItemOptionRepository;
 
 
-    // 添加影像检查部位页面
+    // 影像检查部位页面
     @RequestMapping(value = "/imageRecord/create/{patientId}", method = RequestMethod.GET)
     public String addImagingRecord(@PathVariable("patientId") Integer patientId, ModelMap modelMap) {
         PatientEntity patientEntity = patientRepository.findOne(patientId);
@@ -66,15 +66,40 @@ public class ImageRecordController {
         return "imageRecordCreate";
     }
 
-    // 添加影像检查部位处理
+    // 影像检查部位处理
     @RequestMapping(value = "/imageRecord/createPost", method = RequestMethod.POST)
     public String addImagingRecordPost(@ModelAttribute("user") ImageRecordEntity imageRecordEntity) {
-        ImageClassAEntity classAEntity = imageClassARepository.findOne(imageRecordEntity.getImageClassAId());
-        imageRecordEntity.setImageClassAName(classAEntity.getImageClassAName());
+        Integer patientId = imageRecordEntity.getPatientId();
+        Integer classAId = imageRecordEntity.getImageClassAId();
+        if (null != classAId) {
+            ImageClassAEntity classAEntity = imageClassARepository.findOne(classAId);
+            imageRecordEntity.setImageClassAName(classAEntity.getImageClassAName());
+        }
+        Integer classBId = imageRecordEntity.getImageClassBId();
+        if (null != classBId) {
+            ImageClassBEntity classBEntity = imageClassBRepository.findOne(classBId);
+            imageRecordEntity.setImageClassBName(classBEntity.getImageClassBName());
+
+        }
+        Integer classCId = imageRecordEntity.getImageClassCId();
+        if (null != classCId) {
+            ImageClassCEntity classCEntity = imageClassCRepository.findOne(classCId);
+            imageRecordEntity.setImageClassCName(classCEntity.getImageClassCName());
+        }
+        Integer classDId = imageRecordEntity.getImageClassDId();
+        if (null != classDId) {
+            ImageClassDEntity classDEntity = imageClassDRepository.findOne(classDId);
+            imageRecordEntity.setImageClassDName(classDEntity.getImageClassDName());
+        }
+        Integer classEId = imageRecordEntity.getImageClassEId();
+        if (null != classEId) {
+            ImageClassEEntity classEEntity = imageClassERepository.findOne(classEId);
+            imageRecordEntity.setImageClassEName(classEEntity.getImageClassEName());
+        }
         ImageRecordEntity savedEntity = imageRecordRepository.save(imageRecordEntity);
         imageRecordRepository.flush();
         Integer imageRecordId = savedEntity.getImageRecordId();
-        return "redirect:/addImagingRecord/" + imageRecordId;
+        return "redirect:/patient/detail/" + patientId;
     }
 
 

@@ -81,6 +81,11 @@
         </div>
 
         <div class="form-group">
+            <label for="result">测量数值</label>
+            <input type="text" class="form-control" id="result" name="result" placeholder="请输入测量数值:"/>
+        </div>
+
+        <div class="form-group">
             <button type="submit" class="btn btn-sm btn-success">提交</button>
         </div>
     </form:form>
