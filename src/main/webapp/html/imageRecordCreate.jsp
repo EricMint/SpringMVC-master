@@ -1,4 +1,3 @@
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -72,7 +71,11 @@
                     onchange="initClassD(this.value);"></select>
 
             <label for="imageClassDId">关节方位:</label>
-            <select id="imageClassDId" name="imageClassDId"></select>
+            <select id="imageClassDId" name="imageClassDId" data-placeholder="请选择"
+                    onchange="initClassE(this.value);"></select>
+
+            <label for="imageClassEId">具体位置:</label>
+            <select id="imageClassEId" name="imageClassEId"></select>
 
         </div>
 
@@ -106,7 +109,7 @@
                     $("#imageClassBId").append(options);
                 }
             },
-            error: function(e){
+            error: function (e) {
                 console.log(e);
             }
         });
@@ -130,7 +133,7 @@
                     $("#imageClassCId").append(options);
                 }
             },
-            error: function(e){
+            error: function (e) {
                 console.log(e);
             }
         });
@@ -154,7 +157,31 @@
                     $("#imageClassDId").append(options);
                 }
             },
-            error: function(e){
+            error: function (e) {
+                console.log(e);
+            }
+        });
+    }
+
+    function initClassE(imageClassDId) {
+        var url = "/image/classE/" + imageClassDId;
+        $.ajax({
+            url: url,
+            type: "GET",
+            contentType: "application/json",
+            dataType: "json",
+            success: function (result) {
+                console.log(result);
+                if (result != "") {
+                    var list = result.classEEntityList;
+                    var options = "<option value=''>请选择</option>";
+                    $.each(list, function (index, item) {
+                        options = options + "<option value='" + item["imageClassEId"] + "'>" + item["imageClassEName"] + "</option>";
+                    });
+                    $("#imageClassEId").append(options);
+                }
+            },
+            error: function (e) {
                 console.log(e);
             }
         });

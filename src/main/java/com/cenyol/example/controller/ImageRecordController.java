@@ -5,6 +5,7 @@ import com.cenyol.example.repository.*;
 import com.cenyol.example.response.ImageClassBListResponse;
 import com.cenyol.example.response.ImageClassCListResponse;
 import com.cenyol.example.response.ImageClassDListResponse;
+import com.cenyol.example.response.ImageClassEListResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -42,6 +43,9 @@ public class ImageRecordController {
 
     @Autowired
     private ImageClassDRepository imageClassDRepository;
+
+    @Autowired
+    private ImageClassERepository imageClassERepository;
 
     @Autowired
     private ImagingExaminationItemRepository imagingExaminationItemRepository;
@@ -98,6 +102,15 @@ public class ImageRecordController {
         List<ImageClassDEntity> classDEntityList = imageClassDRepository.searchClassD(imageClassCId);
         ImageClassDListResponse listResponse = new ImageClassDListResponse();
         listResponse.setClassDEntityList(classDEntityList);
+        return listResponse;
+    }
+
+    @RequestMapping(value = "/image/classE/{imageClassDId}", method = RequestMethod.GET)
+    @ResponseBody
+    public ImageClassEListResponse listClassE(@PathVariable("imageClassDId") Integer imageClassDId) {
+        List<ImageClassEEntity> classEEntityList = imageClassERepository.searchClassE(imageClassDId);
+        ImageClassEListResponse listResponse = new ImageClassEListResponse();
+        listResponse.setClassEEntityList(classEEntityList);
         return listResponse;
     }
 
