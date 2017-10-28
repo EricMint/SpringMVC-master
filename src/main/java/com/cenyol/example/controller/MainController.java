@@ -98,7 +98,7 @@ public class MainController {
                 patientEntity.getWeight(),
                 patientEntity.getId()
         );
-        return "redirect:/patient/list";
+        return "redirect:/patient/detail/" + patientEntity.getId();
     }
 
     // 删除病人

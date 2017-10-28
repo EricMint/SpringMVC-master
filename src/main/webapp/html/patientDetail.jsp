@@ -21,8 +21,7 @@
 </head>
 <body>
 <div class="container">
-    <h1>用户详情</h1>
-    <hr/>
+    <h1>用户详情 <a href="/patient/update/${patient.id}" type="button" class="btn btn-sm btn-warning">修改</a></h1>
 
     <table class="table tavble-bordered table-striped">
         <tr>
