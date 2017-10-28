@@ -68,7 +68,11 @@
                     onchange="initClassC(this.value);"></select>
 
             <label for="imageClassCId">具体关节:</label>
-            <select id="imageClassCId" name="imageClassCId"></select>
+            <select id="imageClassCId" name="imageClassCId" data-placeholder="请选择"
+                    onchange="initClassD(this.value);"></select>
+
+            <label for="imageClassDId">关节方位:</label>
+            <select id="imageClassDId" name="imageClassDId"></select>
 
         </div>
 
@@ -124,6 +128,30 @@
                         options = options + "<option value='" + item["imageClassCId"] + "'>" + item["imageClassCName"] + "</option>";
                     });
                     $("#imageClassCId").append(options);
+                }
+            },
+            error: function(e){
+                console.log(e);
+            }
+        });
+    }
+
+    function initClassD(imageClassCId) {
+        var url = "/image/classD/" + imageClassCId;
+        $.ajax({
+            url: url,
+            type: "GET",
+            contentType: "application/json",
+            dataType: "json",
+            success: function (result) {
+                console.log(result);
+                if (result != "") {
+                    var list = result.classDEntityList;
+                    var options = "<option value=''>请选择</option>";
+                    $.each(list, function (index, item) {
+                        options = options + "<option value='" + item["imageClassDId"] + "'>" + item["imageClassDName"] + "</option>";
+                    });
+                    $("#imageClassDId").append(options);
                 }
             },
             error: function(e){
