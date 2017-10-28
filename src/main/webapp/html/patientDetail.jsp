@@ -73,7 +73,8 @@
         </p>
     </c:if>
     <c:if test="${!empty physicalRecordList}">
-        <h1>体格检查记录</h1>
+        <h1>体格检查记录 <a href="/physicalRecord/create/${patient.id}" type="button" class="btn btn-default btn-sm">添加</a></h1>
+
         <table class="table table-bordered table-striped">
             <tr>
                 <th>ID</th>
@@ -110,7 +111,7 @@
         </p>
     </c:if>
     <c:if test="${!empty imageRecordList}">
-        <h1>影像检查记录</h1>
+        <h1>影像检查记录 <a href="/imageRecord/create/${patient.id}" type="button" class="btn btn-default btn-sm">添加</a></h1>
         <table class="table table-bordered table-striped">
             <tr>
                 <th>ID</th>
