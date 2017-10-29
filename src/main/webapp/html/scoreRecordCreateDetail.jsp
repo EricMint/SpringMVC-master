@@ -122,6 +122,10 @@
                 console.log(e);
             }
         });
+        location.reload();
+        location.reload();
+        location.reload();
+
     }
 
 
