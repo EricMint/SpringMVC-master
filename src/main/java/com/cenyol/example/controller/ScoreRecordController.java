@@ -90,6 +90,7 @@ public class ScoreRecordController {
         modelMap.addAttribute("patient", patientEntity);
         List<ScoreRecordEntity> recordEntityList = scoreRecordRepository.searchScoreRecordByPatientId(patientId);
         List<ScoreClassBEntity> scoreClassBEntityList = scoreClassBRepository.searchClassB(classAId);
+        List<ScoreMarkEntity> scoreMarkEntityList = scoreMarkRepository.searchScoreMarkByPatientAndClassAId(patientId, classAId);
         List<ScoreClassBResponse> classBResponseList = new ArrayList<ScoreClassBResponse>();
         for (ScoreClassBEntity classBEntity : scoreClassBEntityList) {
             ScoreClassBResponse classBResponse = new ScoreClassBResponse();
@@ -105,6 +106,8 @@ public class ScoreRecordController {
         }
         modelMap.addAttribute("scoreClassBList", classBResponseList);
         modelMap.addAttribute("scoreClassAId", classAId);
+        String result = scoreMarkEntityList.get(0).getResult();
+        modelMap.addAttribute("result", result);
 
         return "scoreRecordCreateDetail";
     }

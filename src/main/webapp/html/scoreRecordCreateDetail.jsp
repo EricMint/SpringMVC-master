@@ -106,7 +106,7 @@
 
         <div class="form-group">
             <label for="result">最终评分</label>
-            <input type="text" class="form-control" id="result" name="result" placeholder="请输入评分:"/>
+            <input type="text" class="form-control" id="result" name="result" value="${result}" placeholder="请输入评分:"/>
         </div>
 
         <div class="form-group">

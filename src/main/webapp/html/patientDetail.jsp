@@ -127,7 +127,7 @@
                     <td>${scoreMarkRecord.scoreClassAName}</td>
                     <td>${scoreMarkRecord.result}</td>
                     <td>
-                        <a href="/scoreRecord/update/${scoreMarkRecord.scoreMarkId}" type="button"
+                        <a href="/scoreRecord/createDetail/${patient.id}/${scoreMarkRecord.scoreClassAId}" type="button"
                            class="btn btn-sm btn-warning">修改</a>
                         <a href="/scoreRecord/delete/${scoreMarkRecord.scoreMarkId}" type="button"
                            class="btn btn-sm btn-danger">删除</a>
