@@ -129,7 +129,7 @@
                     <td>
                         <a href="/scoreRecord/createDetail/${patient.id}/${scoreMarkRecord.scoreClassAId}" type="button"
                            class="btn btn-sm btn-warning">修改</a>
-                        <a href="/scoreRecord/delete/${scoreMarkRecord.scoreMarkId}" type="button"
+                        <a href="/scoreMark/delete/${scoreMarkRecord.scoreMarkId}" type="button"
                            class="btn btn-sm btn-danger">删除</a>
                     </td>
                 </tr>

@@ -106,8 +106,10 @@ public class ScoreRecordController {
         }
         modelMap.addAttribute("scoreClassBList", classBResponseList);
         modelMap.addAttribute("scoreClassAId", classAId);
-        String result = scoreMarkEntityList.get(0).getResult();
-        modelMap.addAttribute("result", result);
+        if (!scoreMarkEntityList.isEmpty()) {
+            String result = scoreMarkEntityList.get(0).getResult();
+            modelMap.addAttribute("result", result);
+        }
 
         return "scoreRecordCreateDetail";
     }
@@ -321,13 +323,13 @@ public class ScoreRecordController {
     }
 
 
-    // 删除影像检查记录
-    @RequestMapping(value = "/scoreRecord/delete/{scoreRecordId}", method = RequestMethod.GET)
-    public String deleteScoreRecord(@PathVariable("scoreRecordId") Integer scoreRecordId) {
-        ScoreRecordEntity scoreRecordEntity = scoreRecordRepository.findOne(scoreRecordId);
-        scoreRecordRepository.delete(scoreRecordId);
-        scoreRecordRepository.flush();
-        return "redirect:/patient/detail/" + scoreRecordEntity.getPatientId();
+    // 删除评分记录
+    @RequestMapping(value = "/scoreMark/delete/{scoreMarkId}", method = RequestMethod.GET)
+    public String deleteScoreMark(@PathVariable("scoreMarkId") Integer scoreMarkId) {
+        ScoreMarkEntity scoreMarkEntity = scoreMarkRepository.findOne(scoreMarkId);
+        scoreMarkRepository.delete(scoreMarkId);
+        scoreMarkRepository.flush();
+        return "redirect:/patient/detail/" + scoreMarkEntity.getPatientId();
 
     }
 
