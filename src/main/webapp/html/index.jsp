@@ -41,7 +41,7 @@
 
 <%--<h3>出现此页面，说明配置成功。</h3>--%>
 <div class="wrapper">
-    <a class="btn btn-sm btn-success" href="/patient/list" type="button" >进入系统</a>
+    <a class="btn btn-sm btn-success" href="/user/login" type="button" >点击登录</a>
 </div>
 
 

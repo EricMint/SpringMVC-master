@@ -31,13 +31,19 @@
     <h1>北医三院-病人列表</h1>
     <hr/>
 
-    <h3>所有用户 <a href="/patient/add" type="button" class="btn btn-default btn-sm">添加</a></h3>
+    <c:if test="${isManager}">
+        <h3>所有用户 <a href="/patient/add" type="button" class="btn btn-default btn-sm">添加</a></h3>
+    </c:if>
+
+    <c:if test="${!isManager}">
+        <h3>所有用户</h3>
+    </c:if>
 
     <c:if test="${empty patientList}">
         <p class="bg-warning">
             <br/>
             无病人信息
-            <%--，请<a href="/patient/add" type="button" class="btn btn-default btn-sm">添加</a>--%>
+                <%--，请<a href="/patient/add" type="button" class="btn btn-default btn-sm">添加</a>--%>
             <br/>
             <br/>
         </p>
@@ -69,9 +75,11 @@
                     <td>${patient.height}</td>
                     <td>${patient.weight}</td>
                     <td>
-                        <a href="/patient/detail/${patient.id}" type="button" class="btn btn-sm btn-success">详情</a>
-                        <a href="/patient/update/${patient.id}" type="button" class="btn btn-sm btn-warning">修改</a>
-                        <a href="/patient/delete/${patient.id}" type="button" class="btn btn-sm btn-danger">删除</a>
+                        <a href="/patient/detail/${userEntity.userName}/${patient.id}" type="button" class="btn btn-sm btn-success">详情</a>
+                        <c:if test="${isManager}">
+                            <a href="/patient/update/${patient.id}" type="button" class="btn btn-sm btn-warning">修改</a>
+                            <a href="/patient/delete/${patient.id}" type="button" class="btn btn-sm btn-danger">删除</a>
+                        </c:if>
                     </td>
                 </tr>
             </c:forEach>

@@ -15,9 +15,11 @@ import java.util.List;
 @Controller
 public class MainController {
 
-    // 自动装配
     @Autowired
     private PatientRepository patientRepository;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @Autowired
     private ImageRecordRepository imageRecordRepository;
@@ -36,8 +38,13 @@ public class MainController {
     }
 
     // 病人列表页
-    @RequestMapping(value = "/patient/list", method = RequestMethod.GET)
-    public String showPatientList(ModelMap modelMap) {
+    @RequestMapping(value = "/patient/list/{userName}", method = RequestMethod.GET)
+    public String showPatientList(@PathVariable("userName") String userName, ModelMap modelMap) {
+        List<UserEntity> userEntityList = userRepository.searchUserByUserName(userName);
+        UserEntity userEntity = userEntityList.get(0);
+        modelMap.addAttribute("userEntity", userEntity);
+        Boolean isManager = userEntity.getRole().equals("manager");
+        modelMap.addAttribute("isManager", isManager);
         List<PatientEntity> patientEntityList = patientRepository.findAll();
         modelMap.addAttribute("patientList", patientEntityList);
         return "patientList";
@@ -65,8 +72,13 @@ public class MainController {
     }
 
     // 查看病人详细信息
-    @RequestMapping(value = "/patient/detail/{patientId}", method = RequestMethod.GET)
-    public String showPatientDetail(@PathVariable("patientId") Integer patientId, ModelMap modelMap) {
+    @RequestMapping(value = "/patient/detail/{userName}/{patientId}", method = RequestMethod.GET)
+    public String showPatientDetail(@PathVariable("userName") String userName, @PathVariable("patientId") Integer patientId, ModelMap modelMap) {
+        List<UserEntity> userEntityList = userRepository.searchUserByUserName(userName);
+        UserEntity userEntity = userEntityList.get(0);
+        modelMap.addAttribute("userEntity", userEntity);
+        Boolean isManager = userEntity.getRole().equals("manager");
+        modelMap.addAttribute("isManager", isManager);
         PatientEntity patientEntity = patientRepository.findOne(patientId);
         modelMap.addAttribute("patient", patientEntity);
         if (null != patientEntity) {

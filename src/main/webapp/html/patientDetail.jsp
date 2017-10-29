@@ -21,7 +21,12 @@
 </head>
 <body>
 <div class="container">
-    <h1>用户详情 <a href="/patient/update/${patient.id}" type="button" class="btn btn-sm btn-warning">修改</a></h1>
+    <c:if test="${isManager}">
+        <h1>用户详情 <a href="/patient/update/${patient.id}" type="button" class="btn btn-sm btn-warning">修改</a></h1>
+    </c:if>
+    <c:if test="${!isManager}">
+        <h1>用户详情</h1>
+    </c:if>
 
     <table class="table tavble-bordered table-striped">
         <tr>
@@ -65,14 +70,27 @@
 
     <c:if test="${empty physicalRecordList}">
         <p class="bg-warning">
-        <h1>无体格检查记录 <a href="/physicalRecord/create/${patient.id}" type="button" class="btn btn-default btn-sm">添加</a>
+        <c:if test="${isManager}">
+            <h1>无体格检查记录 <a href="/physicalRecord/create/${patient.id}" type="button"
+                           class="btn btn-default btn-sm">添加</a>
+            </h1>
+        </c:if>
+        <c:if test="${!isManager}">
+            <h1>无体格检查记录 </h1>
+
+        </c:if>
         </h1>
         <br/>
         </p>
     </c:if>
     <c:if test="${!empty physicalRecordList}">
-        <h1>体格检查记录 <a href="/physicalRecord/create/${patient.id}" type="button" class="btn btn-default btn-sm">添加</a>
-        </h1>
+        <c:if test="${isManager}">
+            <h1>体格检查记录 <a href="/physicalRecord/create/${patient.id}" type="button"
+                          class="btn btn-default btn-sm">添加</a></h1>
+        </c:if>
+        <c:if test="${!isManager}">
+            <h1>体格检查记录 </h1>
+        </c:if>
 
         <table class="table table-bordered table-striped">
             <tr>
@@ -92,12 +110,14 @@
                     <td>${physicalRecord.physicalClassCName}</td>
                     <td>${physicalRecord.physicalClassDName}</td>
                     <td>${physicalRecord.result}</td>
-                    <td>
-                        <a href="/physicalRecord/update/${physicalRecord.physicalRecordId}" type="button"
-                           class="btn btn-sm btn-warning">修改</a>
-                        <a href="/physicalRecord/delete/${physicalRecord.physicalRecordId}" type="button"
-                           class="btn btn-sm btn-danger">删除</a>
-                    </td>
+                    <c:if test="${isManager}">
+                        <td>
+                            <a href="/physicalRecord/update/${physicalRecord.physicalRecordId}" type="button"
+                               class="btn btn-sm btn-warning">修改</a>
+                            <a href="/physicalRecord/delete/${physicalRecord.physicalRecordId}" type="button"
+                               class="btn btn-sm btn-danger">删除</a>
+                        </td>
+                    </c:if>
                 </tr>
             </c:forEach>
         </table>
@@ -105,13 +125,23 @@
 
     <c:if test="${empty scoreMarkList}">
         <p class="bg-warning">
-        <h1>无功能评分记录 <a href="/scoreRecord/create/${patient.id}" type="button" class="btn btn-default btn-sm">添加</a>
+        <c:if test="${isManager}">
+            <h1>无功能评分记录 <a href="/scoreRecord/create/${patient.id}" type="button" class="btn btn-default btn-sm">添加</a>
+        </c:if>
+        <c:if test="${!isManager}">
+            <h1>无功能评分记录 </h1>
+        </c:if>
         </h1>
         <br/>
         </p>
     </c:if>
     <c:if test="${!empty scoreMarkList}">
-        <h1>功能评分记录 <a href="/scoreRecord/create/${patient.id}" type="button" class="btn btn-default btn-sm">添加</a>
+        <c:if test="${isManager}">
+            <h1>功能评分记录 <a href="/scoreRecord/create/${patient.id}" type="button" class="btn btn-default btn-sm">添加</a>
+        </c:if>
+        <c:if test="${!isManager}">
+            <h1>功能评分记录 </h1>
+        </c:if>
         </h1>
 
         <table class="table table-bordered table-striped">
@@ -126,12 +156,16 @@
                     <td>${scoreMarkRecord.scoreMarkId}</td>
                     <td>${scoreMarkRecord.scoreClassAName}</td>
                     <td>${scoreMarkRecord.result}</td>
-                    <td>
-                        <a href="/scoreRecord/createDetail/${patient.id}/${scoreMarkRecord.scoreClassAId}" type="button"
-                           class="btn btn-sm btn-warning">修改</a>
-                        <a href="/scoreMark/delete/${scoreMarkRecord.scoreMarkId}" type="button"
-                           class="btn btn-sm btn-danger">删除</a>
-                    </td>
+                    <c:if test="${isManager}">
+                        <td>
+                            <a href="/scoreRecord/createDetail/${patient.id}/${scoreMarkRecord.scoreClassAId}"
+                               type="button"
+                               class="btn btn-sm btn-warning">修改</a>
+                            <a href="/scoreMark/delete/${scoreMarkRecord.scoreMarkId}" type="button"
+                               class="btn btn-sm btn-danger">删除</a>
+                        </td>
+                    </c:if>
+
                 </tr>
             </c:forEach>
         </table>
@@ -140,12 +174,24 @@
 
     <c:if test="${empty imageRecordList}">
         <p class="bg-warning">
-        <h1>无影像检查记录 <a href="/imageRecord/create/${patient.id}" type="button" class="btn btn-default btn-sm">添加</a></h1>
+        <c:if test="${isManager}">
+            <h1>无影像检查记录 <a href="/imageRecord/create/${patient.id}" type="button" class="btn btn-default btn-sm">添加</a>
+            </h1>
+        </c:if>
+        <c:if test="${!isManager}">
+            <h1>无影像检查记录</h1>
+        </c:if>
         <br/>
         </p>
     </c:if>
     <c:if test="${!empty imageRecordList}">
-        <h1>影像检查记录 <a href="/imageRecord/create/${patient.id}" type="button" class="btn btn-default btn-sm">添加</a></h1>
+        <c:if test="${isManager}">
+            <h1>影像检查记录 <a href="/imageRecord/create/${patient.id}" type="button" class="btn btn-default btn-sm">添加</a>
+            </h1>
+        </c:if>
+        <c:if test="${!isManager}">
+            <h1>影像检查记录</h1>
+        </c:if>
         <table class="table table-bordered table-striped">
             <tr>
                 <th>ID</th>
@@ -166,18 +212,21 @@
                     <td>${imageRecord.imageClassDName}</td>
                     <td>${imageRecord.imageClassEName}</td>
                     <td>${imageRecord.result}</td>
-                    <td>
-                        <a href="/imageRecord/update/${imageRecord.imageRecordId}" type="button"
-                           class="btn btn-sm btn-warning">修改</a>
-                        <a href="/imageRecord/delete/${imageRecord.imageRecordId}" type="button"
-                           class="btn btn-sm btn-danger">删除</a>
-                    </td>
+                    <c:if test="${isManager}">
+                        <td>
+                            <a href="/imageRecord/update/${imageRecord.imageRecordId}" type="button"
+                               class="btn btn-sm btn-warning">修改</a>
+                            <a href="/imageRecord/delete/${imageRecord.imageRecordId}" type="button"
+                               class="btn btn-sm btn-danger">删除</a>
+                        </td>
+                    </c:if>
+
                 </tr>
             </c:forEach>
         </table>
     </c:if>
 
-    <a href="/patient/list" type="button" class="btn btn-sm btn-success">返回列表页</a>
+    <a href="/patient/list/${userEntity.userName}" type="button" class="btn btn-sm btn-success">返回列表页</a>
 
 </div>
 
