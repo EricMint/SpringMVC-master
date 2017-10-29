@@ -35,9 +35,6 @@ public class ScoreRecordController {
     @Autowired
     private ScoreClassCRepository scoreClassCRepository;
 
-    @Autowired
-    private ScoreClassDRepository scoreClassDRepository;
-
 
     // 选择评分页面
     @RequestMapping(value = "/scoreRecord/create/{patientId}", method = RequestMethod.GET)
@@ -56,30 +53,6 @@ public class ScoreRecordController {
     public String addScoreRecordPost(@ModelAttribute("scoreRecord") ScoreRecordEntity scoreRecordEntity) {
         Integer patientId = scoreRecordEntity.getPatientId();
         Integer classAId = scoreRecordEntity.getScoreClassAId();
-        if (classAId != 0) {
-//            ScoreClassAEntity classAEntity = scoreClassARepository.findOne(classAId);
-//            scoreRecordEntity.setScoreClassAName(classAEntity.getScoreClassAName());
-        }
-//        Integer classBId = scoreRecordEntity.getScoreClassBId();
-//        if (null != classBId) {
-//            ScoreClassBEntity classBEntity = scoreClassBRepository.findOne(classBId);
-//            scoreRecordEntity.setScoreClassBName(classBEntity.getScoreClassBName());
-//
-//        }
-//        Integer classCId = scoreRecordEntity.getScoreClassCId();
-//        if (null != classCId) {
-//            ScoreClassCEntity classCEntity = scoreClassCRepository.findOne(classCId);
-//            scoreRecordEntity.setScoreClassCName(classCEntity.getScoreClassCName());
-//        }
-//        Integer classDId = scoreRecordEntity.getScoreClassDId();
-//        if (null != classDId) {
-//            ScoreClassDEntity classDEntity = scoreClassDRepository.findOne(classDId);
-//            scoreRecordEntity.setScoreClassDName(classDEntity.getScoreClassDName());
-//        }
-//        ScoreRecordEntity savedEntity = scoreRecordRepository.save(scoreRecordEntity);
-//        scoreRecordRepository.flush();
-//        Integer scoreRecordId = savedEntity.getScoreRecordId();
-//        return "redirect:/scoreRecord/createDetail/" + scoreRecordId;
         return "redirect:/scoreRecord/createDetail/" + patientId + "/" + classAId;
     }
 
@@ -113,31 +86,6 @@ public class ScoreRecordController {
 
         return "scoreRecordCreateDetail";
     }
-
-//    @RequestMapping(value = "/scoreRecord/createDetail/{scoreRecordId}", method = RequestMethod.GET)
-//    public String addScoreRecordDetail(@PathVariable("scoreRecordId") Integer scoreRecordId, ModelMap modelMap) {
-//        ScoreRecordEntity scoreRecordEntity = scoreRecordRepository.findOne(scoreRecordId);
-//        modelMap.addAttribute("scoreRecordId", scoreRecordEntity.getScoreRecordId());
-//        PatientEntity patientEntity = patientRepository.findOne(scoreRecordEntity.getPatientId());
-//        modelMap.addAttribute("patient", patientEntity);
-//
-//        List<ScoreClassBEntity> scoreClassBEntityList = scoreClassBRepository.findAll();
-//        List<ScoreClassBResponse> classBResponseList = new ArrayList<ScoreClassBResponse>();
-//        for (ScoreClassBEntity classBEntity : scoreClassBEntityList) {
-//            ScoreClassBResponse classBResponse = new ScoreClassBResponse();
-//            classBResponse.setScoreClassAId(classBEntity.getScoreClassAId());
-//            classBResponse.setScoreClassAName(classBEntity.getScoreClassAName());
-//            classBResponse.setGroupLabel(classBEntity.getGroupLabel());
-//            classBResponse.setScoreClassBId(classBEntity.getScoreClassBId());
-//            classBResponse.setScoreClassBName(classBEntity.getScoreClassBName());
-//            Integer classBId = classBEntity.getScoreClassBId();
-//            List<ScoreClassCResponse> classCResponseList = getClassCResponseList(classBId);
-//            classBResponse.setClassCResponseList(classCResponseList);
-//            classBResponseList.add(classBResponse);
-//        }
-//        modelMap.addAttribute("scoreClassBList", classBResponseList);
-//        return "scoreRecordCreateDetail";
-//    }
 
     // 选择评分处理
     @RequestMapping(value = "/scoreRecord/createDetail/{patientId}/answer/{scoreClassCId}", method = RequestMethod.GET)
@@ -228,118 +176,9 @@ public class ScoreRecordController {
             classCResponse.setScoreClassCId(classCEntity.getScoreClassCId());
             classCResponse.setScoreClassCName(classCEntity.getScoreClassCName());
             classCResponse.setSelected(recordMap.get(classCEntity.getScoreClassCId()));
-//            List<ScoreClassDResponse> classDResponseList = getClassDResponseList(classCEntity.getScoreClassCId());
-//            classCResponse.setClassDResponseList(classDResponseList);
             classCResponseList.add(classCResponse);
         }
         return classCResponseList;
-    }
-
-//    private List<ScoreClassDResponse> getClassDResponseList(Integer classCId) {
-//        List<ScoreClassDResponse> classDResponseList = new ArrayList<ScoreClassDResponse>();
-//        List<ScoreClassDEntity> classDEntityList = listClassD(classCId).getClassDEntityList();
-//        if (classDEntityList.isEmpty()) {
-//            return classDResponseList;
-//        }
-//        for (ScoreClassDEntity classDEntity : classDEntityList) {
-//            ScoreClassDResponse classDResponse = new ScoreClassDResponse();
-//            classDResponse.setScoreClassAId(classDEntity.getScoreClassAId());
-//            classDResponse.setScoreClassAName(classDEntity.getScoreClassAName());
-//            classDResponse.setScoreClassBId(classDEntity.getScoreClassBId());
-//            classDResponse.setScoreClassBName(classDEntity.getScoreClassBName());
-//            classDResponse.setScoreClassCId(classDEntity.getScoreClassCId());
-//            classDResponse.setScoreClassCName(classDEntity.getScoreClassCName());
-//            classDResponse.setScoreClassDId(classDEntity.getScoreClassDId());
-//            classDResponse.setScoreClassDName(classDEntity.getScoreClassDName());
-//            classDResponseList.add(classDResponse);
-//        }
-//
-//        return classDResponseList;
-//    }
-
-
-    // 影像检查部位更新页面
-    @RequestMapping(value = "/scoreRecord/update/{scoreRecordId}", method = RequestMethod.GET)
-    public String updateScoreRecord(@PathVariable("scoreRecordId") Integer scoreRecordId, ModelMap modelMap) {
-        ScoreRecordEntity scoreRecordEntity = scoreRecordRepository.findOne(scoreRecordId);
-        modelMap.addAttribute("scoreRecord", scoreRecordEntity);
-        Integer patientId = scoreRecordEntity.getPatientId();
-        PatientEntity patientEntity = patientRepository.findOne(patientId);
-        modelMap.addAttribute("patient", patientEntity);
-        List<ScoreClassAEntity> scoreClassAEntityList = scoreClassARepository.findAll();
-        modelMap.addAttribute("scoreClassAList", scoreClassAEntityList);
-
-        Integer classAId = scoreRecordEntity.getScoreClassAId();
-        if (null != classAId) {
-            List<ScoreClassBEntity> classBEntityList = listClassB(classAId).getClassBEntityList();
-            modelMap.addAttribute("scoreClassBList", classBEntityList);
-        }
-        Integer classBId = scoreRecordEntity.getScoreClassBId();
-        if (null != classBId) {
-            List<ScoreClassCEntity> classCEntityList = listClassC(classBId).getClassCEntityList();
-            modelMap.addAttribute("scoreClassCList", classCEntityList);
-        }
-        Integer classCId = scoreRecordEntity.getScoreClassCId();
-        if (null != classCId) {
-            List<ScoreClassDEntity> classDEntityList = listClassD(classCId).getClassDEntityList();
-            modelMap.addAttribute("scoreClassDList", classDEntityList);
-        }
-
-        return "scoreRecordUpdate";
-    }
-
-    // 评分更新处理
-    @RequestMapping(value = "/scoreRecord/updatePost", method = RequestMethod.POST)
-    public String updateScoreRecordPost(@ModelAttribute("scoreRecord") ScoreRecordEntity scoreRecordEntity) {
-        Integer classAId = scoreRecordEntity.getScoreClassAId();
-        if (null != classAId) {
-            ScoreClassAEntity classAEntity = scoreClassARepository.findOne(classAId);
-            scoreRecordEntity.setScoreClassAName(classAEntity.getScoreClassAName());
-        }
-        Integer classBId = scoreRecordEntity.getScoreClassBId();
-        if (null != classBId) {
-            ScoreClassBEntity classBEntity = scoreClassBRepository.findOne(classBId);
-            scoreRecordEntity.setScoreClassBName(classBEntity.getScoreClassBName());
-
-        }
-        Integer classCId = scoreRecordEntity.getScoreClassCId();
-        if (null != classCId) {
-            ScoreClassCEntity classCEntity = scoreClassCRepository.findOne(classCId);
-            scoreRecordEntity.setScoreClassCName(classCEntity.getScoreClassCName());
-        }
-
-//        scoreRecordRepository.updateScoreRecord(
-//                scoreRecordEntity.getPatientId(),
-//                scoreRecordEntity.getScoreClassAId(),
-//                scoreRecordEntity.getScoreClassAName(),
-//                scoreRecordEntity.getScoreClassBId(),
-//                scoreRecordEntity.getScoreClassBName(),
-//                scoreRecordEntity.getScoreClassCId(),
-//                scoreRecordEntity.getScoreClassCName(),
-//                scoreRecordEntity.getPatientId()
-//        );
-//        scoreRecordRepository.flush();
-        return "redirect:/patient/detail/" + scoreRecordEntity.getPatientId();
-    }
-
-
-    // 删除评分记录
-    @RequestMapping(value = "/scoreMark/delete/{scoreMarkId}", method = RequestMethod.GET)
-    public String deleteScoreMark(@PathVariable("scoreMarkId") Integer scoreMarkId) {
-        ScoreMarkEntity scoreMarkEntity = scoreMarkRepository.findOne(scoreMarkId);
-        scoreMarkRepository.delete(scoreMarkId);
-        scoreMarkRepository.flush();
-        return "redirect:/patient/detail/" + scoreMarkEntity.getPatientId();
-
-    }
-
-    @RequestMapping(value = "/score/classB/{scoreClassAId}", method = RequestMethod.GET)
-    @ResponseBody
-    public ScoreClassBListResponse listClassB(@PathVariable("scoreClassAId") Integer scoreClassAId) {
-        List<ScoreClassBEntity> classBEntityList = scoreClassBRepository.searchClassB(scoreClassAId);
-        ScoreClassBListResponse listResponse = new ScoreClassBListResponse();
-        listResponse.setClassBEntityList(classBEntityList);
-        return listResponse;
     }
 
     @RequestMapping(value = "/score/classC/{scoreClassBId}", method = RequestMethod.GET)
@@ -351,13 +190,14 @@ public class ScoreRecordController {
         return listResponse;
     }
 
-    @RequestMapping(value = "/score/classD/{scoreClassCId}", method = RequestMethod.GET)
-    @ResponseBody
-    public ScoreClassDListResponse listClassD(@PathVariable("scoreClassCId") Integer scoreClassCId) {
-        List<ScoreClassDEntity> classDEntityList = scoreClassDRepository.searchClassD(scoreClassCId);
-        ScoreClassDListResponse listResponse = new ScoreClassDListResponse();
-        listResponse.setClassDEntityList(classDEntityList);
-        return listResponse;
+    // 删除评分记录
+    @RequestMapping(value = "/scoreMark/delete/{scoreMarkId}", method = RequestMethod.GET)
+    public String deleteScoreMark(@PathVariable("scoreMarkId") Integer scoreMarkId) {
+        ScoreMarkEntity scoreMarkEntity = scoreMarkRepository.findOne(scoreMarkId);
+        scoreMarkRepository.delete(scoreMarkId);
+        scoreMarkRepository.flush();
+        return "redirect:/patient/detail/" + scoreMarkEntity.getPatientId();
+
     }
 
 

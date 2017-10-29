@@ -71,23 +71,6 @@
                                     <label for="scoreClassCId">${classC.scoreClassCName}</label>
                                 </c:if>
                             </div>
-
-                                <%--<c:if test="${!classB.groupLabel}">--%>
-                                <%--<input type="radio" id="scoreClassCId"--%>
-                                <%--onchange="submitAnswer(${scoreRecordId},${classC.scoreClassCId})">--%>
-                                <%--<label for="scoreClassCId">${classC.scoreClassCName}</label>--%>
-                                <%--</c:if>--%>
-                                <%--<c:if test="${classC.classDResponseList.size()>0}">--%>
-                                <%--<input type="radio" id="scoreClassCId" >--%>
-                                <%--<label for="scoreClassCId">${classC.scoreClassCName}</label>--%>
-                                <%--<c:forEach items="${classC.classDResponseList}" var="classD">--%>
-                                <%--<div>--%>
-                                <%--<input type="radio" id="scoreClassDId" name="scoreClassDId"--%>
-                                <%--class="scoreClassDId">--%>
-                                <%--<label for="scoreClassDId">${classD.scoreClassDName}</label>--%>
-                                <%--</div>--%>
-                                <%--</c:forEach>--%>
-                                <%--</c:if>--%>
                         </div>
                     </c:forEach>
 
@@ -134,17 +117,6 @@
             dataType: "json",
             success: function (result) {
                 console.log(result);
-//                if (result != "") {
-//                    var list = result.classDEntityList;
-//                    if (list.length < 1) {
-//                        $("#scoreClassDId").append("<option value=''>暂无可选</option>");
-//                    }
-//                    var options = "<option value=''>请选择</option>";
-//                    $.each(list, function (index, item) {
-//                        options = options + "<option value='" + item["scoreClassDId"] + "'>" + item["scoreClassDName"] + "</option>";
-//                    });
-//                    $("#scoreClassDId").append(options);
-//                }
             },
             error: function (e) {
                 console.log(e);

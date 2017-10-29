@@ -54,36 +54,13 @@
 
         <div class="form-group">
             <label for="scoreClassAId">功能评分:</label>
-            <select id="scoreClassAId" name="scoreClassAId" data-placeholder="请选择" onchange="initClassB(this.value);">
+            <select id="scoreClassAId" name="scoreClassAId" data-placeholder="请选择" >
                 <option value="">请选择</option>
                 <c:forEach items="${scoreClassAList}" var="scoreClassA">
                     <option value="${scoreClassA.scoreClassAId}">${scoreClassA.scoreClassAName}</option>
                 </c:forEach>
             </select>
         </div>
-        <%--<div class="form-group">--%>
-            <%--<label for="scoreClassBId">检查关节:</label>--%>
-            <%--<select id="scoreClassBId" name="scoreClassBId" data-placeholder="请选择" onchange="initClassC(this.value);">--%>
-            <%--</select>--%>
-        <%--</div>--%>
-        <%--<div class="form-group">--%>
-
-            <%--<label for="scoreClassCId">具体关节:</label>--%>
-            <%--<select id="scoreClassCId" name="scoreClassCId" data-placeholder="请选择" onchange="initClassD(this.value);">--%>
-            <%--</select>--%>
-        <%--</div>--%>
-        <%--<div class="form-group">--%>
-
-            <%--<label for="scoreClassDId">关节方位:</label>--%>
-            <%--<select id="scoreClassDId" name="scoreClassDId" data-placeholder="请选择" onchange="initClassE(this.value);">--%>
-            <%--</select>--%>
-        <%--</div>--%>
-
-        <%--<div class="form-group">--%>
-            <%--<label for="result">测量数值</label>--%>
-            <%--<input type="text" class="form-control" id="result" name="result" placeholder="请输入测量数值:"/>--%>
-        <%--</div>--%>
-
         <div class="form-group">
             <button type="submit" class="btn btn-sm btn-success">前往评分</button>
         </div>
@@ -94,104 +71,6 @@
 <%--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>--%>
 <%--<script src="/js/jquery.form.js"/>--%>
 <%--<script src="/js/common.js"/>--%>
-<script>
-
-    function initClassB(scoreClassAId) {
-        if (scoreClassAId == "") {
-            $("#scoreClassBId").empty();
-            $("#scoreClassBId").append("<option value=''>请选择</option>");
-            return;
-        }
-        $("#scoreClassBId").empty();
-
-        var url = "/score/classB/" + scoreClassAId;
-        $.ajax({
-            url: url,
-            type: "GET",
-            contentType: "application/json",
-            dataType: "json",
-            success: function (result) {
-                console.log(result);
-                if (result != "") {
-                    var list = result.classBEntityList;
-                    var options = "<option value=''>请选择</option>";
-                    $.each(list, function (index, item) {
-                        options = options + "<option value='" + item["scoreClassBId"] + "'>" + item["scoreClassBName"] + "</option>";
-                    });
-                    $("#scoreClassBId").append(options);
-                }
-            },
-            error: function (e) {
-                console.log(e);
-            }
-        });
-    }
-
-    function initClassC(scoreClassBId) {
-        if (scoreClassBId == "") {
-            $("#scoreClassCId").empty();
-            $("#scoreClassCId").append("<option value=''>请选择</option>");
-            return;
-        }
-        $("#scoreClassCId").empty();
-        var url = "/score/classC/" + scoreClassBId;
-        $.ajax({
-            url: url,
-            type: "GET",
-            contentType: "application/json",
-            dataType: "json",
-            success: function (result) {
-                console.log(result);
-                if (result != "") {
-                    var list = result.classCEntityList;
-                    var options = "<option value=''>请选择</option>";
-                    $.each(list, function (index, item) {
-                        options = options + "<option value='" + item["scoreClassCId"] + "'>" + item["scoreClassCName"] + "</option>";
-                    });
-                    $("#scoreClassCId").append(options);
-                }
-            },
-            error: function (e) {
-                console.log(e);
-            }
-        });
-    }
-
-    function initClassD(scoreClassCId) {
-        if (scoreClassCId == "") {
-            $("#scoreClassDId").empty();
-            $("#scoreClassDId").append("<option value=''>请选择</option>");
-            return;
-        }
-        $("#scoreClassDId").empty();
-        var url = "/score/classD/" + scoreClassCId;
-        $.ajax({
-            url: url,
-            type: "GET",
-            contentType: "application/json",
-            dataType: "json",
-            success: function (result) {
-                console.log(result);
-                if (result != "") {
-                    var list = result.classDEntityList;
-                    if (list.length < 1) {
-                        $("#scoreClassDId").append("<option value=''>暂无可选</option>");
-                    }
-                    var options = "<option value=''>请选择</option>";
-                    $.each(list, function (index, item) {
-                        options = options + "<option value='" + item["scoreClassDId"] + "'>" + item["scoreClassDName"] + "</option>";
-                    });
-                    $("#scoreClassDId").append(options);
-                }
-            },
-            error: function (e) {
-                console.log(e);
-            }
-        });
-    }
-
-
-</script>
 
 </body>
 </html>

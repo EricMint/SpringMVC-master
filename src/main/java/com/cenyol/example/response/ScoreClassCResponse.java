@@ -12,7 +12,6 @@ public class ScoreClassCResponse implements Serializable {
     private int scoreClassAId;
     private String scoreClassAName;
 
-    private List<ScoreClassDResponse> classDResponseList;
 
     public Boolean getSelected() {
         return selected;
@@ -70,11 +69,4 @@ public class ScoreClassCResponse implements Serializable {
         this.scoreClassAName = scoreClassAName;
     }
 
-    public List<ScoreClassDResponse> getClassDResponseList() {
-        return classDResponseList;
-    }
-
-    public void setClassDResponseList(List<ScoreClassDResponse> classDResponseList) {
-        this.classDResponseList = classDResponseList;
-    }
 }
