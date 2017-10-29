@@ -103,6 +103,41 @@
         </table>
     </c:if>
 
+    <c:if test="${empty scoreMarkList}">
+        <p class="bg-warning">
+        <h1>无功能评分记录 <a href="/scoreRecord/create/${patient.id}" type="button" class="btn btn-default btn-sm">添加</a>
+        </h1>
+        <br/>
+        </p>
+    </c:if>
+    <c:if test="${!empty scoreMarkList}">
+        <h1>功能评分记录 <a href="/scoreRecord/create/${patient.id}" type="button" class="btn btn-default btn-sm">添加</a>
+        </h1>
+
+        <table class="table table-bordered table-striped">
+            <tr>
+                <th>ID</th>
+                <th>功能评分名称</th>
+                <th>得分</th>
+            </tr>
+
+            <c:forEach items="${scoreMarkList}" var="scoreMarkRecord">
+                <tr>
+                    <td>${scoreMarkRecord.scoreMarkId}</td>
+                    <td>${scoreMarkRecord.scoreClassAName}</td>
+                    <td>${scoreMarkRecord.result}</td>
+                    <td>
+                        <a href="/scoreRecord/update/${scoreMarkRecord.scoreMarkId}" type="button"
+                           class="btn btn-sm btn-warning">修改</a>
+                        <a href="/scoreRecord/delete/${scoreMarkRecord.scoreMarkId}" type="button"
+                           class="btn btn-sm btn-danger">删除</a>
+                    </td>
+                </tr>
+            </c:forEach>
+        </table>
+    </c:if>
+
+
     <c:if test="${empty imageRecordList}">
         <p class="bg-warning">
         <h1>无影像检查记录 <a href="/imageRecord/create/${patient.id}" type="button" class="btn btn-default btn-sm">添加</a></h1>

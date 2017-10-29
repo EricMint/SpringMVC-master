@@ -25,6 +25,9 @@ public class MainController {
     @Autowired
     private PhysicalRecordRepository physicalRecordRepository;
 
+    @Autowired
+    private ScoreMarkRepository scoreMarkRepository;
+
 
     // 首页
     @RequestMapping(value = "/", method = RequestMethod.GET)
@@ -71,6 +74,8 @@ public class MainController {
             modelMap.addAttribute("imageRecordList", imageRecordEntityList);
             List<PhysicalRecordEntity> physicalRecordEntityList = physicalRecordRepository.searchPhysicalRecord(patientId);
             modelMap.addAttribute("physicalRecordList", physicalRecordEntityList);
+            List<ScoreMarkEntity> scoreMarkEntityList = scoreMarkRepository.searchScoreMarkByPatientId(patientId);
+            modelMap.addAttribute("scoreMarkList", scoreMarkEntityList);
         }
 
         return "patientDetail";
