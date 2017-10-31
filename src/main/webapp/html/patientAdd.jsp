@@ -30,7 +30,7 @@
 <div class="container">
   <h1>添加用户</h1>
   <hr/>
-  <form:form action="/patient/addPost" method="post" role="form">
+  <form:form action="/hospital/patient/addPost" method="post" role="form">
     <div class="form-group">
       <label for="patientNumber">病人编号:</label>
       <input type="text" class="form-control" id="patientNumber" name="patientNumber" placeholder="请输入病人编号:"/>

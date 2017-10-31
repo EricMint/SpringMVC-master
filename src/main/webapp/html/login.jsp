@@ -24,7 +24,7 @@
 <div class="container">
   <h1>登陆系统</h1>
   <hr/>
-  <form:form action="/user/login" method="post" role="form">
+  <form:form action="login" method="post" role="form">
     <div class="form-group">
       <label for="userName">用户名:</label>
       <input type="text" class="form-control" id="userName" name="userName" placeholder="请输入用户名:"/>

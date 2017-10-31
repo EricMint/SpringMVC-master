@@ -31,7 +31,7 @@
     <h1>修改病人信息</h1>
     <hr/>
 
-    <form:form action="/patient/updatePost" method="post" commandName="patient" role="form">
+    <form:form action="/hospital/patient/updatePost" method="post" commandName="patient" role="form">
         <div class="form-group">
             <label for="patientNumber">人员编号:</label>
             <input type="text" class="form-control" id="patientNumber" name="patientNumber" placeholder="请输入人员编号:"

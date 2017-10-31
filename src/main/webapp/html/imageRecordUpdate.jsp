@@ -49,7 +49,7 @@
     </table>
 
 
-    <form:form action="/imageRecord/updatePost" method="post" role="form">
+    <form:form action="/hospital/imageRecord/updatePost" method="post" role="form">
         <input type="hidden" id="patientId" name="patientId" value="${imageRecord.patientId}"/>
         <input type="hidden" id="imageRecordId" name="imageRecordId" value="${imageRecord.imageRecordId}"/>
 
@@ -146,7 +146,7 @@
         }
         $("#imageClassBId").empty();
 
-        var url = "/image/classB/" + imageClassAId;
+        var url = "/hospital/image/classB/" + imageClassAId;
         $.ajax({
             url: url,
             type: "GET",
@@ -176,7 +176,7 @@
             return;
         }
         $("#imageClassCId").empty();
-        var url = "/image/classC/" + imageClassBId;
+        var url = "/hospital/image/classC/" + imageClassBId;
         $.ajax({
             url: url,
             type: "GET",
@@ -206,7 +206,7 @@
             return;
         }
         $("#imageClassDId").empty();
-        var url = "/image/classD/" + imageClassCId;
+        var url = "/hospital/image/classD/" + imageClassCId;
         $.ajax({
             url: url,
             type: "GET",
@@ -239,7 +239,7 @@
             return;
         }
         $("#imageClassEId").empty();
-        var url = "/image/classE/" + imageClassDId;
+        var url = "/hospital/image/classE/" + imageClassDId;
         $.ajax({
             url: url,
             type: "GET",

@@ -49,7 +49,7 @@
     </table>
 
 
-    <form:form action="/physicalRecord/updatePost" method="post" role="form">
+    <form:form action="/hospital/physicalRecord/updatePost" method="post" role="form">
         <input type="hidden" id="patientId" name="patientId" value="${physicalRecord.patientId}"/>
         <input type="hidden" id="physicalRecordId" name="physicalRecordId" value="${physicalRecord.physicalRecordId}"/>
 
@@ -133,7 +133,7 @@
         }
         $("#physicalClassBId").empty();
 
-        var url = "/physical/classB/" + physicalClassAId;
+        var url = "/hospital/physical/classB/" + physicalClassAId;
         $.ajax({
             url: url,
             type: "GET",
@@ -163,7 +163,7 @@
             return;
         }
         $("#physicalClassCId").empty();
-        var url = "/physical/classC/" + physicalClassBId;
+        var url = "/hospital/physical/classC/" + physicalClassBId;
         $.ajax({
             url: url,
             type: "GET",
@@ -193,7 +193,7 @@
             return;
         }
         $("#physicalClassDId").empty();
-        var url = "/physical/classD/" + physicalClassCId;
+        var url = "/hospital/physical/classD/" + physicalClassCId;
         $.ajax({
             url: url,
             type: "GET",

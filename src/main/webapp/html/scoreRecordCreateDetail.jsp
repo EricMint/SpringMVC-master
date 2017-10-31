@@ -83,7 +83,7 @@
     </div>
 
 
-    <form:form action="/scoreRecord/createScorePost" method="post" role="form">
+    <form:form action="/hospital/scoreRecord/createScorePost" method="post" role="form">
         <input type="hidden" id="patientId" name="patientId" value="${patient.id}"/>
         <input type="hidden" id="patientId" name="scoreClassAId" value="${scoreClassAId}"/>
 
@@ -109,7 +109,7 @@
 
             return;
         }
-        var url = "/scoreRecord/createDetail/" + patientId + "/answer/" + scoreClassCId;
+        var url = "/hospital/scoreRecord/createDetail/" + patientId + "/answer/" + scoreClassCId;
         $.ajax({
             url: url,
             type: "GET",

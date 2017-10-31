@@ -49,7 +49,7 @@
     </table>
 
 
-    <form:form action="/scoreRecord/createPost" method="post" role="form">
+    <form:form action="/hospital/scoreRecord/createPost" method="post" role="form">
         <input type="hidden" id="patientId" name="patientId" value="${patient.id}"/>
 
         <div class="form-group">

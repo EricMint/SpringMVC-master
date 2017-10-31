@@ -32,7 +32,7 @@
     <hr/>
 
     <c:if test="${isManager}">
-        <h3>所有用户 <a href="/patient/add" type="button" class="btn btn-default btn-sm">添加</a></h3>
+        <h3>所有用户 <a href="/hospital/patient/add" type="button" class="btn btn-default btn-sm">添加</a></h3>
     </c:if>
 
     <c:if test="${!isManager}">
@@ -75,10 +75,13 @@
                     <td>${patient.height}</td>
                     <td>${patient.weight}</td>
                     <td>
-                        <a href="/patient/detail/${userEntity.userName}/${patient.id}" type="button" class="btn btn-sm btn-success">详情</a>
                         <c:if test="${isManager}">
-                            <a href="/patient/update/${patient.id}" type="button" class="btn btn-sm btn-warning">修改</a>
-                            <a href="/patient/delete/${patient.id}" type="button" class="btn btn-sm btn-danger">删除</a>
+                            <a href="/hospital/patient/detail/isManager/${patient.id}" type="button" class="btn btn-sm btn-success">详情</a>
+                            <a href="/hospital/patient/update/${patient.id}" type="button" class="btn btn-sm btn-warning">修改</a>
+                            <a href="/hospital/patient/delete/${patient.id}" type="button" class="btn btn-sm btn-danger">删除</a>
+                        </c:if>
+                        <c:if test="${!isManager}">
+                            <a href="/hospital/patient/detail/notManager/${patient.id}" type="button" class="btn btn-sm btn-success">详情</a>
                         </c:if>
                     </td>
                 </tr>
