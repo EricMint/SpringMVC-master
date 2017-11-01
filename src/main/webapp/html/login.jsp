@@ -59,7 +59,7 @@
   <meta name="author" content="">
   <%--<link rel="icon" href="../../favicon.ico">--%>
 
-  <title>Signin Template for Bootstrap</title>
+  <title>北医三院</title>
 
   <!-- Bootstrap core CSS -->
   <link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -86,14 +86,14 @@
 <div class="container">
 <%--<form:form action="login" method="post" role="form">--%>
   <form class="form-signin" action="login" method="post">
-    <h2 class="form-signin-heading">Please sign in</h2>
+    <h2 class="form-signin-heading" align="center" >请登录</h2>
     <label for="userName" class="sr-only">用户名</label>
     <input type="text" id="userName" name="userName" class="form-control" placeholder="用户名" required autofocus>
     <label for="inputPassword" class="sr-only">密码</label>
     <input type="password" id="inputPassword" name="password" class="form-control" placeholder="密码" required>
     <div class="checkbox">
       <label>
-        <input type="checkbox" value="remember-me"> Remember me
+        <input type="checkbox" value="remember-me"> 记住我
       </label>
     </div>
     <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
