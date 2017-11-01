@@ -39,6 +39,25 @@
         <h3>所有用户</h3>
     </c:if>
 
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">菜鸟教程</a>
+            </div>
+            <div>
+                <form class="navbar-form navbar-left" role="search">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="搜索">
+                    </div>
+                    <button type="submit" class="btn btn-default">搜索</button>
+                </form>
+                <%--<button type="button" class="btn btn-default navbar-btn">--%>
+                    <%--导航栏按钮--%>
+                <%--</button>--%>
+            </div>
+        </div>
+    </nav>
+
     <c:if test="${empty patientList}">
         <p class="bg-warning">
             <br/>

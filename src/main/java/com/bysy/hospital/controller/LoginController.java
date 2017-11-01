@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -26,19 +27,16 @@ public class LoginController {
     }
 
     @RequestMapping(value = "/user/login", method = RequestMethod.POST)
-    public String login(@ModelAttribute("user") UserEntity userEntity) {
-        String userName = userEntity.getUserName();
-        String password = userEntity.getPassword();
+    public String login(@RequestParam String userName, @RequestParam String password) {
         List<UserEntity> userEntityList = userRepository.searchUserByPassword(userName, password);
-        UserEntity logInUser = userEntityList.get(0);
-        String identity = logInUser.getRole().equals("manager")? "isManager":"notManager";
         if (!userEntityList.isEmpty()) {
+            UserEntity logInUser = userEntityList.get(0);
+            String identity = logInUser.getRole().equals("manager") ? "isManager" : "notManager";
             return "redirect:/patient/list/" + identity;
         }
 
         return null;
     }
-
 
 
 }
