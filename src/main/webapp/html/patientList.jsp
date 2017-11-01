@@ -17,7 +17,7 @@
     <title>北医三院-用户管理</title>
 
     <!-- 新 Bootstrap 核心 CSS 文件 -->
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/hospital/css/bootstrap.min.css">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -91,9 +91,9 @@
 </div>
 
 <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
-<script src="/js/jquery.min.js"></script>
+<script src="/hospital/js/jquery.min.js"></script>
 
 <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-<script src="/js/bootstrap.min.js"></script>
+<script src="/hospital/js/bootstrap.min.js"></script>
 </body>
 </html>

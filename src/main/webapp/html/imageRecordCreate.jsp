@@ -8,14 +8,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>添加用户影像检查信息</title>
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/hospital/css/bootstrap.min.css">
     <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
 <body>
 <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
-<script src="/js/jquery.min.js"></script>
+<script src="//hospital/js/jquery.min.js"></script>
 
 <div class="container">
     <h1>添加用户影像检查信息</h1>
@@ -95,7 +95,7 @@
     </form:form>
 </div>
 
-<script src="/js/bootstrap.min.js"></script>
+<script src="/hospital/js/bootstrap.min.js"></script>
 <%--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>--%>
 <%--<script src="/js/jquery.form.js"/>--%>
 <%--<script src="/js/common.js"/>--%>
