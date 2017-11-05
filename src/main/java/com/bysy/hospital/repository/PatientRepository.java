@@ -8,6 +8,8 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Repository
 public interface PatientRepository extends JpaRepository<PatientEntity, Integer> {
     @Modifying
@@ -22,4 +24,25 @@ public interface PatientRepository extends JpaRepository<PatientEntity, Integer>
                               @Param("qHeight") Integer height,
                               @Param("qWeight") Integer weight,
                               @Param("qId") Integer id);
+
+//    @Transactional
+//    @Query("SELECT entity FROM  PatientEntity entity WHERE entity.patientNumber=:qPatientNumber, entity.realName=:qRealName, entity.disease=:qDisease, entity.ethnicity=:qEthnicity, entity.gender=:qGender")
+//    public List<PatientEntity> searchPatient(@Param("qPatientNumber") Integer patientNumber,
+//                                             @Param("qRealName") String realName,
+//                                             @Param("qDisease") String disease,
+//                                             @Param("qEthnicity") String ethnicity,
+//                                             @Param("qGender") String gender);
+
+    @Transactional
+    @Query("SELECT entity FROM  PatientEntity entity " +
+            "WHERE ( :qPatientNumber IS NULL OR entity.patientNumber=:qPatientNumber ) " +
+            "AND (:qRealName='' OR entity.realName=:qRealName ) " +
+            "AND  (:qDisease='' OR entity.disease=:qDisease ) " +
+            "AND (:qEthnicity='' OR entity.ethnicity=:qEthnicity ) " +
+            "AND (:qGender='' OR entity.gender=:qGender)")
+    public List<PatientEntity> searchPatient(@Param("qPatientNumber") Integer patientNumber,
+                                             @Param("qRealName") String realName,
+                                             @Param("qDisease") String disease,
+                                             @Param("qEthnicity") String ethnicity,
+                                             @Param("qGender") String gender);
 }

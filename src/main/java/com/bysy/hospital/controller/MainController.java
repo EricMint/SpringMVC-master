@@ -1,16 +1,14 @@
 package com.bysy.hospital.controller;
 
-import com.bysy.hospital.model.*;
-import com.bysy.hospital.repository.*;
-import com.bysy.hospital.model.*;
+import com.bysy.hospital.model.ImageRecordEntity;
+import com.bysy.hospital.model.PatientEntity;
+import com.bysy.hospital.model.PhysicalRecordEntity;
+import com.bysy.hospital.model.ScoreMarkEntity;
 import com.bysy.hospital.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -39,13 +37,9 @@ public class MainController {
         return "index";
     }
 
-    // 病人列表页
+    // 病人列表页 isManager
     @RequestMapping(value = "/patient/list/isManager", method = RequestMethod.GET)
     public String showPatientList(ModelMap modelMap) {
-//        List<UserEntity> userEntityList = userRepository.searchUserByUserName(userName);
-//        UserEntity userEntity = userEntityList.get(0);
-//        modelMap.addAttribute("userEntity", userEntity);
-//        Boolean isManager = userEntity.getRole().equals("manager");
         Boolean isManager = true;
         modelMap.addAttribute("isManager", isManager);
         List<PatientEntity> patientEntityList = patientRepository.findAll();
@@ -53,20 +47,27 @@ public class MainController {
         return "patientList";
     }
 
-    // 病人列表页
+    // 病人列表页 notManager
     @RequestMapping(value = "/patient/list/notManager", method = RequestMethod.GET)
     public String showPatientListNotManager(ModelMap modelMap) {
         Boolean isManager = false;
         modelMap.addAttribute("isManager", isManager);
-//        List<UserEntity> userEntityList = userRepository.searchUserByUserName(userName);
-//        UserEntity userEntity = userEntityList.get(0);
-//        modelMap.addAttribute("userEntity", userEntity);
-//        Boolean isManager = userEntity.getRole().equals("manager");
-//        modelMap.addAttribute("isManager", isManager);
         List<PatientEntity> patientEntityList = patientRepository.findAll();
         modelMap.addAttribute("patientList", patientEntityList);
         return "patientList";
     }
+
+    // 添加病人表单处理
+    @RequestMapping(value = "/patient/search", method = RequestMethod.POST)
+    public String searchPatients(@RequestParam Integer patientNumber, @RequestParam String realName, @RequestParam String disease, @RequestParam String ethnicity, @RequestParam String gender, ModelMap model) {
+        List<PatientEntity> patientEntityList = patientRepository.searchPatient(patientNumber, realName, disease, ethnicity, gender);
+        model.put("patientList", patientEntityList);
+        model.addAttribute("isManager", true);
+        return "patientList";
+//        return "patientListSearchData";
+//        return "redirect:/patient/detail/isManager/";
+    }
+
 
     // 添加病人表单页面
     @RequestMapping(value = "/patient/add", method = RequestMethod.GET)

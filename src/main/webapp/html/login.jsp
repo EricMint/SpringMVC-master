@@ -36,7 +36,6 @@
 <body>
 
 <div class="container">
-<%--<form:form action="login" method="post" role="form">--%>
   <form class="form-signin" action="login" method="post">
     <h2 class="form-signin-heading" align="center" >请登录</h2>
     <label for="userName" class="sr-only">用户名</label>
@@ -50,7 +49,6 @@
     </div>
     <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
   </form>
-<%--</form:form>--%>
 </div> <!-- /container -->
 
 

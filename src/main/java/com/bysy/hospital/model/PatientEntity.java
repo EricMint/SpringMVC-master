@@ -1,7 +1,6 @@
 package com.bysy.hospital.model;
 
 import javax.persistence.*;
-import java.util.Collection;
 
 @Entity
 @Table(name = "patient")
