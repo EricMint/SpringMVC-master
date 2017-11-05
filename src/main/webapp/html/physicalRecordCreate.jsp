@@ -16,6 +16,8 @@
 <body>
 <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
 <script src="/hospital/js/jquery.min.js"></script>
+<!-- Loading Flat UI -->
+<link href="/hospital/css/flat-ui.css" rel="stylesheet">
 
 <div class="container">
     <h1>添加用户体格检查信息</h1>
@@ -52,30 +54,69 @@
     <form:form action="/hospital/physicalRecord/createPost" method="post" role="form">
         <input type="hidden" id="patientId" name="patientId" value="${patient.id}"/>
 
-        <div class="form-group">
-            <label for="physicalClassAId">体格检查部位:</label>
-            <select id="physicalClassAId" name="physicalClassAId" data-placeholder="请选择" onchange="initClassB(this.value);">
-                <option value="">请选择</option>
-                <c:forEach items="${physicalClassAList}" var="physicalClassA">
-                    <option value="${physicalClassA.physicalClassAId}">${physicalClassA.physicalClassAName}</option>
-                </c:forEach>
-            </select>
-        </div>
+        <%--<div class="form-group">--%>
+        <%--<label for="physicalClassAId">体格检查部位:</label>--%>
+        <%--<select id="physicalClassAId" name="physicalClassAId" data-placeholder="请选择" onchange="initClassB(this.value);">--%>
+        <%--<option value="">请选择</option>--%>
+        <%--<c:forEach items="${physicalClassAList}" var="physicalClassA">--%>
+        <%--<option value="${physicalClassA.physicalClassAId}">${physicalClassA.physicalClassAName}</option>--%>
+        <%--</c:forEach>--%>
+        <%--</select>--%>
+        <%--</div>--%>
+        <table class="table tavble-bordered table-striped">
+            <c:forEach items="${physicalClassBList}" var="physicalClassB">
+                <%--<tr>--%>
+                <%--<th>${physicalClassB.physicalClassBName}</th>--%>
+                <%--<td>${patient.id}</td>--%>
+                <%--</tr>--%>
+                <%--<p>--%>
+                <h6>${physicalClassB.physicalClassBName}
+                    <div class="btn-group">
+                        <button data-toggle="dropdown" onload="initClassC(${physicalClassB.physicalClassBId})" class="btn btn-info dropdown-toggle" type="button">选择关节 <span
+                                class="caret"></span></button>
+                        <%--<div class="form-group">--%>
+                            <%--<label for="physicalClassCId">具体关节:</label>--%>
+                            <%--<select id="physicalClassCId" name="physicalClassCId" data-placeholder="请选择"--%>
+                                    <%--onchange="initClassD(this.value);">--%>
+                            <%--</select>--%>
+                        <%--</div>--%>
+
+                        <ul role="menu" class="dropdown-menu">
+                            <li><a href="#">前突</a></li>
+                            <li><a href="#">后突</a></li>
+                            <li><a href="#">侧突</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">无</a></li>
+                        </ul>
+                    </div>
+                </h6>
+                <br>
+                <%--</p>--%>
+                <!-- /btn-group -->
+                <%--<th>${physicalClassB.physicalClassBName}</th>--%>
+            </c:forEach>
+
+        </table>
+
+
         <div class="form-group">
             <label for="physicalClassBId">检查关节:</label>
-            <select id="physicalClassBId" name="physicalClassBId" data-placeholder="请选择" onchange="initClassC(this.value);">
+            <select id="physicalClassBId" name="physicalClassBId" data-placeholder="请选择"
+                    onchange="initClassC(this.value);">
             </select>
         </div>
-        <div class="form-group">
+        <%--<div class="form-group">--%>
 
-            <label for="physicalClassCId">具体关节:</label>
-            <select id="physicalClassCId" name="physicalClassCId" data-placeholder="请选择" onchange="initClassD(this.value);">
-            </select>
-        </div>
+            <%--<label for="physicalClassCId">具体关节:</label>--%>
+            <%--<select id="physicalClassCId" name="physicalClassCId" data-placeholder="请选择"--%>
+                    <%--onchange="initClassD(this.value);">--%>
+            <%--</select>--%>
+        <%--</div>--%>
         <div class="form-group">
 
             <label for="physicalClassDId">关节方位:</label>
-            <select id="physicalClassDId" name="physicalClassDId" data-placeholder="请选择" onchange="initClassE(this.value);">
+            <select id="physicalClassDId" name="physicalClassDId" data-placeholder="请选择"
+                    onchange="initClassE(this.value);">
             </select>
         </div>
 
@@ -96,36 +137,36 @@
 <%--<script src="/js/common.js"/>--%>
 <script>
 
-    function initClassB(physicalClassAId) {
-        if (physicalClassAId == "") {
-            $("#physicalClassBId").empty();
-            $("#physicalClassBId").append("<option value=''>请选择</option>");
-            return;
-        }
-        $("#physicalClassBId").empty();
-
-        var url = "/hospital/physical/classB/" + physicalClassAId;
-        $.ajax({
-            url: url,
-            type: "GET",
-            contentType: "application/json",
-            dataType: "json",
-            success: function (result) {
-                console.log(result);
-                if (result != "") {
-                    var list = result.classBEntityList;
-                    var options = "<option value=''>请选择</option>";
-                    $.each(list, function (index, item) {
-                        options = options + "<option value='" + item["physicalClassBId"] + "'>" + item["physicalClassBName"] + "</option>";
-                    });
-                    $("#physicalClassBId").append(options);
-                }
-            },
-            error: function (e) {
-                console.log(e);
-            }
-        });
-    }
+    //    function initClassB(physicalClassAId) {
+    //        if (physicalClassAId == "") {
+    //            $("#physicalClassBId").empty();
+    //            $("#physicalClassBId").append("<option value=''>请选择</option>");
+    //            return;
+    //        }
+    //        $("#physicalClassBId").empty();
+    //
+    //        var url = "/hospital/physical/classB/" + physicalClassAId;
+    //        $.ajax({
+    //            url: url,
+    //            type: "GET",
+    //            contentType: "application/json",
+    //            dataType: "json",
+    //            success: function (result) {
+    //                console.log(result);
+    //                if (result != "") {
+    //                    var list = result.classBEntityList;
+    //                    var options = "<option value=''>请选择</option>";
+    //                    $.each(list, function (index, item) {
+    //                        options = options + "<option value='" + item["physicalClassBId"] + "'>" + item["physicalClassBName"] + "</option>";
+    //                    });
+    //                    $("#physicalClassBId").append(options);
+    //                }
+    //            },
+    //            error: function (e) {
+    //                console.log(e);
+    //            }
+    //        });
+    //    }
 
     function initClassC(physicalClassBId) {
         if (physicalClassBId == "") {

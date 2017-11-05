@@ -1,9 +1,6 @@
 package com.bysy.hospital.controller;
 
-import com.bysy.hospital.model.ImageRecordEntity;
-import com.bysy.hospital.model.PatientEntity;
-import com.bysy.hospital.model.PhysicalRecordEntity;
-import com.bysy.hospital.model.ScoreMarkEntity;
+import com.bysy.hospital.model.*;
 import com.bysy.hospital.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,6 +26,9 @@ public class MainController {
 
     @Autowired
     private ScoreMarkRepository scoreMarkRepository;
+
+    @Autowired
+    private PhysicalClassARepository physicalClassARepository;
 
 
     // 首页
@@ -101,13 +101,16 @@ public class MainController {
         modelMap.addAttribute("isManager", isManager);
         PatientEntity patientEntity = patientRepository.findOne(patientId);
         modelMap.addAttribute("patient", patientEntity);
+        List<PhysicalClassAEntity> physicalClassAEntityList = physicalClassARepository.findAll();
+        modelMap.addAttribute("physicalClassAList", physicalClassAEntityList);
+
         if (null != patientEntity) {
-            List<ImageRecordEntity> imageRecordEntityList = imageRecordRepository.searchImageRecord(patientId);
-            modelMap.addAttribute("imageRecordList", imageRecordEntityList);
             List<PhysicalRecordEntity> physicalRecordEntityList = physicalRecordRepository.searchPhysicalRecord(patientId);
             modelMap.addAttribute("physicalRecordList", physicalRecordEntityList);
             List<ScoreMarkEntity> scoreMarkEntityList = scoreMarkRepository.searchScoreMarkByPatientId(patientId);
             modelMap.addAttribute("scoreMarkList", scoreMarkEntityList);
+            List<ImageRecordEntity> imageRecordEntityList = imageRecordRepository.searchImageRecord(patientId);
+            modelMap.addAttribute("imageRecordList", imageRecordEntityList);
         }
 
         return "patientDetail";

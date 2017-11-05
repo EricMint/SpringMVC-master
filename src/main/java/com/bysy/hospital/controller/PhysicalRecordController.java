@@ -38,13 +38,13 @@ public class PhysicalRecordController {
 
 
     // 影像检查部位页面
-    @RequestMapping(value = "/physicalRecord/create/{patientId}", method = RequestMethod.GET)
-    public String addPhysicalRecord(@PathVariable("patientId") Integer patientId, ModelMap modelMap) {
+    @RequestMapping(value = "/physicalRecord/create/{patientId}/{physicalClassAId}", method = RequestMethod.GET)
+    public String addPhysicalRecord(@PathVariable("patientId") Integer patientId, @PathVariable("physicalClassAId") Integer physicalClassAId, ModelMap modelMap) {
         PatientEntity patientEntity = patientRepository.findOne(patientId);
         modelMap.addAttribute("patient", patientEntity);
 
-        List<PhysicalClassAEntity> physicalClassAEntityList = physicalClassARepository.findAll();
-        modelMap.addAttribute("physicalClassAList", physicalClassAEntityList);
+        List<PhysicalClassBEntity> physicalClassBEntityList = physicalClassBRepository.searchClassB(physicalClassAId);
+        modelMap.addAttribute("physicalClassBList", physicalClassBEntityList);
 
         return "physicalRecordCreate";
     }
