@@ -39,10 +39,22 @@ public interface PatientRepository extends JpaRepository<PatientEntity, Integer>
             "AND (:qRealName='' OR entity.realName=:qRealName ) " +
             "AND  (:qDisease='' OR entity.disease=:qDisease ) " +
             "AND (:qEthnicity='' OR entity.ethnicity=:qEthnicity ) " +
-            "AND (:qGender='' OR entity.gender=:qGender)")
+            "AND (:qGender='' OR entity.gender=:qGender) " +
+            "AND (:qMinAge IS NULL OR entity.age > :qMinAge ) " +
+            "AND (:qMaxAge IS NULL OR entity.age < :qMaxAge ) " +
+            "AND (:qMinHeight IS NULL OR entity.height > :qMinHeight ) " +
+            "AND (:qMaxHeight IS NULL OR entity.height < :qMaxHeight ) " +
+            "AND (:qMinWeight IS NULL OR entity.weight > :qMinWeight ) " +
+            "AND (:qMaxWeight IS NULL OR entity.weight < :qMaxWeight )")
     public List<PatientEntity> searchPatient(@Param("qPatientNumber") Integer patientNumber,
                                              @Param("qRealName") String realName,
                                              @Param("qDisease") String disease,
                                              @Param("qEthnicity") String ethnicity,
-                                             @Param("qGender") String gender);
+                                             @Param("qGender") String gender,
+                                             @Param("qMinAge") Integer minAge,
+                                             @Param("qMaxAge") Integer maxAge,
+                                             @Param("qMinHeight") Integer minHeight,
+                                             @Param("qMaxHeight") Integer maxHeight,
+                                             @Param("qMinWeight") Integer minWeight,
+                                             @Param("qMaxWeight") Integer maxWeight);
 }

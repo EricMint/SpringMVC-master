@@ -12,6 +12,9 @@
     <!-- 新 Bootstrap 核心 CSS 文件 -->
     <link rel="stylesheet" href="/hospital/css/bootstrap.min.css">
 
+    <!-- Loading Flat UI -->
+    <link href="/hospital/css/flat-ui.css" rel="stylesheet">
+
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -32,7 +35,7 @@
         <h3>所有用户</h3>
     </c:if>
 
-    <nav class="navbar navbar-default" role="navigation" >
+    <nav class="navbar navbar-default" role="navigation">
         <div class="container-fluid">
             <%--<div class="navbar-header">--%>
             <%--<a class="navbar-brand" href="#">菜鸟教程</a>--%>
@@ -55,6 +58,20 @@
 
                         <label for="gender">性别：</label>
                         <input type="text" id="gender" name="gender" class="form-control" placeholder="请输入性别">
+
+                        <label for="gender">年龄：</label>
+                        <input type="text" id="minAge" name="minAge" class="form-control" placeholder="请输入最小年龄"> -
+                        <input type="text" id="maxAge" name="maxAge" class="form-control" placeholder="请输入最大年龄">
+
+                        <label for="gender">身高：</label>
+                        <input type="text" id="minHeight" name="minHeight" class="form-control" placeholder="请输入最低身高"> -
+                        <input type="text" id="maxHeight" name="maxHeight" class="form-control" placeholder="请输入最高身高">
+
+                        <label for="gender">体重：</label>
+                        <input type="text" id="minWeight" name="minWeight" class="form-control" placeholder="请输入最低体重"> -
+                        <input type="text" id="maxWeight" name="maxWeight" class="form-control" placeholder="请输入最高体重">
+
+
                     </div>
                     <button type="submit" id="btn-search" class="btn btn-default">搜索</button>
                 </form>
@@ -128,42 +145,42 @@
 <script src="/hospital/js/jquery.myPagination6.0.js"></script>
 
 <script>
-//    $(document).ready(function () {
-//        search();
-//    });
-//
-//    function search() {
-//        $("#btn-search").on("click", function () {
-//            $('input[type=text]:not(:disabled)').each(function () {
-//                $(this).val($.trim($(this).val()));
-//            });
-//            searchPage();
-//        });
-//
-//    }
-//
-//    function searchPage() {
-//        $("#pagination").myPagination({
-////            panel: {
-////                tipInfo_on: true,
-////                tipInfo: '<span class="skipPage">共 {sumPage} 页</span>'
-////            },
-//            ajax: {
-//                on: true,
-//                type: "POST",
-//                url: "/hospital/patient/search",
-//                param: $('#searchFrom').serializeJson(),
-//                pageCountId: "pageCount",
-//                dataType: "html",
-//                contentType: 'application/json; charset=utf-8',
-//                callback: function (data) {
-////                    $("#recordCount").text($(data).find("#totalCount").val());
-//                    $("table>tbody").replaceWith(data);
-//
-//                }
-//            }
-//        });
-//    }
+    //    $(document).ready(function () {
+    //        search();
+    //    });
+    //
+    //    function search() {
+    //        $("#btn-search").on("click", function () {
+    //            $('input[type=text]:not(:disabled)').each(function () {
+    //                $(this).val($.trim($(this).val()));
+    //            });
+    //            searchPage();
+    //        });
+    //
+    //    }
+    //
+    //    function searchPage() {
+    //        $("#pagination").myPagination({
+    ////            panel: {
+    ////                tipInfo_on: true,
+    ////                tipInfo: '<span class="skipPage">共 {sumPage} 页</span>'
+    ////            },
+    //            ajax: {
+    //                on: true,
+    //                type: "POST",
+    //                url: "/hospital/patient/search",
+    //                param: $('#searchFrom').serializeJson(),
+    //                pageCountId: "pageCount",
+    //                dataType: "html",
+    //                contentType: 'application/json; charset=utf-8',
+    //                callback: function (data) {
+    ////                    $("#recordCount").text($(data).find("#totalCount").val());
+    //                    $("table>tbody").replaceWith(data);
+    //
+    //                }
+    //            }
+    //        });
+    //    }
 
 </script>
 </body>

@@ -57,10 +57,14 @@ public class MainController {
         return "patientList";
     }
 
-    // 添加病人表单处理
+    // 搜索病人
     @RequestMapping(value = "/patient/search", method = RequestMethod.POST)
-    public String searchPatients(@RequestParam Integer patientNumber, @RequestParam String realName, @RequestParam String disease, @RequestParam String ethnicity, @RequestParam String gender, ModelMap model) {
-        List<PatientEntity> patientEntityList = patientRepository.searchPatient(patientNumber, realName, disease, ethnicity, gender);
+    public String searchPatients(@RequestParam Integer patientNumber, @RequestParam String realName, @RequestParam String disease,
+                                 @RequestParam String ethnicity, @RequestParam String gender,
+                                 @RequestParam Integer minAge, @RequestParam Integer maxAge,
+                                 @RequestParam Integer minHeight, @RequestParam Integer maxHeight,
+                                 @RequestParam Integer minWeight, @RequestParam Integer maxWeight, ModelMap model) {
+        List<PatientEntity> patientEntityList = patientRepository.searchPatient(patientNumber, realName, disease, ethnicity, gender, minAge, maxAge, minHeight, maxHeight, minWeight, maxWeight);
         model.put("patientList", patientEntityList);
         model.addAttribute("isManager", true);
         return "patientList";
