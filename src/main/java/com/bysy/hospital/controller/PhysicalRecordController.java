@@ -2,6 +2,7 @@ package com.bysy.hospital.controller;
 
 import com.bysy.hospital.model.*;
 import com.bysy.hospital.repository.*;
+import com.bysy.hospital.response.PhysicalClassB;
 import com.bysy.hospital.response.PhysicalClassDListResponse;
 import com.bysy.hospital.model.*;
 import com.bysy.hospital.repository.*;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -44,7 +46,18 @@ public class PhysicalRecordController {
         modelMap.addAttribute("patient", patientEntity);
 
         List<PhysicalClassBEntity> physicalClassBEntityList = physicalClassBRepository.searchClassB(physicalClassAId);
-        modelMap.addAttribute("physicalClassBList", physicalClassBEntityList);
+        List<PhysicalClassB> physicalClassBList = new ArrayList<PhysicalClassB>();
+        for (PhysicalClassBEntity entity : physicalClassBEntityList) {
+            PhysicalClassB physicalClassB = new PhysicalClassB();
+            physicalClassB.setPhysicalClassAId(entity.getPhysicalClassAId());
+            physicalClassB.setPhysicalClassAName(entity.getPhysicalClassAName());
+            physicalClassB.setPhysicalClassBId(entity.getPhysicalClassBId());
+            physicalClassB.setPhysicalClassBName(entity.getPhysicalClassBName());
+            PhysicalClassCListResponse classCListResponse = listClassC(physicalClassB.getPhysicalClassBId());
+            physicalClassB.setPhysicalClassCEntityList(classCListResponse.getClassCEntityList());
+            physicalClassBList.add(physicalClassB);
+        }
+        modelMap.addAttribute("physicalClassBList", physicalClassBList);
 
         return "physicalRecordCreate";
     }
