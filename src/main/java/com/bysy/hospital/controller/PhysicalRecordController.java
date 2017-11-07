@@ -64,7 +64,7 @@ public class PhysicalRecordController {
 
     // 影像检查部位处理
     @RequestMapping(value = "/physicalRecord/createPost", method = RequestMethod.POST)
-    public String addPhysicalRecordPost(@ModelAttribute("physicalRecord") PhysicalRecordEntity physicalRecordEntity) {
+    public void addPhysicalRecordPost(@ModelAttribute("physicalRecord") PhysicalRecordEntity physicalRecordEntity) {
         Integer patientId = physicalRecordEntity.getPatientId();
         Integer classAId = physicalRecordEntity.getPhysicalClassAId();
         if (null != classAId) {
@@ -90,7 +90,7 @@ public class PhysicalRecordController {
         PhysicalRecordEntity savedEntity = physicalRecordRepository.save(physicalRecordEntity);
         physicalRecordRepository.flush();
         Integer physicalRecordId = savedEntity.getPhysicalRecordId();
-        return "redirect:/patient/detail/isManager/" + patientId;
+//        return "redirect:/patient/detail/isManager/" + patientId;
     }
 
     // 影像检查部位更新页面
