@@ -89,8 +89,6 @@
     </c:if>
     <c:if test="${!empty physicalRecordList}">
         <c:if test="${isManager}">
-            <%--<h1>体格检查记录 <a href="/hospital/physicalRecord/create/${patient.id}" type="button"--%>
-            <%--class="btn btn-default btn-sm">添加</a></h1>--%>
             <h1>体格检查记录
                 <div class="btn-group">
                     <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle" type="button">添加 <span
@@ -100,7 +98,7 @@
                             <li><a href="/hospital/physicalRecord/create/${patient.id}/${physicalClassA.physicalClassAId}">${physicalClassA.physicalClassAName}</a></li>
                         </c:forEach>
                     </ul>
-                </div><!-- /btn-group -->
+                </div>
             </h1>
         </c:if>
         <c:if test="${!isManager}">
@@ -204,10 +202,17 @@
     </c:if>
     <c:if test="${!empty imageRecordList}">
         <c:if test="${isManager}">
-            <h1>影像检查记录 <a href="/hospital/imageRecord/create/${patient.id}" type="button"
-                          class="btn btn-default btn-sm">添加</a>
-            </h1>
-        </c:if>
+            <h1>影像检查记录
+                <div class="btn-group">
+                    <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle" type="button">添加 <span
+                            class="caret"></span></button>
+                    <ul role="menu" class="dropdown-menu">
+                        <c:forEach items="${imageClassAList}" var="imageClassA">
+                            <li><a href="/hospital/imageRecord/create/${patient.id}/${imageClassA.imageClassAId}">${imageClassA.imageClassAName}</a></li>
+                        </c:forEach>
+                    </ul>
+                </div>
+            </h1>        </c:if>
         <c:if test="${!isManager}">
             <h1>影像检查记录</h1>
         </c:if>

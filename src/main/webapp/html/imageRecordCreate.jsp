@@ -16,6 +16,8 @@
 <body>
 <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
 <script src="//hospital/js/jquery.min.js"></script>
+<!-- Loading Flat UI -->
+<link href="/hospital/css/flat-ui.css" rel="stylesheet">
 
 <div class="container">
     <h1>添加用户影像检查信息</h1>
@@ -48,51 +50,113 @@
 
     </table>
 
-
-    <form:form action="/hospital/imageRecord/createPost" method="post" role="form">
+    <h5>${imageClassBList[0].imageClassAName} </h5>
+    <form:form action="/hospital/imageRecord/createPost" target="dummyframe" method="post" class="form-inline" role="form">
         <input type="hidden" id="patientId" name="patientId" value="${patient.id}"/>
+        <input type="hidden" name="imageClassAId" value="${imageClassBList[0].imageClassAId}"/>
+        <input type="hidden" name="imageClassBId" value="${imageClassBList[0].imageClassBId}"/>
 
         <div class="form-group">
-            <label for="imageClassAId">影像检查部位:</label>
-            <select id="imageClassAId" name="imageClassAId" data-placeholder="请选择" onchange="initClassB(this.value);">
+            <h6>${imageClassBList[0].imageClassBName} </h6>
+        </div>
+
+        <div class="form-group">
+            <label for="imageClassCId0">检查关节:</label>
+            <select id="imageClassCId0" name="imageClassCId" data-placeholder="请选择"
+                    onchange="initClassD0(this.value);">
                 <option value="">请选择</option>
-                <c:forEach items="${imageClassAList}" var="imageClassA">
-                    <option value="${imageClassA.imageClassAId}">${imageClassA.imageClassAName}</option>
+                <c:forEach items="${imageClassBList[0].imageClassCEntityList}" var="imageClassC">
+                    <option value="${imageClassC.imageClassCId}">${imageClassC.imageClassCName}</option>
                 </c:forEach>
             </select>
-        </div>
-        <div class="form-group">
-            <label for="imageClassBId">检查关节:</label>
-            <select id="imageClassBId" name="imageClassBId" data-placeholder="请选择" onchange="initClassC(this.value);">
-            </select>
-        </div>
-        <div class="form-group">
 
-            <label for="imageClassCId">具体关节:</label>
-            <select id="imageClassCId" name="imageClassCId" data-placeholder="请选择" onchange="initClassD(this.value);">
-            </select>
         </div>
-        <div class="form-group">
 
-            <label for="imageClassDId">关节方位:</label>
-            <select id="imageClassDId" name="imageClassDId" data-placeholder="请选择" onchange="initClassE(this.value);">
-            </select>
-        </div>
         <div class="form-group">
-            <label for="imageClassEId">具体位置:</label>
-            <select id="imageClassEId" name="imageClassEId">
+            <label for="imageClassDId0">关节方位:</label>
+            <select id="imageClassDId0" name="imageClassDId" data-placeholder="请选择">
             </select>
         </div>
 
         <div class="form-group">
-            <label for="result">测量数值</label>
-            <input type="text" class="form-control" id="result" name="result" placeholder="请输入测量数值:"/>
+            <label class="sr-only" for="result0">测量数值</label>
+            <input type="text" class="form-control" id="result0" name="result" placeholder="请输入测量数值">
         </div>
-
-        <div class="form-group">
-            <button type="submit" class="btn btn-sm btn-success">提交</button>
-        </div>
+        <button type="submit" class="btn btn-sm btn-success">添加</button>
     </form:form>
+
+    <form:form action="/hospital/imageRecord/createPost" target="dummyframe" method="post" class="form-inline" role="form">
+        <input type="hidden" id="patientId" name="patientId" value="${patient.id}"/>
+        <input type="hidden" name="imageClassAId" value="${imageClassBList[1].imageClassAId}"/>
+        <input type="hidden" name="imageClassBId" value="${imageClassBList[1].imageClassBId}"/>
+
+        <div class="form-group">
+            <h6>${imageClassBList[1].imageClassBName} </h6>
+        </div>
+
+        <div class="form-group">
+            <label for="imageClassCId1">检查关节:</label>
+            <select id="imageClassCId1" name="imageClassCId" data-placeholder="请选择"
+                    onchange="initClassD1(this.value);">
+                <option value="">请选择</option>
+                <c:forEach items="${imageClassBList[1].imageClassCEntityList}" var="imageClassC">
+                    <option value="${imageClassC.imageClassCId}">${imageClassC.imageClassCName}</option>
+                </c:forEach>
+            </select>
+
+        </div>
+
+        <div class="form-group">
+            <label for="imageClassDId1">关节方位:</label>
+            <select id="imageClassDId1" name="imageClassDId" data-placeholder="请选择">
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label class="sr-only" for="result0">测量数值</label>
+            <input type="text" class="form-control" id="result1" name="result" placeholder="请输入测量数值">
+        </div>
+        <button type="submit" class="btn btn-sm btn-success">添加</button>
+    </form:form>
+
+    <form:form action="/hospital/imageRecord/createPost" target="dummyframe" method="post" class="form-inline" role="form">
+        <input type="hidden" id="patientId" name="patientId" value="${patient.id}"/>
+        <input type="hidden" name="imageClassAId" value="${imageClassBList[2].imageClassAId}"/>
+        <input type="hidden" name="imageClassBId" value="${imageClassBList[2].imageClassBId}"/>
+
+        <div class="form-group">
+            <h6>${imageClassBList[2].imageClassBName} </h6>
+        </div>
+
+        <div class="form-group">
+            <label for="imageClassCId2">检查关节:</label>
+            <select id="imageClassCId2" name="imageClassCId" data-placeholder="请选择"
+                    onchange="initClassD2(this.value);">
+                <option value="">请选择</option>
+                <c:forEach items="${imageClassBList[2].imageClassCEntityList}" var="imageClassC">
+                    <option value="${imageClassC.imageClassCId}">${imageClassC.imageClassCName}</option>
+                </c:forEach>
+            </select>
+
+        </div>
+
+        <div class="form-group">
+            <label for="imageClassDId2">关节方位:</label>
+            <select id="imageClassDId2" name="imageClassDId" data-placeholder="请选择">
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label class="sr-only" for="result0">测量数值</label>
+            <input type="text" class="form-control" id="result2" name="result" placeholder="请输入测量数值">
+        </div>
+        <button type="submit" class="btn btn-sm btn-success">添加</button>
+    </form:form>
+
+    <a href="/hospital/patient/detail/isManager/${patient.id}" type="button" class="btn btn-sm btn-success">返回列表页</a>
+
+    <iframe width="0" height="0" border="0" name="dummyframe" id="dummyframe"></iframe>
+
 </div>
 
 <script src="/hospital/js/bootstrap.min.js"></script>
@@ -101,74 +165,13 @@
 <%--<script src="/js/common.js"/>--%>
 <script>
 
-    function initClassB(imageClassAId) {
-        if (imageClassAId == "") {
-            $("#imageClassBId").empty();
-            $("#imageClassBId").append("<option value=''>请选择</option>");
-            return;
-        }
-        $("#imageClassBId").empty();
-
-        var url = "/hospital/image/classB/" + imageClassAId;
-        $.ajax({
-            url: url,
-            type: "GET",
-            contentType: "application/json",
-            dataType: "json",
-            success: function (result) {
-                console.log(result);
-                if (result != "") {
-                    var list = result.classBEntityList;
-                    var options = "<option value=''>请选择</option>";
-                    $.each(list, function (index, item) {
-                        options = options + "<option value='" + item["imageClassBId"] + "'>" + item["imageClassBName"] + "</option>";
-                    });
-                    $("#imageClassBId").append(options);
-                }
-            },
-            error: function (e) {
-                console.log(e);
-            }
-        });
-    }
-
-    function initClassC(imageClassBId) {
-        if (imageClassBId == "") {
-            $("#imageClassCId").empty();
-            $("#imageClassCId").append("<option value=''>请选择</option>");
-            return;
-        }
-        $("#imageClassCId").empty();
-        var url = "/hospital/image/classC/" + imageClassBId;
-        $.ajax({
-            url: url,
-            type: "GET",
-            contentType: "application/json",
-            dataType: "json",
-            success: function (result) {
-                console.log(result);
-                if (result != "") {
-                    var list = result.classCEntityList;
-                    var options = "<option value=''>请选择</option>";
-                    $.each(list, function (index, item) {
-                        options = options + "<option value='" + item["imageClassCId"] + "'>" + item["imageClassCName"] + "</option>";
-                    });
-                    $("#imageClassCId").append(options);
-                }
-            },
-            error: function (e) {
-                console.log(e);
-            }
-        });
-    }
-
-    function initClassD(imageClassCId) {
+    function initClassD0(imageClassCId) {
         if (imageClassCId == "") {
-            $("#imageClassDId").empty();
-            $("#imageClassDId").append("<option value=''>请选择</option>");
+            $("#imageClassDId0").empty();
+            $("#imageClassDId0").append("<option value=''>请选择</option>");
             return;
         }
-        $("#imageClassDId").empty();
+        $("#imageClassDId0").empty();
         var url = "/hospital/image/classD/" + imageClassCId;
         $.ajax({
             url: url,
@@ -180,13 +183,13 @@
                 if (result != "") {
                     var list = result.classDEntityList;
                     if (list.length < 1) {
-                        $("#imageClassDId").append("<option value=''>暂无可选</option>");
+                        $("#imageClassDId0").append("<option value=''>暂无可选</option>");
                     }
                     var options = "<option value=''>请选择</option>";
                     $.each(list, function (index, item) {
                         options = options + "<option value='" + item["imageClassDId"] + "'>" + item["imageClassDName"] + "</option>";
                     });
-                    $("#imageClassDId").append(options);
+                    $("#imageClassDId0").append(options);
                 }
             },
             error: function (e) {
@@ -195,14 +198,14 @@
         });
     }
 
-    function initClassE(imageClassDId) {
-        if (imageClassDId == "") {
-            $("#imageClassEId").empty();
-            $("#imageClassEId").append("<option value=''>请选择</option>");
+    function initClassD1(imageClassCId) {
+        if (imageClassCId == "") {
+            $("#imageClassDId1").empty();
+            $("#imageClassDId1").append("<option value=''>请选择</option>");
             return;
         }
-        $("#imageClassEId").empty();
-        var url = "/hospital/image/classE/" + imageClassDId;
+        $("#imageClassDId1").empty();
+        var url = "/hospital/image/classD/" + imageClassCId;
         $.ajax({
             url: url,
             type: "GET",
@@ -211,15 +214,48 @@
             success: function (result) {
                 console.log(result);
                 if (result != "") {
-                    var list = result.classEEntityList;
+                    var list = result.classDEntityList;
                     if (list.length < 1) {
-                        $("#imageClassEId").append("<option value=''>暂无可选</option>");
+                        $("#imageClassDId1").append("<option value=''>暂无可选</option>");
                     }
                     var options = "<option value=''>请选择</option>";
                     $.each(list, function (index, item) {
-                        options = options + "<option value='" + item["imageClassEId"] + "'>" + item["imageClassEName"] + "</option>";
+                        options = options + "<option value='" + item["imageClassDId"] + "'>" + item["imageClassDName"] + "</option>";
                     });
-                    $("#imageClassEId").append(options);
+                    $("#imageClassDId1").append(options);
+                }
+            },
+            error: function (e) {
+                console.log(e);
+            }
+        });
+    }
+
+    function initClassD2(imageClassCId) {
+        if (imageClassCId == "") {
+            $("#imageClassDId2").empty();
+            $("#imageClassDId2").append("<option value=''>请选择</option>");
+            return;
+        }
+        $("#imageClassDId2").empty();
+        var url = "/hospital/image/classD/" + imageClassCId;
+        $.ajax({
+            url: url,
+            type: "GET",
+            contentType: "application/json",
+            dataType: "json",
+            success: function (result) {
+                console.log(result);
+                if (result != "") {
+                    var list = result.classDEntityList;
+                    if (list.length < 1) {
+                        $("#imageClassDId2").append("<option value=''>暂无可选</option>");
+                    }
+                    var options = "<option value=''>请选择</option>";
+                    $.each(list, function (index, item) {
+                        options = options + "<option value='" + item["imageClassDId"] + "'>" + item["imageClassDName"] + "</option>";
+                    });
+                    $("#imageClassDId2").append(options);
                 }
             },
             error: function (e) {

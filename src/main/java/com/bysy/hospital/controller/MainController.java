@@ -30,6 +30,9 @@ public class MainController {
     @Autowired
     private PhysicalClassARepository physicalClassARepository;
 
+    @Autowired
+    private ImageClassARepository imageClassARepository;
+
 
     // 首页
     @RequestMapping(value = "/", method = RequestMethod.GET)
@@ -107,6 +110,8 @@ public class MainController {
         modelMap.addAttribute("patient", patientEntity);
         List<PhysicalClassAEntity> physicalClassAEntityList = physicalClassARepository.findAll();
         modelMap.addAttribute("physicalClassAList", physicalClassAEntityList);
+        List<ImageClassAEntity> imageClassAEntityList = imageClassARepository.findAll();
+        modelMap.addAttribute("imageClassAList", imageClassAEntityList);
 
         if (null != patientEntity) {
             List<PhysicalRecordEntity> physicalRecordEntityList = physicalRecordRepository.searchPhysicalRecord(patientId);
