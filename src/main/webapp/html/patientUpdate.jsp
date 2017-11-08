@@ -18,6 +18,8 @@
 
     <!-- 新 Bootstrap 核心 CSS 文件 -->
     <link rel="stylesheet" href="/hospital/css/bootstrap.min.css">
+    <!-- Loading Flat UI -->
+    <link href="/hospital/css/flat-ui.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -42,10 +44,9 @@
             <input type="text" class="form-control" id="realName" name="realName" placeholder="请输入姓名:"
                    value="${patient.realName}"/>
         </div>
-        <div class="form-group">
+        <div class="tagsinput-primary">
             <label for="disease">疾病类型:</label>
-            <input type="text" class="form-control" id="disease" name="disease" placeholder="请输入疾病类型:"
-                   value="${patient.disease}"/>
+            <input type="text" id="disease" name="disease" placeholder="请输入疾病类型(按回车键可输入多个):" class="tagsinput tagsinput-typeahead input-lg form-control" />
         </div>
         <div class="form-group">
             <label for="ethnicity">民族:</label>
@@ -87,5 +88,41 @@
 
 <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
 <script src="/hospital/js/bootstrap.min.js"></script>
+
+<script src="/hospital/js/flat-ui.js"></script>
+<script src="/hospital/js/application.js"></script>
+
+<script>
+    var states = new Bloodhound({
+        datumTokenizer: function(d) { return Bloodhound.tokenizers.whitespace(d.word); },
+        queryTokenizer: Bloodhound.tokenizers.whitespace,
+        limit: 4,
+        local: [
+            { word: "Alabama" },
+            { word: "Alaska" },
+            { word: "Arizona" },
+            { word: "Arkansas" },
+            { word: "California" },
+            { word: "Colorado" }
+        ]
+    });
+
+    states.initialize();
+
+    $('input.tagsinput').tagsinput();
+
+    $('input.tagsinput-typeahead').tagsinput('input').typeahead(null, {
+        name: 'states',
+        displayKey: 'word',
+        source: states.ttAdapter()
+    });
+
+    $('input.typeahead-only').typeahead(null, {
+        name: 'states',
+        displayKey: 'word',
+        source: states.ttAdapter()
+    });
+</script>
+
 </body>
 </html>

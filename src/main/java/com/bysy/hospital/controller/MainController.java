@@ -85,15 +85,10 @@ public class MainController {
     // 添加病人表单处理
     @RequestMapping(value = "/patient/addPost", method = RequestMethod.POST)
     public String addPatientPost(@ModelAttribute("user") PatientEntity patientEntity) {
-        // 向数据库添加一个用户
-        //userRepository.save(patientEntity);
+        PatientEntity savedEntity = patientRepository.save(patientEntity);
+        patientRepository.flush();
 
-        // 向数据库添加一个用户，并将内存中缓存区的数据刷新，立即写入数据库，之后才可以进行访问读取
-        patientRepository.saveAndFlush(patientEntity);
-
-        // 返回重定向页面
-        Integer patientId = patientEntity.getId();
-        return "redirect:/patient/detail/isManager/" + patientId;
+        return "redirect:/patient/detail/isManager/" + savedEntity.getId();
 //        return "redirect:/patient/list/";
     }
 

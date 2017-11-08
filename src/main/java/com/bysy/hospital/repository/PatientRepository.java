@@ -37,7 +37,7 @@ public interface PatientRepository extends JpaRepository<PatientEntity, Integer>
     @Query("SELECT entity FROM  PatientEntity entity " +
             "WHERE ( :qPatientNumber IS NULL OR entity.patientNumber=:qPatientNumber ) " +
             "AND (:qRealName='' OR entity.realName=:qRealName ) " +
-            "AND  (:qDisease='' OR entity.disease=:qDisease ) " +
+            "AND (:qDisease='' OR (entity.disease LIKE :qDisease) ) " +
             "AND (:qEthnicity='' OR entity.ethnicity=:qEthnicity ) " +
             "AND (:qGender='' OR entity.gender=:qGender) " +
             "AND (:qMinAge IS NULL OR entity.age > :qMinAge ) " +
