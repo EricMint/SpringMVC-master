@@ -158,7 +158,7 @@ public class PhysicalRecordController {
                 physicalRecordEntity.getPhysicalClassDId(),
                 physicalRecordEntity.getPhysicalClassDName(),
                 physicalRecordEntity.getResult(),
-                physicalRecordEntity.getPatientId()
+                physicalRecordEntity.getPhysicalRecordId()
         );
         physicalRecordRepository.flush();
         return "redirect:/patient/detail/isManager/" + physicalRecordEntity.getPatientId();

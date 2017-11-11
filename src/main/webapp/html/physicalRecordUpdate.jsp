@@ -16,6 +16,8 @@
 <body>
 <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
 <script src="/hospital/js/jquery.min.js"></script>
+<!-- Loading Flat UI -->
+<link href="/hospital/css/flat-ui.css" rel="stylesheet">
 
 <div class="container">
     <h1>修改体格检查信息</h1>
