@@ -177,7 +177,7 @@ public class ImageRecordController {
                 imageRecordEntity.getImageClassEId(),
                 imageRecordEntity.getImageClassEName(),
                 imageRecordEntity.getResult(),
-                imageRecordEntity.getPatientId()
+                imageRecordEntity.getImageRecordId()
         );
         imageRecordRepository.flush();
         return "redirect:/patient/detail/isManager/" + imageRecordEntity.getPatientId();

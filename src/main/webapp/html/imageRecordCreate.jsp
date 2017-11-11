@@ -15,7 +15,7 @@
 </head>
 <body>
 <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
-<script src="//hospital/js/jquery.min.js"></script>
+<script src="/hospital/js/jquery.min.js"></script>
 <!-- Loading Flat UI -->
 <link href="/hospital/css/flat-ui.css" rel="stylesheet">
 
