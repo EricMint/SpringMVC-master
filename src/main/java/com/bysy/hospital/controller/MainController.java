@@ -16,9 +16,6 @@ public class MainController {
     private PatientRepository patientRepository;
 
     @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
     private ImageRecordRepository imageRecordRepository;
 
     @Autowired

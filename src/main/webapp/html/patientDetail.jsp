@@ -11,7 +11,8 @@
 
     <!-- 新 Bootstrap 核心 CSS 文件 -->
     <link rel="stylesheet" href="/hospital/css/bootstrap.min.css">
-
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" href="/hospital/css/grid.css">
     <!-- Loading Flat UI -->
     <link href="/hospital/css/flat-ui.css" rel="stylesheet">
 
@@ -25,71 +26,45 @@
 <body>
 <div class="container">
     <c:if test="${isManager}">
-        <h1>用户详情 <a href="/hospital/patient/update/${patient.id}" type="button" class="btn btn-sm btn-warning">修改</a>
-        </h1>
+        <h4>用户详情 <a href="/hospital/patient/update/${patient.id}" type="button" class="btn btn-sm btn-warning">修改</a>
+        </h4>
     </c:if>
     <c:if test="${!isManager}">
-        <h1>用户详情</h1>
+        <h4>用户详情</h4>
     </c:if>
 
-    <table class="table tavble-bordered table-striped">
-        <tr>
-            <th>ID</th>
-            <td>${patient.id}</td>
-        </tr>
-        <tr>
-            <th>人员编号</th>
-            <td>${patient.patientNumber}</td>
-        </tr>
-        <tr>
-            <th>姓名</th>
-            <td>${patient.realName}</td>
-        </tr>
-        <tr>
-            <th>疾病类型</th>
-            <td>${patient.disease}</td>
-        </tr>
-        <tr>
-            <th>民族</th>
-            <td>${patient.ethnicity}</td>
-        </tr>
-        <tr>
-            <th>性别</th>
-            <td>${patient.gender}</td>
-        </tr>
-        <tr>
-            <th>年龄</th>
-            <td>${patient.age}</td>
-        </tr>
-        <tr>
-            <th>身高</th>
-            <td>${patient.height}</td>
-        </tr>
-        <tr>
-            <th>体重</th>
-            <td>${patient.weight}</td>
-        </tr>
-
-    </table>
+    <hr>
+    <div class="row">
+        <div class="col-xs-6 col-md-2">人员编号：${patient.patientNumber}</div>
+        <div class="col-xs-6 col-md-2">姓名：${patient.realName}</div>
+        <div class="col-xs-6 col-md-2">民族： ${patient.ethnicity}</div>
+        <div class="col-xs-6 col-md-2">性别： ${patient.gender}</div>
+        <div class="col-xs-6 col-md-2">年龄： ${patient.age}</div>
+        <div class="col-xs-6 col-md-2">身高： ${patient.height}</div>
+    </div>
+    <div class="row">
+        <div class="col-xs-6 col-md-2">体重：${patient.weight}</div>
+        <div class="col-xs-12 col-md-10">疾病类型：${patient.disease}</div>
+    </div>
+    <hr>
 
     <c:if test="${empty physicalRecordList}">
         <p class="bg-warning">
         <c:if test="${isManager}">
-            <h1>无体格检查记录 <a href="/hospital/physicalRecord/create/${patient.id}" type="button"
+            <h5>无体格检查记录 <a href="/hospital/physicalRecord/create/${patient.id}" type="button"
                            class="btn btn-default btn-sm">添加</a>
-            </h1>
+            </h5>
         </c:if>
         <c:if test="${!isManager}">
-            <h1>无体格检查记录 </h1>
+            <h5>无体格检查记录 </h5>
 
         </c:if>
-        </h1>
         <br/>
         </p>
     </c:if>
     <c:if test="${!empty physicalRecordList}">
         <c:if test="${isManager}">
-            <h1>体格检查记录
+            <h5>体格检查记录
                 <div class="btn-group">
                     <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle" type="button">添加 <span
                             class="caret"></span></button>
@@ -99,10 +74,10 @@
                         </c:forEach>
                     </ul>
                 </div>
-            </h1>
+            </h5>
         </c:if>
         <c:if test="${!isManager}">
-            <h1>体格检查记录 </h1>
+            <h5>体格检查记录 </h5>
         </c:if>
 
         <table class="table table-bordered table-striped">
@@ -139,25 +114,25 @@
     <c:if test="${empty scoreMarkList}">
         <p class="bg-warning">
         <c:if test="${isManager}">
-            <h1>无功能评分记录 <a href="/hospital/scoreRecord/create/${patient.id}" type="button"
+            <h5>无功能评分记录 <a href="/hospital/scoreRecord/create/${patient.id}" type="button"
                            class="btn btn-default btn-sm">添加</a>
         </c:if>
         <c:if test="${!isManager}">
-            <h1>无功能评分记录 </h1>
+            <h5>无功能评分记录 </h5>
         </c:if>
-        </h1>
+        </h5>
         <br/>
         </p>
     </c:if>
     <c:if test="${!empty scoreMarkList}">
         <c:if test="${isManager}">
-            <h1>功能评分记录 <a href="/hospital/scoreRecord/create/${patient.id}" type="button"
+            <h5>功能评分记录 <a href="/hospital/scoreRecord/create/${patient.id}" type="button"
                           class="btn btn-default btn-sm">添加</a>
         </c:if>
         <c:if test="${!isManager}">
-            <h1>功能评分记录 </h1>
+            <h5>功能评分记录 </h5>
         </c:if>
-        </h1>
+        </h5>
 
         <table class="table table-bordered table-striped">
             <tr>
@@ -190,19 +165,19 @@
     <c:if test="${empty imageRecordList}">
         <p class="bg-warning">
         <c:if test="${isManager}">
-            <h1>无影像检查记录 <a href="/hospital/imageRecord/create/${patient.id}" type="button"
+            <h5>无影像检查记录 <a href="/hospital/imageRecord/create/${patient.id}" type="button"
                            class="btn btn-default btn-sm">添加</a>
-            </h1>
+            </h5>
         </c:if>
         <c:if test="${!isManager}">
-            <h1>无影像检查记录</h1>
+            <h5>无影像检查记录</h5>
         </c:if>
         <br/>
         </p>
     </c:if>
     <c:if test="${!empty imageRecordList}">
         <c:if test="${isManager}">
-            <h1>影像检查记录
+            <h5>影像检查记录
                 <div class="btn-group">
                     <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle" type="button">添加 <span
                             class="caret"></span></button>
@@ -212,9 +187,9 @@
                         </c:forEach>
                     </ul>
                 </div>
-            </h1>        </c:if>
+            </h5>        </c:if>
         <c:if test="${!isManager}">
-            <h1>影像检查记录</h1>
+            <h5>影像检查记录</h5>
         </c:if>
         <table class="table table-bordered table-striped">
             <tr>

@@ -112,15 +112,15 @@
     $('input.tagsinput').tagsinput();
 
     $('input.tagsinput-typeahead').tagsinput('input').typeahead(null, {
-        name: 'states',
+        name: 'disease',
         displayKey: 'word',
-        source: states.ttAdapter()
+        source: disease.ttAdapter()
     });
 
     $('input.typeahead-only').typeahead(null, {
-        name: 'states',
+        name: 'disease',
         displayKey: 'word',
-        source: states.ttAdapter()
+        source: disease.ttAdapter()
     });
 </script>
 
