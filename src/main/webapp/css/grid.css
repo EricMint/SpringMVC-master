@@ -16,7 +16,9 @@ h4 {
   border: 1px solid #ddd;
   border: 1px solid rgba(86,61,124,.2);
 }
-
+.input-box{
+  width:20px
+}
 hr {
   margin-top: 40px;
   margin-bottom: 40px;

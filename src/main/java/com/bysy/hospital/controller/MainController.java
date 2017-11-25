@@ -2,12 +2,17 @@ package com.bysy.hospital.controller;
 
 import com.bysy.hospital.model.*;
 import com.bysy.hospital.repository.*;
+import com.bysy.hospital.request.PatientUpdateRequest;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class MainController {
@@ -29,6 +34,9 @@ public class MainController {
 
     @Autowired
     private ImageClassARepository imageClassARepository;
+
+    @Autowired
+    private PatientRepositoryTest patientRepositoryTest;
 
 
     // 首页
@@ -144,21 +152,16 @@ public class MainController {
         return "patientUpdate";
     }
 
-    // 处理用户修改请求
+    @Transactional
     @RequestMapping(value = "/patient/updatePost", method = RequestMethod.POST)
-    public String updatePatientPost(@ModelAttribute("patient") PatientEntity patientEntity) {
-        patientRepository.updatePatient(
-                patientEntity.getPatientNumber(),
-                patientEntity.getRealName(),
-                patientEntity.getDisease(),
-                patientEntity.getEthnicity(),
-                patientEntity.getGender(),
-                patientEntity.getAge(),
-                patientEntity.getHeight(),
-                patientEntity.getWeight(),
-                patientEntity.getId()
-        );
-        return "redirect:/patient/detail/isManager/" + patientEntity.getId();
+    @ResponseBody
+    public Map<String, Object> updatePatientPost(@RequestBody PatientUpdateRequest updateRequest) {
+        PatientEntity patientEntity = patientRepositoryTest.findOneById(PatientEntity.class, updateRequest.getPatientId());
+        BeanUtils.copyProperties(updateRequest, patientEntity);
+        patientRepositoryTest.update(patientEntity);
+        Map<String, Object> model = new HashMap<String, Object>();
+        model.put("patient", patientEntity);
+        return model;
     }
 
     // 删除病人
