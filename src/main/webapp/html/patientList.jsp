@@ -189,7 +189,8 @@
                                 var patient = searchList[i];
                                 $('#patientTable').append('<tr><td>' + (i + 1) + '</td><td>' + patient.patientNumber + '</td><td>' + patient.realName + '</td>' +
                                     '<td>' + patient.disease + '</td><td>' + patient.ethnicity + '</td><td>' + patient.gender + '</td>' +
-                                    '<td>' + patient.age + '</td><td>' + patient.height + '</td><td>' + patient.weight + '</td></tr>');
+                                    '<td>' + patient.age + '</td><td>' + patient.height + '</td><td>' + patient.weight + '</td>' +
+                                    '<td>' + '<a href="/hospital/patient/detail/isManager/' + patient.id + '" type="button" class="btn btn-sm btn-success">详情</a>' + '</td></tr>');
 
                             }
 
