@@ -162,9 +162,9 @@
         $("#btn-search").click(function () {
             var data = {};
             data.patientNumber = $("#patientNumber").val();
-            data.realName = $("#realName").val().trimValue;
-            data.ethnicity = $("#ethnicity").val().trimValue;
-            data.gender = $("#gender").val().trimValue;
+            data.realName = $("#realName").val();
+            data.ethnicity = $("#ethnicity").val();
+            data.gender = $("#gender").val();
             data.minAge = $("#minAge").val();
             data.maxAge = $("#maxAge").val();
             data.minHeight = $("#minHeight").val();
@@ -183,8 +183,8 @@
                         $('#patientTable tbody').remove();
                         console.log(result);
                         var searchList = result.patientEntityList;
-                        $("p.record").html("共" + searchList.length + "条数据");
                         if (null != searchList && searchList.length > 0) {
+                            $("p.record").html("共" + searchList.length + "条数据");
                             for (i = 0; i < searchList.length; i++) {
                                 var patient = searchList[i];
                                 $('#patientTable').append('<tr><td>' + (i + 1) + '</td><td>' + patient.patientNumber + '</td><td>' + patient.realName + '</td>' +

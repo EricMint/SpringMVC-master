@@ -38,34 +38,41 @@ public class PatientService {
         if (null != request.getPatientNumber() && request.getPatientNumber() > 0) {
             params.put("patientNumber", new CriteriaInfo(CriteriaInfo.CriteriaType.equal, request.getPatientNumber()));
         }
-        if (!StringUtils.isEmpty(request.getRealName())) {
-            params.put("realName", new CriteriaInfo(CriteriaInfo.CriteriaType.equal, request.getRealName()));
+        if (StringUtils.hasText(request.getRealName())) {
+            params.put("realName", new CriteriaInfo(CriteriaInfo.CriteriaType.like, request.getRealName()));
         }
         if (StringUtils.hasText(request.getDisease())) {
-            params.put("disease", new CriteriaInfo(CriteriaInfo.CriteriaType.equal, request.getDisease()));
+            params.put("disease", new CriteriaInfo(CriteriaInfo.CriteriaType.like, request.getDisease()));
         }
         if (StringUtils.hasText(request.getEthnicity())) {
-            params.put("ethnicity", new CriteriaInfo(CriteriaInfo.CriteriaType.equal, request.getEthnicity()));
+            params.put("ethnicity", new CriteriaInfo(CriteriaInfo.CriteriaType.like, request.getEthnicity()));
         }
-        if (null != request.getGender()) {
-            params.put("gender", new CriteriaInfo(CriteriaInfo.CriteriaType.equal, request.getGender()));
+        if (StringUtils.hasText(request.getGender())) {
+            params.put("gender", new CriteriaInfo(CriteriaInfo.CriteriaType.like, request.getGender()));
         }
-        if (null != request.getMinAge()) {
+
+        if (null != request.getMinAge() && null != request.getMaxAge()) {
+            params.put("age", new CriteriaInfo(CriteriaInfo.CriteriaType.betweenForInt, request.getMinAge(), request.getMaxAge()));
+        } else if (null != request.getMinAge()) {
             params.put("age", new CriteriaInfo(CriteriaInfo.CriteriaType.greaterThanOrEqualsForInt, request.getMinAge()));
-        }
-        if (null != request.getMaxAge()) {
+        } else if (null != request.getMaxAge()) {
             params.put("age", new CriteriaInfo(CriteriaInfo.CriteriaType.lessThanOrEqualsForInt, request.getMaxAge()));
         }
-        if (null != request.getMinHeight()) {
+
+        if (null != request.getMinHeight() && null != request.getMaxHeight()) {
+            params.put("height", new CriteriaInfo(CriteriaInfo.CriteriaType.betweenForInt, request.getMinHeight(), request.getMaxHeight()));
+        } else if (null != request.getMinHeight()) {
             params.put("height", new CriteriaInfo(CriteriaInfo.CriteriaType.greaterThanOrEqualsForInt, request.getMinHeight()));
-        }
-        if (null != request.getMaxHeight()) {
+        } else if (null != request.getMaxHeight()) {
             params.put("height", new CriteriaInfo(CriteriaInfo.CriteriaType.lessThanOrEqualsForInt, request.getMaxHeight()));
         }
-        if (null != request.getMinWeight()) {
+
+        if (null != request.getMinWeight() && null != request.getMaxWeight()) {
+            params.put("weight", new CriteriaInfo(CriteriaInfo.CriteriaType.betweenForInt, request.getMinWeight(), request.getMaxWeight()
+            ));
+        } else if (null != request.getMinWeight()) {
             params.put("weight", new CriteriaInfo(CriteriaInfo.CriteriaType.greaterThanOrEqualsForInt, request.getMinWeight()));
-        }
-        if (null != request.getMaxWeight()) {
+        } else if (null != request.getMaxWeight()) {
             params.put("weight", new CriteriaInfo(CriteriaInfo.CriteriaType.lessThanOrEqualsForInt, request.getMaxWeight()));
         }
         return params;

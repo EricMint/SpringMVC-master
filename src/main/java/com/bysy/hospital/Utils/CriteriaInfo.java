@@ -54,18 +54,6 @@ public class CriteriaInfo {
     }
 
     public enum CriteriaType {
-//        equal,
-//        notEqual,
-//        betweenForDate,
-//        greaterThan,
-//        greaterThanForDate,
-//        greaterThanOrEqualsForDate,
-//        lessThanForDate,
-//        isNull,
-//        isNotNull,
-//        in,
-//        like,
-//        lessThanForInt,
         equal,
         notEqual,
         betweenForInt,
