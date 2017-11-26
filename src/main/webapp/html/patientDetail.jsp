@@ -322,9 +322,7 @@
             $('input').css('background-color', '#FFFFFF'); // change the background color
             $('select').css('background-color', '#FFFFFF'); // change the background color
             $("#saveUser").hide();
-        });
 
-        $("#saveUser").click(function () {
             var data = {};
             data.patientId = $("#patientId").val();
             data.patientNumber = $("#patientNumber").val();

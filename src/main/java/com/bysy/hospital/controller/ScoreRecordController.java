@@ -5,9 +5,6 @@ import com.bysy.hospital.repository.*;
 import com.bysy.hospital.response.ScoreClassBResponse;
 import com.bysy.hospital.response.ScoreClassCListResponse;
 import com.bysy.hospital.response.ScoreClassCResponse;
-import com.bysy.hospital.model.*;
-import com.bysy.hospital.repository.*;
-import com.bysy.hospital.response.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -23,7 +20,7 @@ import java.util.Map;
 public class ScoreRecordController {
 
     @Autowired
-    private PatientRepository patientRepository;
+    private PatientRepositoryDeprecated patientRepositoryDeprecated;
 
     @Autowired
     private ScoreRecordRepository scoreRecordRepository;
@@ -44,7 +41,7 @@ public class ScoreRecordController {
     // 选择评分页面
     @RequestMapping(value = "/scoreRecord/create/{patientId}", method = RequestMethod.GET)
     public String addScoreRecord(@PathVariable("patientId") Integer patientId, ModelMap modelMap) {
-        PatientEntity patientEntity = patientRepository.findOne(patientId);
+        PatientEntity patientEntity = patientRepositoryDeprecated.findOne(patientId);
         modelMap.addAttribute("patient", patientEntity);
 
         List<ScoreClassAEntity> scoreClassAEntityList = scoreClassARepository.findAll();
@@ -64,7 +61,7 @@ public class ScoreRecordController {
     // 具体评分页面
     @RequestMapping(value = "/scoreRecord/createDetail/{patientId}/{classAId}", method = RequestMethod.GET)
     public String addScoreRecordDetail(@PathVariable("patientId") Integer patientId, @PathVariable("classAId") Integer classAId, ModelMap modelMap) {
-        PatientEntity patientEntity = patientRepository.findOne(patientId);
+        PatientEntity patientEntity = patientRepositoryDeprecated.findOne(patientId);
         modelMap.addAttribute("patient", patientEntity);
         List<ScoreRecordEntity> recordEntityList = scoreRecordRepository.searchScoreRecordByPatientId(patientId);
         List<ScoreClassBEntity> scoreClassBEntityList = scoreClassBRepository.searchClassB(classAId);

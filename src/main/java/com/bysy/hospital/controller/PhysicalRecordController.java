@@ -4,8 +4,6 @@ import com.bysy.hospital.model.*;
 import com.bysy.hospital.repository.*;
 import com.bysy.hospital.response.PhysicalClassB;
 import com.bysy.hospital.response.PhysicalClassDListResponse;
-import com.bysy.hospital.model.*;
-import com.bysy.hospital.repository.*;
 import com.bysy.hospital.response.PhysicalClassBListResponse;
 import com.bysy.hospital.response.PhysicalClassCListResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +19,7 @@ import java.util.List;
 public class PhysicalRecordController {
 
     @Autowired
-    private PatientRepository patientRepository;
+    private PatientRepositoryDeprecated patientRepositoryDeprecated;
 
     @Autowired
     private PhysicalRecordRepository physicalRecordRepository;
@@ -42,7 +40,7 @@ public class PhysicalRecordController {
     // 影像检查部位页面
     @RequestMapping(value = "/physicalRecord/create/{patientId}/{physicalClassAId}", method = RequestMethod.GET)
     public String addPhysicalRecord(@PathVariable("patientId") Integer patientId, @PathVariable("physicalClassAId") Integer physicalClassAId, ModelMap modelMap) {
-        PatientEntity patientEntity = patientRepository.findOne(patientId);
+        PatientEntity patientEntity = patientRepositoryDeprecated.findOne(patientId);
         modelMap.addAttribute("patient", patientEntity);
 
         List<PhysicalClassBEntity> physicalClassBEntityList = physicalClassBRepository.searchClassB(physicalClassAId);
@@ -99,7 +97,7 @@ public class PhysicalRecordController {
         PhysicalRecordEntity physicalRecordEntity = physicalRecordRepository.findOne(physicalRecordId);
         modelMap.addAttribute("physicalRecord", physicalRecordEntity);
         Integer patientId = physicalRecordEntity.getPatientId();
-        PatientEntity patientEntity = patientRepository.findOne(patientId);
+        PatientEntity patientEntity = patientRepositoryDeprecated.findOne(patientId);
         modelMap.addAttribute("patient", patientEntity);
         List<PhysicalClassAEntity> physicalClassAEntityList = physicalClassARepository.findAll();
         modelMap.addAttribute("physicalClassAList", physicalClassAEntityList);

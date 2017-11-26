@@ -2,7 +2,11 @@ package com.bysy.hospital.controller;
 
 import com.bysy.hospital.model.*;
 import com.bysy.hospital.repository.*;
+import com.bysy.hospital.request.PatientSearchRequest;
 import com.bysy.hospital.request.PatientUpdateRequest;
+import com.bysy.hospital.response.PatientListResponse;
+import com.bysy.hospital.service.PatientService;
+import org.json.JSONObject;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,7 +22,7 @@ import java.util.Map;
 public class MainController {
 
     @Autowired
-    private PatientRepository patientRepository;
+    private PatientRepositoryDeprecated patientRepositoryDeprecated;
 
     @Autowired
     private ImageRecordRepository imageRecordRepository;
@@ -36,7 +40,10 @@ public class MainController {
     private ImageClassARepository imageClassARepository;
 
     @Autowired
-    private PatientRepositoryTest patientRepositoryTest;
+    private PatientRepository patientRepository;
+
+    @Autowired
+    private PatientService patientService;
 
 
     // 首页
@@ -50,7 +57,10 @@ public class MainController {
     public String showPatientList(ModelMap modelMap) {
         Boolean isManager = true;
         modelMap.addAttribute("isManager", isManager);
-        List<PatientEntity> patientEntityList = patientRepository.findAll();
+        PatientSearchRequest searchRequest = new PatientSearchRequest();
+        searchRequest.setPageSize(10000);
+        PatientListResponse listResponse = patientService.searchPatientList(searchRequest);
+        List<PatientEntity> patientEntityList = listResponse.getPatientEntityList();
         modelMap.addAttribute("patientList", patientEntityList);
         return "patientList";
     }
@@ -60,26 +70,18 @@ public class MainController {
     public String showPatientListNotManager(ModelMap modelMap) {
         Boolean isManager = false;
         modelMap.addAttribute("isManager", isManager);
-        List<PatientEntity> patientEntityList = patientRepository.findAll();
+        List<PatientEntity> patientEntityList = patientRepositoryDeprecated.findAll();
         modelMap.addAttribute("patientList", patientEntityList);
         return "patientList";
     }
 
-    // 搜索病人
-    @RequestMapping(value = "/patient/search", method = RequestMethod.POST)
-    public String searchPatients(@RequestParam Integer patientNumber, @RequestParam String realName, @RequestParam String disease,
-                                 @RequestParam String ethnicity, @RequestParam String gender,
-                                 @RequestParam Integer minAge, @RequestParam Integer maxAge,
-                                 @RequestParam Integer minHeight, @RequestParam Integer maxHeight,
-                                 @RequestParam Integer minWeight, @RequestParam Integer maxWeight, ModelMap model) {
-        List<PatientEntity> patientEntityList = patientRepository.searchPatient(patientNumber, realName, disease, ethnicity, gender, minAge, maxAge, minHeight, maxHeight, minWeight, maxWeight);
-        model.put("patientList", patientEntityList);
-        model.addAttribute("isManager", true);
-        return "patientList";
-//        return "patientListSearchData";
-//        return "redirect:/patient/detail/isManager/";
+    @ResponseBody
+    @RequestMapping(value = "/patient/search", method = RequestMethod.POST, produces = "application/json")
+    public PatientListResponse searchPatientList(@RequestBody PatientSearchRequest searchRequest) {
+        searchRequest.setPageSize(10000);
+        PatientListResponse patientListResponse = patientService.searchPatientList(searchRequest);
+        return patientListResponse;
     }
-
 
     // 添加病人表单页面
     @RequestMapping(value = "/patient/add", method = RequestMethod.GET)
@@ -90,8 +92,8 @@ public class MainController {
     // 添加病人表单处理
     @RequestMapping(value = "/patient/addPost", method = RequestMethod.POST)
     public String addPatientPost(@ModelAttribute("user") PatientEntity patientEntity) {
-        PatientEntity savedEntity = patientRepository.save(patientEntity);
-        patientRepository.flush();
+        PatientEntity savedEntity = patientRepositoryDeprecated.save(patientEntity);
+        patientRepositoryDeprecated.flush();
 
         return "redirect:/patient/detail/isManager/" + savedEntity.getId();
 //        return "redirect:/patient/list/";
@@ -106,7 +108,7 @@ public class MainController {
 //        Boolean isManager = userEntity.getRole().equals("manager");
         Boolean isManager = true;
         modelMap.addAttribute("isManager", isManager);
-        PatientEntity patientEntity = patientRepository.findOne(patientId);
+        PatientEntity patientEntity = patientRepositoryDeprecated.findOne(patientId);
         modelMap.addAttribute("patient", patientEntity);
         List<PhysicalClassAEntity> physicalClassAEntityList = physicalClassARepository.findAll();
         modelMap.addAttribute("physicalClassAList", physicalClassAEntityList);
@@ -130,7 +132,7 @@ public class MainController {
     public String showPatientDetailNotManager(@PathVariable("patientId") Integer patientId, ModelMap modelMap) {
         Boolean isManager = false;
         modelMap.addAttribute("isManager", isManager);
-        PatientEntity patientEntity = patientRepository.findOne(patientId);
+        PatientEntity patientEntity = patientRepositoryDeprecated.findOne(patientId);
         modelMap.addAttribute("patient", patientEntity);
         if (null != patientEntity) {
             List<PhysicalRecordEntity> physicalRecordEntityList = physicalRecordRepository.searchPhysicalRecord(patientId);
@@ -147,7 +149,7 @@ public class MainController {
     // 更新用户信息页面
     @RequestMapping(value = "/patient/update/{patientId}", method = RequestMethod.GET)
     public String updatePatient(@PathVariable("patientId") Integer patientId, ModelMap modelMap) {
-        PatientEntity patientEntity = patientRepository.findOne(patientId);
+        PatientEntity patientEntity = patientRepositoryDeprecated.findOne(patientId);
         modelMap.addAttribute("patient", patientEntity);
         return "patientUpdate";
     }
@@ -156,9 +158,9 @@ public class MainController {
     @RequestMapping(value = "/patient/updatePost", method = RequestMethod.POST)
     @ResponseBody
     public Map<String, Object> updatePatientPost(@RequestBody PatientUpdateRequest updateRequest) {
-        PatientEntity patientEntity = patientRepositoryTest.findOneById(PatientEntity.class, updateRequest.getPatientId());
+        PatientEntity patientEntity = patientRepository.findOneById(PatientEntity.class, updateRequest.getPatientId());
         BeanUtils.copyProperties(updateRequest, patientEntity);
-        patientRepositoryTest.update(patientEntity);
+        patientRepository.update(patientEntity);
         Map<String, Object> model = new HashMap<String, Object>();
         model.put("patient", patientEntity);
         return model;
@@ -167,8 +169,8 @@ public class MainController {
     // 删除病人
     @RequestMapping(value = "/patient/delete/{patientId}", method = RequestMethod.GET)
     public String deletePatient(@PathVariable("patientId") Integer patientId) {
-        patientRepository.delete(patientId);
-        patientRepository.flush();
+        patientRepositoryDeprecated.delete(patientId);
+        patientRepositoryDeprecated.flush();
         return "redirect:/patient/list";
     }
 }

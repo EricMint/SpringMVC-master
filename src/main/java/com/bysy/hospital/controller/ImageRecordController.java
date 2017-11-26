@@ -3,8 +3,6 @@ package com.bysy.hospital.controller;
 import com.bysy.hospital.model.*;
 import com.bysy.hospital.repository.*;
 import com.bysy.hospital.response.*;
-import com.bysy.hospital.model.*;
-import com.bysy.hospital.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -18,7 +16,7 @@ import java.util.List;
 public class ImageRecordController {
 
     @Autowired
-    private PatientRepository patientRepository;
+    private PatientRepositoryDeprecated patientRepositoryDeprecated;
 
     @Autowired
     private ImageRecordRepository imageRecordRepository;
@@ -42,7 +40,7 @@ public class ImageRecordController {
     // 影像检查部位页面
     @RequestMapping(value = "/imageRecord/create/{patientId}/{imageClassAId}", method = RequestMethod.GET)
     public String addImagingRecord(@PathVariable("patientId") Integer patientId, @PathVariable("imageClassAId") Integer imageClassAId, ModelMap modelMap) {
-        PatientEntity patientEntity = patientRepository.findOne(patientId);
+        PatientEntity patientEntity = patientRepositoryDeprecated.findOne(patientId);
         modelMap.addAttribute("patient", patientEntity);
 
         List<ImageClassBEntity> imageClassBEntityList = imageClassBRepository.searchClassB(imageClassAId);
@@ -107,7 +105,7 @@ public class ImageRecordController {
         ImageRecordEntity imageRecordEntity = imageRecordRepository.findOne(imageRecordId);
         modelMap.addAttribute("imageRecord", imageRecordEntity);
         Integer patientId = imageRecordEntity.getPatientId();
-        PatientEntity patientEntity = patientRepository.findOne(patientId);
+        PatientEntity patientEntity = patientRepositoryDeprecated.findOne(patientId);
         modelMap.addAttribute("patient", patientEntity);
         List<ImageClassAEntity> imageClassAEntityList = imageClassARepository.findAll();
         modelMap.addAttribute("imageClassAList", imageClassAEntityList);

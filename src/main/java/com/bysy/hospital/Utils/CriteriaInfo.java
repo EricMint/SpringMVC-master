@@ -54,18 +54,31 @@ public class CriteriaInfo {
     }
 
     public enum CriteriaType {
+//        equal,
+//        notEqual,
+//        betweenForDate,
+//        greaterThan,
+//        greaterThanForDate,
+//        greaterThanOrEqualsForDate,
+//        lessThanForDate,
+//        isNull,
+//        isNotNull,
+//        in,
+//        like,
+//        lessThanForInt,
         equal,
         notEqual,
+        betweenForInt,
         betweenForDate,
-        greaterThan,
+        greaterThanForInt,
+        greaterThanOrEqualsForInt,
         greaterThanForDate,
-        greaterThanOrEqualsForDate,
         lessThanForDate,
-        isNull,
-        isNotNull,
-        in,
-        like,
         lessThanForInt,
+        lessThanOrEqualsForInt,
+        isNull,
+        in,
+        like;
     }
 
     public static Map<String, CriteriaInfo> equalCustomerId(Integer customerId) {

@@ -35,8 +35,8 @@
         <%--</#list>--%>
     <%--</#if>--%>
 
-    <c:if test="${!empty patientList}">
-            <c:forEach items="${patientList}" var="patient">
+    <c:if test="${!empty patientListResponse.patientEntityList}">
+            <c:forEach items="${patientListResponse.patientEntityList}" var="patient">
                 <tr>
                     <td>${patient.id}</td>
                     <td>${patient.patientNumber}</td>
@@ -65,6 +65,6 @@
             </c:forEach>
     </c:if>
 
-    <%--<input type="hidden" id="totalCount" value="${(employeeListResponse.totalCount)!}">--%>
-    <%--<input type="hidden" id="pageCount" value="${(employeeListResponse.pageCount)!}">--%>
+    <input type="hidden" id="totalCount" value="${(patientListResponse.totalCount)}">
+    <input type="hidden" id="pageCount" value="${(patientListResponse.pageCount)}">
 </tbody>

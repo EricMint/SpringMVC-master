@@ -24,60 +24,62 @@
 </head>
 <body>
 <div class="container">
-    <h1>北医三院-病人列表</h1>
-    <hr/>
-
     <c:if test="${isManager}">
-        <h3>所有用户 <a href="/hospital/patient/add" type="button" class="btn btn-default btn-sm">添加</a></h3>
+        <h4>北医三院-病人列表 <a href="/hospital/patient/add" type="button" class="btn btn-primary transition-duration">添加</a>
+        </h4>
     </c:if>
 
     <c:if test="${!isManager}">
-        <h3>所有用户</h3>
+        <h4>北医三院-病人列表</h4>
     </c:if>
 
     <nav class="navbar navbar-default" role="navigation">
         <div class="container-fluid">
-            <%--<div class="navbar-header">--%>
-            <%--<a class="navbar-brand" href="#">菜鸟教程</a>--%>
-            <%--</div>--%>
             <div>
-                <form class="navbar-form navbar-left" id="searchFrom" method="post" action="/hospital/patient/search">
+                <%--<form class="navbar-form navbar-left" id="searchFrom" method="post" action="/hospital/patient/search">--%>
+                <div class="navbar-form navbar-left" id="searchFrom">
                     <div class="form-group">
-                        <label for="patientNumber">人员编号：</label>
-                        <input type="text" id="patientNumber" name="patientNumber" class="form-control"
-                               placeholder="请输入人员编号">
+                        <label>编号:</label>
+                        <input type="text" style="width:120px" id="patientNumber" name="patientNumber"
+                               class="form-control" placeholder="人员编号"> &nbsp;&nbsp;
 
-                        <label for="realName">姓名：</label>
-                        <input type="text" id="realName" name="realName" class="form-control" placeholder="请输入姓名">
+                        <label>姓名:</label>
+                        <input type="text" style="width:120px" id="realName" name="realName" class="form-control"
+                               placeholder="姓名"> &nbsp;&nbsp;
 
-                        <label for="disease">疾病类型：</label>
-                        <input type="text" id="disease" name="disease" class="form-control" placeholder="请输入疾病类型">
+                        <label>疾病:</label>
+                        <input type="text" style="width:120px" id="disease" name="disease" class="form-control"
+                               placeholder="疾病"> &nbsp;&nbsp;
 
-                        <label for="ethnicity">民族：</label>
-                        <input type="text" id="ethnicity" name="ethnicity" class="form-control" placeholder="请输入民族">
+                        <label>民族:</label>
+                        <input type="text" style="width:120px" id="ethnicity" name="ethnicity" class="form-control"
+                               placeholder="民族"> &nbsp;&nbsp;
 
-                        <label for="gender">性别：</label>
-                        <input type="text" id="gender" name="gender" class="form-control" placeholder="请输入性别">
-
-                        <label for="gender">年龄：</label>
-                        <input type="text" id="minAge" name="minAge" class="form-control" placeholder="请输入最小年龄"> -
-                        <input type="text" id="maxAge" name="maxAge" class="form-control" placeholder="请输入最大年龄">
-
-                        <label for="gender">身高：</label>
-                        <input type="text" id="minHeight" name="minHeight" class="form-control" placeholder="请输入最低身高"> -
-                        <input type="text" id="maxHeight" name="maxHeight" class="form-control" placeholder="请输入最高身高">
-
-                        <label for="gender">体重：</label>
-                        <input type="text" id="minWeight" name="minWeight" class="form-control" placeholder="请输入最低体重"> -
-                        <input type="text" id="maxWeight" name="maxWeight" class="form-control" placeholder="请输入最高体重">
-
-
+                        <label>性别:</label>
+                        <input type="text" style="width:120px" id="gender" name="gender" class="form-control"
+                               placeholder="性别">
                     </div>
-                    <button type="submit" id="btn-search" class="btn btn-default">搜索</button>
-                </form>
-                <%--<button type="button" class="btn btn-default navbar-btn">--%>
-                <%--导航栏按钮--%>
-                <%--</button>--%>
+                    <div class="form-group">
+                        <label>年龄:</label>
+                        <input type="text" style="width:100px" id="minAge" name="minAge" class="form-control"
+                               placeholder="最小年龄"> -
+                        <input type="text" style="width:100px" id="maxAge" name="maxAge" class="form-control"
+                               placeholder="最大年龄"> &nbsp;&nbsp;
+
+                        <label>身高:</label>
+                        <input type="text" style="width:100px" id="minHeight" name="minHeight" class="form-control"
+                               placeholder="最低身高"> -
+                        <input type="text" style="width:100px" id="maxHeight" name="maxHeight" class="form-control"
+                               placeholder="最高身高"> &nbsp;&nbsp;
+
+                        <label>体重:</label>
+                        <input type="text" style="width:100px" id="minWeight" name="minWeight" class="form-control"
+                               placeholder="最低体重"> -
+                        <input type="text" style="width:100px" id="maxWeight" name="maxWeight" class="form-control"
+                               placeholder="最高体重">
+                    </div>
+                    <button type="submit" id="btn-search" class="btn btn-primary transition-duration">搜索</button>
+                </div>
             </div>
         </div>
     </nav>
@@ -93,7 +95,8 @@
     </c:if>
 
     <c:if test="${!empty patientList}">
-        <table class="table table-bordered table-striped">
+        <table class="table table-bordered table-striped" id="patientTable">
+            <thead>
             <tr>
                 <th>ID</th>
                 <th>人员编号</th>
@@ -105,10 +108,10 @@
                 <th>身高</th>
                 <th>体重</th>
             </tr>
-
-            <c:forEach items="${patientList}" var="patient">
+            </thead>
+            <c:forEach items="${patientList}" var="patient" varStatus="myIndex">
                 <tr>
-                    <td>${patient.id}</td>
+                    <td>${myIndex.index+1}</td>
                     <td>${patient.patientNumber}</td>
                     <td>${patient.realName}</td>
                     <td>${patient.disease}</td>
@@ -134,6 +137,15 @@
                 </tr>
             </c:forEach>
         </table>
+        <div class="row m-t-sm">
+            <div class="col-sm-2">
+                <p class="record">共${patientList.size()}条数据</p>
+            </div>
+            <div class="col-sm-10">
+                <div id="pagination" class=""></div>
+            </div>
+        </div>
+
     </c:if>
 </div>
 
@@ -143,45 +155,55 @@
 <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
 <script src="/hospital/js/bootstrap.min.js"></script>
 <script src="/hospital/js/jquery.myPagination6.0.js"></script>
-
+<script src="/hospital/js/flat-ui.min.js"></script>
+<script src="/hospital/js/application.js"></script>
 <script>
-    //    $(document).ready(function () {
-    //        search();
-    //    });
-    //
-    //    function search() {
-    //        $("#btn-search").on("click", function () {
-    //            $('input[type=text]:not(:disabled)').each(function () {
-    //                $(this).val($.trim($(this).val()));
-    //            });
-    //            searchPage();
-    //        });
-    //
-    //    }
-    //
-    //    function searchPage() {
-    //        $("#pagination").myPagination({
-    ////            panel: {
-    ////                tipInfo_on: true,
-    ////                tipInfo: '<span class="skipPage">共 {sumPage} 页</span>'
-    ////            },
-    //            ajax: {
-    //                on: true,
-    //                type: "POST",
-    //                url: "/hospital/patient/search",
-    //                param: $('#searchFrom').serializeJson(),
-    //                pageCountId: "pageCount",
-    //                dataType: "html",
-    //                contentType: 'application/json; charset=utf-8',
-    //                callback: function (data) {
-    ////                    $("#recordCount").text($(data).find("#totalCount").val());
-    //                    $("table>tbody").replaceWith(data);
-    //
-    //                }
-    //            }
-    //        });
-    //    }
+    $(document).ready(function () {
+        $("#btn-search").click(function () {
+            var data = {};
+            data.patientNumber = $("#patientNumber").val();
+            data.realName = $("#realName").val().trimValue;
+            data.ethnicity = $("#ethnicity").val().trimValue;
+            data.gender = $("#gender").val().trimValue;
+            data.minAge = $("#minAge").val();
+            data.maxAge = $("#maxAge").val();
+            data.minHeight = $("#minHeight").val();
+            data.maxHeight = $("#maxHeight").val();
+            data.minWeight = $("#minWeight").val();
+            data.maxWeight = $("#maxWeight").val();
+            data.disease = $("#disease").val();
+            console.log(data);
+            $.ajax({
+                    url: "/hospital/patient/search",
+                    type: "post",
+                    data: JSON.stringify(data),
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (result) {
+                        $('#patientTable tbody').remove();
+                        console.log(result);
+                        var searchList = result.patientEntityList;
+                        $("p.record").html("共" + searchList.length + "条数据");
+                        if (null != searchList && searchList.length > 0) {
+                            for (i = 0; i < searchList.length; i++) {
+                                var patient = searchList[i];
+                                $('#patientTable').append('<tr><td>' + (i + 1) + '</td><td>' + patient.patientNumber + '</td><td>' + patient.realName + '</td>' +
+                                    '<td>' + patient.disease + '</td><td>' + patient.ethnicity + '</td><td>' + patient.gender + '</td>' +
+                                    '<td>' + patient.age + '</td><td>' + patient.height + '</td><td>' + patient.weight + '</td></tr>');
 
+                            }
+
+                        }
+
+                    },
+                    error: function () {
+
+                    }
+                }
+            );
+        });
+
+    });
 </script>
 </body>
 </html>
