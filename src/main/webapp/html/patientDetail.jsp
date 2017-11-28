@@ -171,78 +171,50 @@
                             class="form-control">
                         <option value="" disabled selected="selected">请选择</option>
                     </select>
+                    <br>
 
-                    <%--<label>活动度:</label>--%>
-                    <%--<select style="width:120px" id="xuan" name="patientNumber"--%>
-                            <%--class="form-control">--%>
-                        <%--<option value="">颈椎</option>--%>
-                        <%--<option value="">胸椎</option>--%>
-                        <%--<option value="">腰椎</option>--%>
-                    <%--</select>--%>
-                    <%--<select style="width:120px" id="xuan" name="patientNumber"--%>
-                            <%--class="form-control">--%>
-                        <%--<option value="">前屈</option>--%>
-                        <%--<option value="">后伸</option>--%>
-                        <%--<option value="">左侧弯</option>--%>
-                        <%--<option value="">右侧弯</option>--%>
-                        <%--<option value="">左侧旋</option>--%>
-                        <%--<option value="">右侧旋</option>--%>
-                    <%--</select>--%>
-                    <%--<input type="text" style="width:120px" id="asdf" name="patientNumber"--%>
-                           <%--class="form-control" placeholder="角度"> &nbsp;&nbsp;--%>
-                    <%--<br>--%>
+                    <label>活动度:</label><br>
+                    <table class="table table-bordered table-striped">
+                        <tr>
+                            <th>部位</th>
+                            <th>前屈</th>
+                            <th>后伸</th>
+                            <th>左侧弯</th>
+                            <th>右侧弯</th>
+                            <th>左侧旋</th>
+                            <th>右侧旋</th>
+                        </tr>
+                        <tr>
+                            <td>颈椎</td>
+                            <td><input disabled="disabled" class="huodongdu" style="width:100px"type="text" id="jingzhui_qianqu"    /></td>
+                            <td><input disabled="disabled" class="huodongdu" style="width:100px"type="text" id="jingzhui_houshen"   /></td>
+                            <td><input disabled="disabled" class="huodongdu" style="width:100px"type="text" id="jingzhui_zuocewan"  /></td>
+                            <td><input disabled="disabled" class="huodongdu" style="width:100px"type="text" id="jingzhui_youcewan"  /></td>
+                            <td><input disabled="disabled" class="huodongdu" style="width:100px"type="text" id="jingzhui_zuocexuan" /></td>
+                            <td><input disabled="disabled" class="huodongdu" style="width:100px"type="text" id="jingzhui_youcexuan" /></td>
+                        </tr>
+                        <tr>
+                            <td>胸椎</td>
+                            <td><input disabled="disabled" class="huodongdu" style="width:100px"type="text" id="xiongzhui_qianqu"    /></td>
+                            <td><input disabled="disabled" class="huodongdu" style="width:100px"type="text" id="xiongzhui_houshen"   /></td>
+                            <td><input disabled="disabled" class="huodongdu" style="width:100px"type="text" id="xiongzhui_zuocewan"  /></td>
+                            <td><input disabled="disabled" class="huodongdu" style="width:100px"type="text" id="xiongzhui_youcewan"  /></td>
+                            <td><input disabled="disabled" class="huodongdu" style="width:100px"type="text" id="xiongzhui_zuocexuan" /></td>
+                            <td><input disabled="disabled" class="huodongdu" style="width:100px"type="text" id="xiongzhui_youcexuan" /></td>
+                        </tr>
+                        <tr>
+                            <td>腰椎</td>
+                            <td><input disabled="disabled" class="huodongdu" style="width:100px"type="text" id="yaozhui_qianqu"    /></td>
+                            <td><input disabled="disabled" class="huodongdu" style="width:100px"type="text" id="yaozhui_houshen"   /></td>
+                            <td><input disabled="disabled" class="huodongdu" style="width:100px"type="text" id="yaozhui_zuocewan"  /></td>
+                            <td><input disabled="disabled" class="huodongdu" style="width:100px"type="text" id="yaozhui_youcewan"  /></td>
+                            <td><input disabled="disabled" class="huodongdu" style="width:100px"type="text" id="yaozhui_zuocexuan" /></td>
+                            <td><input disabled="disabled" class="huodongdu" style="width:100px"type="text" id="yaozhui_youcexuan" /></td>
+                        </tr>
 
-                    <%--<label>压痛:</label>--%>
-                    <%--<select style="width:120px" id="xuan" name="patientNumber"--%>
-                            <%--class="form-control">--%>
-                        <%--<option value="">颈椎</option>--%>
-                        <%--<option value="">胸椎</option>--%>
-                        <%--<option value="">腰椎</option>--%>
-                        <%--<option value="">无</option>--%>
-                    <%--</select>--%>
-                    <%--<select style="width:120px" id="xuan" name="patientNumber"--%>
-                            <%--class="form-control">--%>
-                        <%--<option value="">颈1</option>--%>
-                        <%--<option value="">颈2</option>--%>
-                        <%--<option value="">颈3</option>--%>
-                        <%--<option value="">颈4</option>--%>
-                        <%--<option value="">颈5</option>--%>
-                        <%--<option value="">颈6</option>--%>
-                        <%--<option value="">颈7</option>--%>
-                    <%--</select>--%>
-                    <%--<input type="text" style="width:120px" id="qwerqwer" name="patientNumber"--%>
-                           <%--class="form-control" placeholder="角度"> &nbsp;&nbsp;--%>
-                    <%--<br>--%>
+                    </table>
+                    <br>
 
-                    <%--<label>叩击痛:</label>--%>
-                    <%--<input type="text" style="width:120px" id="ethnicity" name="ethnicity" class="form-control"--%>
-                           <%--placeholder="民族"> &nbsp;&nbsp;--%>
-                    <%--<br>--%>
-
-                    <%--<label>压颈试验:</label>--%>
-                    <%--<input type="text" style="width:120px" id="gender" name="gender" class="form-control"--%>
-                           <%--placeholder="性别">--%>
-                    <%--<br>--%>
-
-                    <%--<label>臂丛牵拉试验:</label>--%>
-                    <%--<input type="text" style="width:120px" id="gender" name="gender" class="form-control"--%>
-                           <%--placeholder="性别">--%>
-                    <%--<br>--%>
-
-                    <%--<label>拾物试验:</label>--%>
-                    <%--<input type="text" style="width:120px" id="gender" name="gender" class="form-control"--%>
-                           <%--placeholder="性别">--%>
-                    <%--<br>--%>
-
-                    <%--<label>直腿抬高试验:</label>--%>
-                    <%--<input type="text" style="width:120px" id="gender" name="gender" class="form-control"--%>
-                           <%--placeholder="性别">--%>
-                    <%--<br>--%>
-
-                    <%--<label>股神经牵拉试验:</label>--%>
-                    <%--<input type="text" style="width:120px" id="gender" name="gender" class="form-control"--%>
-                           <%--placeholder="性别">--%>
-                    <%--<br>--%>
                 </div>
             </div>
         </div>
@@ -389,6 +361,7 @@
     $(document).ready(function () {
         initEthnicity();
         PhysicalJizhuCetujixingGet();
+        PhysicalJizhuHuodongduGet();
     });
 
     $("#modifyUser").click(function () {
@@ -452,14 +425,17 @@
 
     $("#modifyPhysical").click(function () {
         $("#physicalJizhuCetujixing").prop('disabled', false);
+        $(".huodongdu").prop('disabled', false);
         $('#physicalJizhuCetujixing').css('background-color', '#F0F8FF'); // change the background color
         $("#savePhysical").show();
     });
 
     $("#savePhysical").click(function () {
         $("#physicalJizhuCetujixing").prop('disabled', true);
+        $(".huodongdu").prop('disabled', true);
         $("#savePhysical").hide();
         PhysicalJizhuCetujixingSave();
+        PhysicalJizhuHuodongduSave();
     });
 
     function PhysicalJizhuCetujixingGet() {
@@ -511,6 +487,96 @@
                 }
             }
         );
+    };
+
+    function PhysicalJizhuHuodongduGet() {
+        var patientId = $("#patientId").val();
+        var positionList = ["颈椎", "胸椎", "腰椎"];
+        $.ajax({
+                url: "/hospital/patient/physical/jizhu/huodongdu/" + patientId,
+                type: "GET",
+                dataType: "json",
+                contentType: "application/xhtml+xml; charset=utf-8",
+                success: function (answerList) {
+                    console.log(answerList);
+                    for (i=0; i<answerList.length; i++) {
+                        var answerElement = answerList[i];
+                        if (answerElement.examPosition == "颈椎") {
+                            $("#jingzhui_qianqu").val(answerElement.qianqu);
+                            $("#jingzhui_houshen").val(answerElement.houshen);
+                            $("#jingzhui_zuocewan").val(answerElement.zuocewan);
+                            $("#jingzhui_youcewan").val(answerElement.youcewan);
+                            $("#jingzhui_zuocexuan").val(answerElement.zuocexuan);
+                            $("#jingzhui_youcexuan").val(answerElement.youcexuan);
+                        } else if(answerElement.examPosition == "胸椎"){
+                            $("#xiongzhui_qianqu").val(answerElement.qianqu);
+                            $("#xiongzhui_houshen").val(answerElement.houshen);
+                            $("#xiongzhui_zuocewan").val(answerElement.zuocewan);
+                            $("#xiongzhui_youcewan").val(answerElement.youcewan);
+                            $("#xiongzhui_zuocexuan").val(answerElement.zuocexuan);
+                            $("#xiongzhui_youcexuan").val(answerElement.youcexuan);
+                        } else if(answerElement.examPosition == "腰椎") {
+                            $("#yaozhui_qianqu").val(answerElement.qianqu);
+                            $("#yaozhui_houshen").val(answerElement.houshen);
+                            $("#yaozhui_zuocewan").val(answerElement.zuocewan);
+                            $("#yaozhui_youcewan").val(answerElement.youcewan);
+                            $("#yaozhui_zuocexuan").val(answerElement.zuocexuan);
+                            $("#yaozhui_youcexuan").val(answerElement.youcexuan);
+                        }
+                    }
+
+                },
+                error: function () {
+
+                }
+            }
+        );
+    };
+    function PhysicalJizhuHuodongduSave() {
+        var data = {};
+        data.patientId = $("#patientId").val();
+        var positionList = ["颈椎", "胸椎", "腰椎"];
+        for (i=0; i<positionList.length; i++) {
+            var position = positionList[i];
+            data.examPosition = position;
+            if (position == "颈椎") {
+                data.qianqu = $("#jingzhui_qianqu").val();
+                data.houshen = $("#jingzhui_houshen").val();
+                data.zuocewan = $("#jingzhui_zuocewan").val();
+                data.youcewan = $("#jingzhui_youcewan").val();
+                data.zuocexuan = $("#jingzhui_zuocexuan").val();
+                data.youcexuan = $("#jingzhui_youcexuan").val();
+            } else if (position == "胸椎") {
+                data.qianqu = $("#xiongzhui_qianqu").val();
+                data.houshen = $("#xiongzhui_houshen").val();
+                data.zuocewan = $("#xiongzhui_zuocewan").val();
+                data.youcewan = $("#xiongzhui_youcewan").val();
+                data.zuocexuan = $("#xiongzhui_zuocexuan").val();
+                data.youcexuan = $("#xiongzhui_youcexuan").val();
+            } else if (position == "腰椎") {
+                data.qianqu = $("#yaozhui_qianqu").val();
+                data.houshen = $("#yaozhui_houshen").val();
+                data.zuocewan = $("#yaozhui_zuocewan").val();
+                data.youcewan = $("#yaozhui_youcewan").val();
+                data.zuocexuan = $("#yaozhui_zuocexuan").val();
+                data.youcexuan = $("#yaozhui_youcexuan").val();
+            }
+            $.ajax({
+                    url: "/hospital/patient/physical/jizhu/huodongdu",
+                    type: "post",
+                    data: JSON.stringify(data),
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (result) {
+                        console.log(result)
+                    },
+                    error: function () {
+
+                    }
+                }
+            );
+        }
+
     };
 </script>
 

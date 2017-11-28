@@ -4,7 +4,8 @@ import com.bysy.hospital.model.*;
 import com.bysy.hospital.repository.*;
 import com.bysy.hospital.request.PatientSearchRequest;
 import com.bysy.hospital.request.PatientUpdateRequest;
-import com.bysy.hospital.request.PhysicalJizhuCetujixingUpdateRequest;
+import com.bysy.hospital.request.PhysicalJizhuCetujixingRequest;
+import com.bysy.hospital.request.PhysicalJizhuHuodongduRequest;
 import com.bysy.hospital.response.PatientListResponse;
 import com.bysy.hospital.service.PatientService;
 import com.bysy.hospital.service.PhysicalService;
@@ -97,8 +98,22 @@ public class MainController {
     @Transactional
     @RequestMapping(value = "/patient/physical/jizhu/cetujixing", method = RequestMethod.POST)
     @ResponseBody
-    public void physicalJizhuCetujixingUpdate(@RequestBody PhysicalJizhuCetujixingUpdateRequest updateRequest) {
-        physicalService.updateOrCreateJizhuCetujixing(updateRequest);
+    public void physicalJizhuCetujixingUpdate(@RequestBody PhysicalJizhuCetujixingRequest request) {
+        physicalService.updateOrCreateJizhuCetujixing(request);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/patient/physical/jizhu/huodongdu/{patientId}", method = RequestMethod.GET, produces = "application/json")
+    public List<PhysicalJizhuHuodongduEntity> physicalJizhuHuodongduGet(@PathVariable("patientId") Integer patientId) {
+        List<PhysicalJizhuHuodongduEntity> entityList= physicalService.findJizhuHuodongdu(patientId);
+        return entityList;
+    }
+
+    @Transactional
+    @RequestMapping(value = "/patient/physical/jizhu/huodongdu", method = RequestMethod.POST)
+    @ResponseBody
+    public void physicalJizhuHuodongduUpdate(@RequestBody PhysicalJizhuHuodongduRequest request) {
+        physicalService.updateOrCreateJizhuHuodongdu(request);
     }
 
     // 添加病人表单页面

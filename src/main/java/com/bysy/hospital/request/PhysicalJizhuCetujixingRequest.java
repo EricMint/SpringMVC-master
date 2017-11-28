@@ -5,7 +5,7 @@ import com.sun.istack.internal.NotNull;
 /**
  * Created by mint on 11/28/17.
  */
-public class PhysicalJizhuCetujixingUpdateRequest {
+public class PhysicalJizhuCetujixingRequest {
     private Integer patientId;
     private String examType;
     private String examCategory;
