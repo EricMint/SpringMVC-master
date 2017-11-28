@@ -4,8 +4,10 @@ import com.bysy.hospital.model.*;
 import com.bysy.hospital.repository.*;
 import com.bysy.hospital.request.PatientSearchRequest;
 import com.bysy.hospital.request.PatientUpdateRequest;
+import com.bysy.hospital.request.PhysicalJizhuCetujixingUpdateRequest;
 import com.bysy.hospital.response.PatientListResponse;
 import com.bysy.hospital.service.PatientService;
+import com.bysy.hospital.service.PhysicalService;
 import org.json.JSONObject;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,9 @@ import java.util.Map;
 
 @Controller
 public class MainController {
+
+    @Autowired
+    private PhysicalService physicalService;
 
     @Autowired
     private PatientRepositoryDeprecated patientRepositoryDeprecated;
@@ -81,6 +86,20 @@ public class MainController {
         searchRequest.setPageSize(10000);
         PatientListResponse patientListResponse = patientService.searchPatientList(searchRequest);
         return patientListResponse;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/patient/physical/jizhu/cetujixing/{patientId}", method = RequestMethod.GET, produces = "application/json")
+    public PhysicalJizhuCetujixingEntity physicalJizhuCetujixingGet(@PathVariable("patientId") Integer patientId) {
+        PhysicalJizhuCetujixingEntity physicalJizhuCetujixingEntity = physicalService.findJizhuCetujixing(patientId);
+        return physicalJizhuCetujixingEntity;
+    }
+
+    @Transactional
+    @RequestMapping(value = "/patient/physical/jizhu/cetujixing", method = RequestMethod.POST)
+    @ResponseBody
+    public void physicalJizhuCetujixingUpdate(@RequestBody PhysicalJizhuCetujixingUpdateRequest updateRequest) {
+        physicalService.updateJizhuCetujixing(updateRequest);
     }
 
     // 添加病人表单页面

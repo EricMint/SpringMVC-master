@@ -72,8 +72,8 @@
         </div>
     </div>
     <%--<div class="tagsinput-primary">--%>
-        <%--<label for="disease">疾病类型:</label>--%>
-        <%--<input type="text" id="disease" name="disease" placeholder="请输入疾病类型(按回车键可输入多个):" class="tagsinput tagsinput-typeahead input-lg form-control" />--%>
+    <%--<label for="disease">疾病类型:</label>--%>
+    <%--<input type="text" id="disease" name="disease" placeholder="请输入疾病类型(按回车键可输入多个):" class="tagsinput tagsinput-typeahead input-lg form-control" />--%>
     <%--</div>--%>
     <div class="row">
         <div class="col-xs-6 col-md-2">
@@ -84,7 +84,7 @@
         <div class="col-xs-12 col-md-10">
             <label for="weight">疾病类型:</label>
             <input type="text" style="width:600px;background-color:#FFFFFF" id="disease" name="disease"
-                   value="${patient.disease}" disabled="disabled" />
+                   value="${patient.disease}" disabled="disabled"/>
         </div>
     </div>
     <button type="button" id="saveUser" style="display: none" class="btn btn-sm btn-warning">保存</button>
@@ -154,6 +154,101 @@
             </c:forEach>
         </table>
     </c:if>
+
+    <%--<nav class="navbar navbar-default" role="navigation">--%>
+    <h5>脊柱查体
+        <button type="submit" id="modifyPhysical" class="btn btn-primary transition-duration">修改</button>
+    </h5>
+
+    <div class="container-fluid">
+        <div>
+            <%--<form class="navbar-form navbar-left" id="searchFrom" method="post" action="/hospital/patient/search">--%>
+            <div class="navbar-form navbar-left" id="searchFrom">
+                <div class="form-group">
+                    <label>侧突畸形:</label>
+                    <input type="hidden" id="currentPhysicalJizhuCetujixing" name="currentPhysicalJizhuCetujixing"/>
+                    <select style="width:120px;color:black" id="physicalJizhuCetujixing" name="physicalJizhuCetujixing"
+                            class="form-control">
+                        <option value="" disabled hidden>请选择</option>
+                    </select>
+
+                    <%--<label>活动度:</label>--%>
+                    <%--<select style="width:120px" id="xuan" name="patientNumber"--%>
+                            <%--class="form-control">--%>
+                        <%--<option value="">颈椎</option>--%>
+                        <%--<option value="">胸椎</option>--%>
+                        <%--<option value="">腰椎</option>--%>
+                    <%--</select>--%>
+                    <%--<select style="width:120px" id="xuan" name="patientNumber"--%>
+                            <%--class="form-control">--%>
+                        <%--<option value="">前屈</option>--%>
+                        <%--<option value="">后伸</option>--%>
+                        <%--<option value="">左侧弯</option>--%>
+                        <%--<option value="">右侧弯</option>--%>
+                        <%--<option value="">左侧旋</option>--%>
+                        <%--<option value="">右侧旋</option>--%>
+                    <%--</select>--%>
+                    <%--<input type="text" style="width:120px" id="asdf" name="patientNumber"--%>
+                           <%--class="form-control" placeholder="角度"> &nbsp;&nbsp;--%>
+                    <%--<br>--%>
+
+                    <%--<label>压痛:</label>--%>
+                    <%--<select style="width:120px" id="xuan" name="patientNumber"--%>
+                            <%--class="form-control">--%>
+                        <%--<option value="">颈椎</option>--%>
+                        <%--<option value="">胸椎</option>--%>
+                        <%--<option value="">腰椎</option>--%>
+                        <%--<option value="">无</option>--%>
+                    <%--</select>--%>
+                    <%--<select style="width:120px" id="xuan" name="patientNumber"--%>
+                            <%--class="form-control">--%>
+                        <%--<option value="">颈1</option>--%>
+                        <%--<option value="">颈2</option>--%>
+                        <%--<option value="">颈3</option>--%>
+                        <%--<option value="">颈4</option>--%>
+                        <%--<option value="">颈5</option>--%>
+                        <%--<option value="">颈6</option>--%>
+                        <%--<option value="">颈7</option>--%>
+                    <%--</select>--%>
+                    <%--<input type="text" style="width:120px" id="qwerqwer" name="patientNumber"--%>
+                           <%--class="form-control" placeholder="角度"> &nbsp;&nbsp;--%>
+                    <%--<br>--%>
+
+                    <%--<label>叩击痛:</label>--%>
+                    <%--<input type="text" style="width:120px" id="ethnicity" name="ethnicity" class="form-control"--%>
+                           <%--placeholder="民族"> &nbsp;&nbsp;--%>
+                    <%--<br>--%>
+
+                    <%--<label>压颈试验:</label>--%>
+                    <%--<input type="text" style="width:120px" id="gender" name="gender" class="form-control"--%>
+                           <%--placeholder="性别">--%>
+                    <%--<br>--%>
+
+                    <%--<label>臂丛牵拉试验:</label>--%>
+                    <%--<input type="text" style="width:120px" id="gender" name="gender" class="form-control"--%>
+                           <%--placeholder="性别">--%>
+                    <%--<br>--%>
+
+                    <%--<label>拾物试验:</label>--%>
+                    <%--<input type="text" style="width:120px" id="gender" name="gender" class="form-control"--%>
+                           <%--placeholder="性别">--%>
+                    <%--<br>--%>
+
+                    <%--<label>直腿抬高试验:</label>--%>
+                    <%--<input type="text" style="width:120px" id="gender" name="gender" class="form-control"--%>
+                           <%--placeholder="性别">--%>
+                    <%--<br>--%>
+
+                    <%--<label>股神经牵拉试验:</label>--%>
+                    <%--<input type="text" style="width:120px" id="gender" name="gender" class="form-control"--%>
+                           <%--placeholder="性别">--%>
+                    <%--<br>--%>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button type="submit" id="savePhysical" hidden="hidden" class="btn btn-primary transition-duration">保存</button>
+    <%--</nav>--%>
 
     <c:if test="${empty scoreMarkList}">
         <p class="bg-warning">
@@ -292,6 +387,53 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
+        initEthnicity();
+        PhysicalJizhuCetujixingGet();
+    });
+
+    $("#modifyUser").click(function () {
+        $("input").prop('disabled', false);
+        $("select").prop('disabled', false);
+        $('input').css('background-color', '#F0F8FF'); // change the background color
+        $('select').css('background-color', '#F0F8FF'); // change the background color
+        $("#saveUser").show();
+    });
+
+    $("#saveUser").click(function () {
+        $("input").prop('disabled', true);
+        $("select").prop('disabled', true);
+        $('input').css('background-color', '#FFFFFF'); // change the background color
+        $('select').css('background-color', '#FFFFFF'); // change the background color
+        $("#saveUser").hide();
+
+        var data = {};
+        data.patientId = $("#patientId").val();
+        data.patientNumber = $("#patientNumber").val();
+        data.realName = $("#realName").val();
+        data.ethnicity = $("#ethnicity").val();
+        data.gender = $("#gender").val();
+        data.age = $("#age").val();
+        data.height = $("#height").val();
+        data.weight = $("#weight").val();
+        data.disease = $("#disease").val();
+        console.log(data);
+        $.ajax({
+                url: "/hospital/patient/updatePost",
+                type: "post",
+                data: JSON.stringify(data),
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (result) {
+                    console.log(result)
+                },
+                error: function () {
+
+                }
+            }
+        );
+    });
+
+    function initEthnicity() {
         var currentEthnicity = $("#currentEthnicity");
         var ethnicity = $("#ethnicity");
         var ethnicityList = ["汉族", "蒙古族", "回族", "藏族", "维吾尔族", "苗族", "彝族", "壮族", "布依族", "朝鲜族", "满族", "侗族", "瑶族", "白族", "土家族",
@@ -300,57 +442,76 @@
             "俄罗斯族", "鄂温克族", "德昂族", "保安族", "裕固族", "京族", "塔塔尔族", "独龙族", "鄂伦春族", "赫哲族", "门巴族", "珞巴族", "基诺族"];
         for (var i = 0; i < ethnicityList.length; i++) {
             var ethnicityElement = ethnicityList[i];
-            console.log(ethnicityList[i]);
             if (currentEthnicity[0].value == ethnicityElement) {
                 ethnicity.append("<option value=" + ethnicityElement + " " + "selected>" + ethnicityElement + "</option>");
             } else {
                 ethnicity.append("<option value=" + ethnicityElement + ">" + ethnicityElement + "</option>");
             }
         }
+    };
 
-        $("#modifyUser").click(function () {
-            $("input").prop('disabled', false);
-            $("select").prop('disabled', false);
-            $('input').css('background-color', '#F0F8FF'); // change the background color
-            $('select').css('background-color', '#F0F8FF'); // change the background color
-            $("#saveUser").show();
-        });
-
-        $("#saveUser").click(function () {
-            $("input").prop('disabled', true);
-            $("select").prop('disabled', true);
-            $('input').css('background-color', '#FFFFFF'); // change the background color
-            $('select').css('background-color', '#FFFFFF'); // change the background color
-            $("#saveUser").hide();
-
-            var data = {};
-            data.patientId = $("#patientId").val();
-            data.patientNumber = $("#patientNumber").val();
-            data.realName = $("#realName").val();
-            data.ethnicity = $("#ethnicity").val();
-            data.gender = $("#gender").val();
-            data.age = $("#age").val();
-            data.height = $("#height").val();
-            data.weight = $("#weight").val();
-            data.disease = $("#disease").val();
-            console.log(data);
-            $.ajax({
-                    url: "/hospital/patient/updatePost",
-                    type: "post",
-                    data: JSON.stringify(data),
-                    dataType: "json",
-                    contentType: "application/json; charset=utf-8",
-                    success: function (result) {
-                        console.log(result)
-                    },
-                    error: function () {
-
-                    }
-                }
-            );
-        });
-
+    $("#modifyPhysical").click(function () {
+        $("#physicalJizhuCetujixing").prop('disabled', false);
+        $('#physicalJizhuCetujixing').css('background-color', '#F0F8FF'); // change the background color
+        $("#savePhysical").show();
     });
+
+    $("#savePhysical").click(function () {
+        $("#physicalJizhuCetujixing").prop('disabled', true);
+        $("#savePhysical").hide();
+        PhysicalJizhuCetujixingSave();
+    });
+
+    function PhysicalJizhuCetujixingGet() {
+        var patientId = $("#patientId").val();
+        $("#physicalJizhuCetujixing").prop('disabled', true);
+        var answerList = ["前突", "后突", "侧突", "无"];
+        $.ajax({
+                url: "/hospital/patient/physical/jizhu/cetujixing/" + patientId,
+                type: "GET",
+                dataType: "json",
+                contentType: "application/xhtml+xml; charset=utf-8",
+                success: function (result) {
+                    console.log(result);
+                    var current = result.answer;
+                    var physicalJizhuCetujixing = $("#physicalJizhuCetujixing");
+                    for (i=0; i<answerList.length; i++) {
+                        var answerElement = answerList[i];
+                        if (answerElement == current) {
+                            physicalJizhuCetujixing.append("<option value=" + answerElement + " " + "selected>" + answerElement + "</option>")
+                        } else {
+                            physicalJizhuCetujixing.append("<option value=" + answerElement + ">" + answerElement + "</option>")
+                        }
+                    }
+
+                },
+                error: function () {
+
+                }
+            }
+        );
+    };
+
+    function PhysicalJizhuCetujixingSave() {
+        var data = {};
+        data.patientId = $("#patientId").val();
+        data.answer = $("#physicalJizhuCetujixing").val();
+        console.log(data);
+        $.ajax({
+                url: "/hospital/patient/physical/jizhu/cetujixing",
+                type: "post",
+                data: JSON.stringify(data),
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (result) {
+                    console.log(result)
+                },
+                error: function () {
+
+                }
+            }
+        );
+    };
 </script>
 
 </body>
