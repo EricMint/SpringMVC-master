@@ -1,6 +1,7 @@
 package com.bysy.hospital.model;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "physical_jizhu_cetujixing")
@@ -11,6 +12,8 @@ public class PhysicalJizhuCetujixingEntity {
     private String examCategory;
     private String examName;
     private String answer;
+    private Date updateTime;
+    private String updateBy;
 
     @Id
     @GeneratedValue
@@ -73,4 +76,23 @@ public class PhysicalJizhuCetujixingEntity {
         this.answer = answer;
     }
 
+    @Basic
+    @Column(name = "update_time", nullable = true, insertable = true, updatable = true, length = 200)
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
+    }
+
+    @Basic
+    @Column(name = "update_by", nullable = true, insertable = true, updatable = true, length = 200)
+    public String getUpdateBy() {
+        return updateBy;
+    }
+
+    public void setUpdateBy(String updateBy) {
+        this.updateBy = updateBy;
+    }
 }

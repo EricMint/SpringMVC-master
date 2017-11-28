@@ -6,8 +6,10 @@ import com.bysy.hospital.repository.PhysicalRepository;
 import com.bysy.hospital.request.PhysicalJizhuCetujixingUpdateRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -35,10 +37,23 @@ public class PhysicalService {
         return entity;
     }
 
-    public void updateJizhuCetujixing(PhysicalJizhuCetujixingUpdateRequest updateRequest) {
+    @Transactional
+    public void updateOrCreateJizhuCetujixing(PhysicalJizhuCetujixingUpdateRequest updateRequest) {
         PhysicalJizhuCetujixingEntity entity = findJizhuCetujixing(updateRequest.getPatientId());
-        entity.setAnswer(updateRequest.getAnswer());
-        physicalRepository.update(entity);
+        if (null != entity && null != entity.getId()) {
+            entity.setAnswer(updateRequest.getAnswer());
+            entity.setUpdateBy("system");
+            entity.setUpdateTime(new Date());
+            physicalRepository.update(entity);
+        } else {
+            PhysicalJizhuCetujixingEntity physicalJizhuCetujixingEntity = new PhysicalJizhuCetujixingEntity();
+            physicalJizhuCetujixingEntity.setPatientId(updateRequest.getPatientId());
+            physicalJizhuCetujixingEntity.setAnswer(updateRequest.getAnswer());
+            physicalJizhuCetujixingEntity.setExamType("体格检查");
+            physicalJizhuCetujixingEntity.setExamCategory("脊柱组");
+            physicalJizhuCetujixingEntity.setExamName("侧突畸形");
+            physicalRepository.create(physicalJizhuCetujixingEntity);
+        }
     }
 
 }

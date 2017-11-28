@@ -169,7 +169,7 @@
                     <input type="hidden" id="currentPhysicalJizhuCetujixing" name="currentPhysicalJizhuCetujixing"/>
                     <select style="width:120px;color:black" id="physicalJizhuCetujixing" name="physicalJizhuCetujixing"
                             class="form-control">
-                        <option value="" disabled hidden>请选择</option>
+                        <option value="" disabled selected="selected">请选择</option>
                     </select>
 
                     <%--<label>活动度:</label>--%>

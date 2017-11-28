@@ -8,7 +8,6 @@ import com.bysy.hospital.request.PhysicalJizhuCetujixingUpdateRequest;
 import com.bysy.hospital.response.PatientListResponse;
 import com.bysy.hospital.service.PatientService;
 import com.bysy.hospital.service.PhysicalService;
-import org.json.JSONObject;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -99,7 +98,7 @@ public class MainController {
     @RequestMapping(value = "/patient/physical/jizhu/cetujixing", method = RequestMethod.POST)
     @ResponseBody
     public void physicalJizhuCetujixingUpdate(@RequestBody PhysicalJizhuCetujixingUpdateRequest updateRequest) {
-        physicalService.updateJizhuCetujixing(updateRequest);
+        physicalService.updateOrCreateJizhuCetujixing(updateRequest);
     }
 
     // 添加病人表单页面
