@@ -23,8 +23,6 @@ import java.util.Map;
 @Controller
 public class MainController {
 
-    @Autowired
-    private PhysicalService physicalService;
 
     @Autowired
     private PatientRepositoryDeprecated patientRepositoryDeprecated;
@@ -86,34 +84,6 @@ public class MainController {
         searchRequest.setPageSize(10000);
         PatientListResponse patientListResponse = patientService.searchPatientList(searchRequest);
         return patientListResponse;
-    }
-
-    @ResponseBody
-    @RequestMapping(value = "/patient/physical/jizhu/cetujixing/{patientId}", method = RequestMethod.GET, produces = "application/json")
-    public PhysicalJizhuCetujixingEntity physicalJizhuCetujixingGet(@PathVariable("patientId") Integer patientId) {
-        PhysicalJizhuCetujixingEntity physicalJizhuCetujixingEntity = physicalService.findJizhuCetujixing(patientId);
-        return physicalJizhuCetujixingEntity;
-    }
-
-    @Transactional
-    @RequestMapping(value = "/patient/physical/jizhu/cetujixing", method = RequestMethod.POST)
-    @ResponseBody
-    public void physicalJizhuCetujixingUpdate(@RequestBody PhysicalJizhuCetujixingRequest request) {
-        physicalService.updateOrCreateJizhuCetujixing(request);
-    }
-
-    @ResponseBody
-    @RequestMapping(value = "/patient/physical/jizhu/huodongdu/{patientId}", method = RequestMethod.GET, produces = "application/json")
-    public List<PhysicalJizhuHuodongduEntity> physicalJizhuHuodongduGet(@PathVariable("patientId") Integer patientId) {
-        List<PhysicalJizhuHuodongduEntity> entityList= physicalService.findJizhuHuodongdu(patientId);
-        return entityList;
-    }
-
-    @Transactional
-    @RequestMapping(value = "/patient/physical/jizhu/huodongdu", method = RequestMethod.POST)
-    @ResponseBody
-    public void physicalJizhuHuodongduUpdate(@RequestBody PhysicalJizhuHuodongduRequest request) {
-        physicalService.updateOrCreateJizhuHuodongdu(request);
     }
 
     // 添加病人表单页面

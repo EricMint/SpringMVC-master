@@ -359,6 +359,7 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
+        $("#savePhysical").hide();
         initEthnicity();
         PhysicalJizhuCetujixingGet();
         PhysicalJizhuHuodongduGet();
