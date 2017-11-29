@@ -4,9 +4,11 @@ import com.bysy.hospital.Utils.BeanUtilsEx;
 import com.bysy.hospital.Utils.CriteriaInfo;
 import com.bysy.hospital.model.PhysicalJizhuCetujixingEntity;
 import com.bysy.hospital.model.PhysicalJizhuHuodongduEntity;
+import com.bysy.hospital.model.PhysicalJizhuShiyanEntity;
 import com.bysy.hospital.repository.PhysicalRepository;
 import com.bysy.hospital.request.PhysicalJizhuCetujixingRequest;
 import com.bysy.hospital.request.PhysicalJizhuHuodongduRequest;
+import com.bysy.hospital.request.PhysicalJizhuShiyanRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -108,4 +110,38 @@ public class PhysicalService {
 
     }
 
+    public List<PhysicalJizhuShiyanEntity> findJizhuShiyan(Integer patientId) {
+        List<PhysicalJizhuShiyanEntity> entityList = new ArrayList<PhysicalJizhuShiyanEntity>();
+        if (null != patientId) {
+            Map<String, CriteriaInfo> params = new HashMap<String, CriteriaInfo>();
+            params.put("patientId", new CriteriaInfo(CriteriaInfo.CriteriaType.equal, patientId));
+            entityList = physicalRepository.findByAttributes(PhysicalJizhuShiyanEntity.class, params, null);
+        }
+        return entityList;
+    }
+
+    public void updateOrCreateJizhuShiyan(PhysicalJizhuShiyanRequest request) {
+        Integer patientId = request.getPatientId();
+        String examName = request.getExamName();
+        String examResult = request.getExamResult();
+        if (null == patientId || !StringUtils.hasText(examName) || !StringUtils.hasText(examResult)) {
+            return;
+        }
+        Map<String, CriteriaInfo> params = new HashMap<String, CriteriaInfo>();
+        params.put("patientId", new CriteriaInfo(CriteriaInfo.CriteriaType.equal, patientId));
+        params.put("examName", new CriteriaInfo(CriteriaInfo.CriteriaType.equal, examName));
+        List<PhysicalJizhuShiyanEntity> entityList = physicalRepository.findByAttributes(PhysicalJizhuShiyanEntity.class, params, null);
+        if (CollectionUtils.isEmpty(entityList)) {
+            PhysicalJizhuShiyanEntity shiyanEntity = new PhysicalJizhuShiyanEntity();
+            BeanUtilsEx.copyProperties(request, shiyanEntity);
+            shiyanEntity.setExamType("体格检查");
+            shiyanEntity.setExamCategory("脊柱组");
+            physicalRepository.create(shiyanEntity);
+        } else {
+            PhysicalJizhuShiyanEntity updateEntity = entityList.get(0);
+            updateEntity.setExamResult(examResult);
+            physicalRepository.update(updateEntity);
+        }
+
+    }
 }

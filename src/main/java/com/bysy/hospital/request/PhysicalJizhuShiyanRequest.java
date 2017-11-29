@@ -3,12 +3,12 @@ package com.bysy.hospital.request;
 /**
  * Created by mint on 11/28/17.
  */
-public class PhysicalJizhuCetujixingRequest {
+public class PhysicalJizhuShiyanRequest {
     private Integer patientId;
     private String examType;
     private String examCategory;
     private String examName;
-    private String answer;
+    private String examResult;
 
     public Integer getPatientId() {
         return patientId;
@@ -42,11 +42,11 @@ public class PhysicalJizhuCetujixingRequest {
         this.examName = examName;
     }
 
-    public String getAnswer() {
-        return answer;
+    public String getExamResult() {
+        return examResult;
     }
 
-    public void setAnswer(String answer) {
-        this.answer = answer;
+    public void setExamResult(String examResult) {
+        this.examResult = examResult;
     }
 }

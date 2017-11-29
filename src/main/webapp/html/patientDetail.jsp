@@ -186,33 +186,91 @@
                         </tr>
                         <tr>
                             <td>颈椎</td>
-                            <td><input disabled="disabled" class="huodongdu" style="width:100px"type="text" id="jingzhui_qianqu"    /></td>
-                            <td><input disabled="disabled" class="huodongdu" style="width:100px"type="text" id="jingzhui_houshen"   /></td>
-                            <td><input disabled="disabled" class="huodongdu" style="width:100px"type="text" id="jingzhui_zuocewan"  /></td>
-                            <td><input disabled="disabled" class="huodongdu" style="width:100px"type="text" id="jingzhui_youcewan"  /></td>
-                            <td><input disabled="disabled" class="huodongdu" style="width:100px"type="text" id="jingzhui_zuocexuan" /></td>
-                            <td><input disabled="disabled" class="huodongdu" style="width:100px"type="text" id="jingzhui_youcexuan" /></td>
+                            <td><input disabled="disabled" class="huodongdu" style="width:100px" type="text"
+                                       id="jingzhui_qianqu"/></td>
+                            <td><input disabled="disabled" class="huodongdu" style="width:100px" type="text"
+                                       id="jingzhui_houshen"/></td>
+                            <td><input disabled="disabled" class="huodongdu" style="width:100px" type="text"
+                                       id="jingzhui_zuocewan"/></td>
+                            <td><input disabled="disabled" class="huodongdu" style="width:100px" type="text"
+                                       id="jingzhui_youcewan"/></td>
+                            <td><input disabled="disabled" class="huodongdu" style="width:100px" type="text"
+                                       id="jingzhui_zuocexuan"/></td>
+                            <td><input disabled="disabled" class="huodongdu" style="width:100px" type="text"
+                                       id="jingzhui_youcexuan"/></td>
                         </tr>
                         <tr>
                             <td>胸椎</td>
-                            <td><input disabled="disabled" class="huodongdu" style="width:100px"type="text" id="xiongzhui_qianqu"    /></td>
-                            <td><input disabled="disabled" class="huodongdu" style="width:100px"type="text" id="xiongzhui_houshen"   /></td>
-                            <td><input disabled="disabled" class="huodongdu" style="width:100px"type="text" id="xiongzhui_zuocewan"  /></td>
-                            <td><input disabled="disabled" class="huodongdu" style="width:100px"type="text" id="xiongzhui_youcewan"  /></td>
-                            <td><input disabled="disabled" class="huodongdu" style="width:100px"type="text" id="xiongzhui_zuocexuan" /></td>
-                            <td><input disabled="disabled" class="huodongdu" style="width:100px"type="text" id="xiongzhui_youcexuan" /></td>
+                            <td><input disabled="disabled" class="huodongdu" style="width:100px" type="text"
+                                       id="xiongzhui_qianqu"/></td>
+                            <td><input disabled="disabled" class="huodongdu" style="width:100px" type="text"
+                                       id="xiongzhui_houshen"/></td>
+                            <td><input disabled="disabled" class="huodongdu" style="width:100px" type="text"
+                                       id="xiongzhui_zuocewan"/></td>
+                            <td><input disabled="disabled" class="huodongdu" style="width:100px" type="text"
+                                       id="xiongzhui_youcewan"/></td>
+                            <td><input disabled="disabled" class="huodongdu" style="width:100px" type="text"
+                                       id="xiongzhui_zuocexuan"/></td>
+                            <td><input disabled="disabled" class="huodongdu" style="width:100px" type="text"
+                                       id="xiongzhui_youcexuan"/></td>
                         </tr>
                         <tr>
                             <td>腰椎</td>
-                            <td><input disabled="disabled" class="huodongdu" style="width:100px"type="text" id="yaozhui_qianqu"    /></td>
-                            <td><input disabled="disabled" class="huodongdu" style="width:100px"type="text" id="yaozhui_houshen"   /></td>
-                            <td><input disabled="disabled" class="huodongdu" style="width:100px"type="text" id="yaozhui_zuocewan"  /></td>
-                            <td><input disabled="disabled" class="huodongdu" style="width:100px"type="text" id="yaozhui_youcewan"  /></td>
-                            <td><input disabled="disabled" class="huodongdu" style="width:100px"type="text" id="yaozhui_zuocexuan" /></td>
-                            <td><input disabled="disabled" class="huodongdu" style="width:100px"type="text" id="yaozhui_youcexuan" /></td>
+                            <td><input disabled="disabled" class="huodongdu" style="width:100px" type="text"
+                                       id="yaozhui_qianqu"/></td>
+                            <td><input disabled="disabled" class="huodongdu" style="width:100px" type="text"
+                                       id="yaozhui_houshen"/></td>
+                            <td><input disabled="disabled" class="huodongdu" style="width:100px" type="text"
+                                       id="yaozhui_zuocewan"/></td>
+                            <td><input disabled="disabled" class="huodongdu" style="width:100px" type="text"
+                                       id="yaozhui_youcewan"/></td>
+                            <td><input disabled="disabled" class="huodongdu" style="width:100px" type="text"
+                                       id="yaozhui_zuocexuan"/></td>
+                            <td><input disabled="disabled" class="huodongdu" style="width:100px" type="text"
+                                       id="yaozhui_youcexuan"/></td>
                         </tr>
 
                     </table>
+
+                    <label>压颈试验:</label>
+                    <%--<input type="hidden" id="currentPhysicalJizhuYajingshiyan" name="currentPhysicalJizhuYajingshiyan"/>--%>
+                    <select style="width:120px;color:black" disabled="disabled" id="physicalJizhuYajingshiyan"
+                            name="physical-jizhu-shiyan"
+                            class="form-control">
+                        <option value="" disabled selected="selected">请选择</option>
+                    </select>
+                    <br>
+
+                    <label>臂丛牵拉试验:</label>
+                    <select style="width:120px;color:black" disabled="disabled" id="physicalJizhuBiconglashiyan"
+                            name="physical-jizhu-shiyan"
+                            class="form-control">
+                        <option value="" disabled selected="selected">请选择</option>
+                    </select>
+                    <br>
+
+                    <label>拾物试验:</label>
+                    <select style="width:120px;color:black" disabled="disabled" id="physicalJizhuShiwushiyan"
+                            name="physical-jizhu-shiyan"
+                            class="form-control">
+                        <option value="" disabled selected="selected">请选择</option>
+                    </select>
+                    <br>
+
+                    <label>直腿抬高试验:</label>
+                    <select style="width:120px;color:black" disabled="disabled" id="physicalJizhuZhituitaigaoshiyan"
+                            name="physical-jizhu-shiyan"
+                            class="form-control">
+                        <option value="" disabled selected="selected">请选择</option>
+                    </select>
+                    <br>
+
+                    <label>股神经牵拉试验:</label>
+                    <select style="width:120px;color:black" disabled="disabled" id="physicalJizhuGushenjingqianlashiyan"
+                            name="physical-jizhu-shiyan"
+                            class="form-control">
+                        <option value="" disabled selected="selected">请选择</option>
+                    </select>
                     <br>
 
                 </div>
@@ -363,6 +421,7 @@
         initEthnicity();
         PhysicalJizhuCetujixingGet();
         PhysicalJizhuHuodongduGet();
+        PhysicalJizhuShiyanGet();
     });
 
     $("#modifyUser").click(function () {
@@ -426,17 +485,21 @@
 
     $("#modifyPhysical").click(function () {
         $("#physicalJizhuCetujixing").prop('disabled', false);
-        $(".huodongdu").prop('disabled', false);
         $('#physicalJizhuCetujixing').css('background-color', '#F0F8FF'); // change the background color
+        $(".huodongdu").prop('disabled', false);
+        $("select[name='physical-jizhu-shiyan']").prop('disabled', false);
+        $("select[name='physical-jizhu-shiyan']").css('background-color', '#F0F8FF');
         $("#savePhysical").show();
     });
 
     $("#savePhysical").click(function () {
         $("#physicalJizhuCetujixing").prop('disabled', true);
         $(".huodongdu").prop('disabled', true);
+        $("select[name='physical-jizhu-shiyan']").prop('disabled', true);
         $("#savePhysical").hide();
         PhysicalJizhuCetujixingSave();
         PhysicalJizhuHuodongduSave();
+        PhysicalJizhuShiyanSave();
     });
 
     function PhysicalJizhuCetujixingGet() {
@@ -452,7 +515,7 @@
                     console.log(result);
                     var current = result.answer;
                     var physicalJizhuCetujixing = $("#physicalJizhuCetujixing");
-                    for (i=0; i<answerList.length; i++) {
+                    for (var i = 0; i < answerList.length; i++) {
                         var answerElement = answerList[i];
                         if (answerElement == current) {
                             physicalJizhuCetujixing.append("<option value=" + answerElement + " " + "selected>" + answerElement + "</option>")
@@ -500,7 +563,7 @@
                 contentType: "application/xhtml+xml; charset=utf-8",
                 success: function (answerList) {
                     console.log(answerList);
-                    for (i=0; i<answerList.length; i++) {
+                    for (var i = 0; i < answerList.length; i++) {
                         var answerElement = answerList[i];
                         if (answerElement.examPosition == "颈椎") {
                             $("#jingzhui_qianqu").val(answerElement.qianqu);
@@ -509,14 +572,14 @@
                             $("#jingzhui_youcewan").val(answerElement.youcewan);
                             $("#jingzhui_zuocexuan").val(answerElement.zuocexuan);
                             $("#jingzhui_youcexuan").val(answerElement.youcexuan);
-                        } else if(answerElement.examPosition == "胸椎"){
+                        } else if (answerElement.examPosition == "胸椎") {
                             $("#xiongzhui_qianqu").val(answerElement.qianqu);
                             $("#xiongzhui_houshen").val(answerElement.houshen);
                             $("#xiongzhui_zuocewan").val(answerElement.zuocewan);
                             $("#xiongzhui_youcewan").val(answerElement.youcewan);
                             $("#xiongzhui_zuocexuan").val(answerElement.zuocexuan);
                             $("#xiongzhui_youcexuan").val(answerElement.youcexuan);
-                        } else if(answerElement.examPosition == "腰椎") {
+                        } else if (answerElement.examPosition == "腰椎") {
                             $("#yaozhui_qianqu").val(answerElement.qianqu);
                             $("#yaozhui_houshen").val(answerElement.houshen);
                             $("#yaozhui_zuocewan").val(answerElement.zuocewan);
@@ -533,11 +596,12 @@
             }
         );
     };
+
     function PhysicalJizhuHuodongduSave() {
         var data = {};
         data.patientId = $("#patientId").val();
         var positionList = ["颈椎", "胸椎", "腰椎"];
-        for (i=0; i<positionList.length; i++) {
+        for (var i = 0; i < positionList.length; i++) {
             var position = positionList[i];
             data.examPosition = position;
             if (position == "颈椎") {
@@ -577,8 +641,95 @@
                 }
             );
         }
-
     };
+
+    function PhysicalJizhuShiyanGet() {
+        var shiyanList = ["压颈试验", "臂丛牵拉试验", "拾物试验", "直腿抬高试验", "股神经牵拉试验"];
+        var optionsList = ["阳性", "阴性"];
+        var patientId = $("#patientId").val();
+        $.ajax({
+            url: "/hospital/patient/physical/jizhu/shiyan/" + patientId,
+            type: "GET",
+            dataType: "json",
+            contentType: "application/xhtml+xml; charset=utf-8",
+            success: function (answerList) {
+                console.log(answerList);
+                var answerMap = new Map();
+                if (answerList.length > 0) {
+                    for (var i = 0; i < answerList.length; i++) {
+                        var answer = answerList[i];
+                        answerMap.set(answer.examName, answer.examResult);
+                    }
+                }
+                console.log(answerMap);
+
+                for (var i = 0; i < shiyanList.length; i++) {
+                    var shiyan = shiyanList[i];
+                    var answer = answerMap.get(shiyan);
+                    var node;
+                    if (shiyan == "压颈试验") {
+                        node = $("#physicalJizhuYajingshiyan");
+                    } else if (shiyan == "臂丛牵拉试验") {
+                        node = $("#physicalJizhuBiconglashiyan");
+                    } else if (shiyan == "拾物试验") {
+                        node = $("#physicalJizhuShiwushiyan");
+                    } else if (shiyan == "直腿抬高试验") {
+                        node = $("#physicalJizhuZhituitaigaoshiyan");
+                    } else if (shiyan == "股神经牵拉试验") {
+                        node = $("#physicalJizhuGushenjingqianlashiyan");
+                    }
+
+                    for (var j = 0; j < optionsList.length; j++) {
+                        var optionElement = optionsList[j];
+                        if (answer && answer == optionElement) {
+                            node.append("<option value=" + optionElement + " " + "selected>" + optionElement + "</option>");
+                        } else {
+                            node.append("<option value=" + optionElement + ">" + optionElement + "</option>");
+                        }
+                    }
+                }
+            },
+            error: function () {
+            }
+        });
+    };
+
+    function PhysicalJizhuShiyanSave() {
+        var shiyanList = ["压颈试验", "臂丛牵拉试验", "拾物试验", "直腿抬高试验", "股神经牵拉试验"];
+        var data = {};
+        data.patientId = $("#patientId").val();
+        for (var i = 0; i < shiyanList.length; i++) {
+            var shiyan = shiyanList[i];
+            data.examName = shiyan;
+            if (shiyan == "压颈试验") {
+                data.examResult = $("#physicalJizhuYajingshiyan").val();
+            } else if (shiyan == "臂丛牵拉试验") {
+                data.examResult = $("#physicalJizhuBiconglashiyan").val();
+            } else if (shiyan == "拾物试验") {
+                data.examResult = $("#physicalJizhuShiwushiyan").val();
+            } else if (shiyan == "直腿抬高试验") {
+                data.examResult = $("#physicalJizhuZhituitaigaoshiyan").val();
+            } else if (shiyan == "股神经牵拉试验") {
+                data.examResult = $("#physicalJizhuGushenjingqianlashiyan").val();
+            }
+            $.ajax({
+                    url: "/hospital/patient/physical/jizhu/shiyan",
+                    type: "post",
+                    data: JSON.stringify(data),
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (result) {
+                        console.log(result)
+                    },
+                    error: function () {
+
+                    }
+                }
+            );
+        }
+    };
+
+
 </script>
 
 </body>
