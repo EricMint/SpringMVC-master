@@ -5,6 +5,7 @@ import com.bysy.hospital.repository.*;
 import com.bysy.hospital.request.PhysicalJizhuCetujixingRequest;
 import com.bysy.hospital.request.PhysicalJizhuHuodongduRequest;
 import com.bysy.hospital.request.PhysicalJizhuShiyanRequest;
+import com.bysy.hospital.request.PhysicalJizhuTongRequest;
 import com.bysy.hospital.response.PhysicalClassB;
 import com.bysy.hospital.response.PhysicalClassDListResponse;
 import com.bysy.hospital.response.PhysicalClassBListResponse;
@@ -84,8 +85,22 @@ public class PhysicalRecordController {
     @Transactional
     @RequestMapping(value = "/patient/physical/jizhu/shiyan", method = RequestMethod.POST)
     @ResponseBody
-    public void physicalJizhushiyanUpdate(@RequestBody PhysicalJizhuShiyanRequest request) {
+    public void physicalJizhuShiyanUpdate(@RequestBody PhysicalJizhuShiyanRequest request) {
         physicalService.updateOrCreateJizhuShiyan(request);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/patient/physical/jizhu/tong/{patientId}", method = RequestMethod.GET, produces = "application/json")
+    public List<PhysicalJizhuTongEntity> physicalJizhuTongGet(@PathVariable("patientId") Integer patientId) {
+        List<PhysicalJizhuTongEntity> entityList= physicalService.findJizhuTong(patientId);
+        return entityList;
+    }
+
+    @Transactional
+    @RequestMapping(value = "/patient/physical/jizhu/tong", method = RequestMethod.POST)
+    @ResponseBody
+    public void physicalJizhuTongUpdate(@RequestBody PhysicalJizhuTongRequest request) {
+        physicalService.updateOrCreateJizhuTong(request);
     }
 
     // 影像检查部位页面

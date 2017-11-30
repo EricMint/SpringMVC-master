@@ -5,10 +5,12 @@ import com.bysy.hospital.Utils.CriteriaInfo;
 import com.bysy.hospital.model.PhysicalJizhuCetujixingEntity;
 import com.bysy.hospital.model.PhysicalJizhuHuodongduEntity;
 import com.bysy.hospital.model.PhysicalJizhuShiyanEntity;
+import com.bysy.hospital.model.PhysicalJizhuTongEntity;
 import com.bysy.hospital.repository.PhysicalRepository;
 import com.bysy.hospital.request.PhysicalJizhuCetujixingRequest;
 import com.bysy.hospital.request.PhysicalJizhuHuodongduRequest;
 import com.bysy.hospital.request.PhysicalJizhuShiyanRequest;
+import com.bysy.hospital.request.PhysicalJizhuTongRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -140,6 +142,56 @@ public class PhysicalService {
         } else {
             PhysicalJizhuShiyanEntity updateEntity = entityList.get(0);
             updateEntity.setExamResult(examResult);
+            physicalRepository.update(updateEntity);
+        }
+
+    }
+
+    public List<PhysicalJizhuTongEntity> findJizhuTong(Integer patientId) {
+        List<PhysicalJizhuTongEntity> entityList = new ArrayList<PhysicalJizhuTongEntity>();
+        if (null != patientId) {
+            Map<String, CriteriaInfo> params = new HashMap<String, CriteriaInfo>();
+            params.put("patientId", new CriteriaInfo(CriteriaInfo.CriteriaType.equal, patientId));
+            entityList = physicalRepository.findByAttributes(PhysicalJizhuTongEntity.class, params, null);
+        }
+        return entityList;
+    }
+
+    @Transactional
+    public void updateOrCreateJizhuTong(PhysicalJizhuTongRequest request) {
+        Integer patientId = request.getPatientId();
+        String examName = request.getExamName();
+        if (null == patientId || !StringUtils.hasText(examName)) {
+            return;
+        }
+        Map<String, CriteriaInfo> params = new HashMap<String, CriteriaInfo>();
+        params.put("patientId", new CriteriaInfo(CriteriaInfo.CriteriaType.equal, patientId));
+        params.put("examName", new CriteriaInfo(CriteriaInfo.CriteriaType.equal, examName));
+        List<PhysicalJizhuTongEntity> entityList = physicalRepository.findByAttributes(PhysicalJizhuTongEntity.class, params, null);
+        if (CollectionUtils.isEmpty(entityList)) {
+            PhysicalJizhuTongEntity tongEntity = new PhysicalJizhuTongEntity();
+            BeanUtilsEx.copyProperties(request, tongEntity);
+            tongEntity.setExamType("体格检查");
+            tongEntity.setExamCategory("脊柱组");
+            physicalRepository.create(tongEntity);
+        } else {
+            PhysicalJizhuTongEntity updateEntity = entityList.get(0);
+            String examJingzhui = request.getExamJingzhui();
+            String examXiongzhui = request.getExamXiongzhui();
+            String examYaozhui = request.getExamYaozhui();
+            if (!StringUtils.hasText(examJingzhui) && !StringUtils.hasText(examXiongzhui) && !StringUtils.hasText(examYaozhui)) {
+                return;
+            }
+
+            if (StringUtils.hasText(examJingzhui)) {
+                updateEntity.setExamJingzhui(examJingzhui);
+            }
+            if (StringUtils.hasText(examXiongzhui)) {
+                updateEntity.setExamXiongzhui(examXiongzhui);
+            }
+            if (StringUtils.hasText(examYaozhui)) {
+                updateEntity.setExamYaozhui(examYaozhui);
+            }
             physicalRepository.update(updateEntity);
         }
 

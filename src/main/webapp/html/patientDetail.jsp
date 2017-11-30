@@ -229,11 +229,70 @@
                             <td><input disabled="disabled" class="huodongdu" style="width:100px" type="text"
                                        id="yaozhui_youcexuan"/></td>
                         </tr>
+                    </table>
 
+                    <label>压痛:</label><br>
+                    <table class="table table-bordered table-striped">
+                        <tr>
+                            <th>部位</th>
+                            <th>具体部位</th>
+                        </tr>
+                        <tr>
+                            <td>颈椎</td>
+                            <td><select disabled="disabled" class="form-control" style="width:100px;color:black"
+                                        id="physical_jizhu_yatong_jingzhui" name="physical-jizhu-yatong">
+                                <option value="" disabled selected="selected">请选择</option>
+                            </select></td>
+                        </tr>
+                        <tr>
+                            <td>胸椎</td>
+                            <td><select disabled="disabled" class="form-control" style="width:100px;color:black"
+                                        id="physical_jizhu_yatong_xiongzhui" name="physical-jizhu-yatong">
+                                <option value="" disabled selected="selected">请选择</option>
+                            </select></td>
+                        </tr>
+                        <tr>
+                            <td>腰椎</td>
+                            <td><select disabled="disabled" class="form-control" style="width:100px;color:black"
+                                        id="physical_jizhu_yatong_yaozhui" name="physical-jizhu-yatong">
+                                <option value="" disabled selected="selected">请选择</option>
+                            </select></td>
+                        </tr>
+                    </table>
+
+                    <label>叩击痛:</label><br>
+                    <table class="table table-bordered table-striped">
+                        <tr>
+                            <th>部位</th>
+                            <th>具体部位</th>
+                        </tr>
+                        <tr>
+                            <td>颈椎</td>
+                            <td><select disabled="disabled" class="form-control" style="width:100px;color:black"
+                                        id="physical_jizhu_koujitong_jingzhui" name="physical-jizhu-koujitong">
+                                <option value="" disabled selected="selected">请选择</option>
+                            </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>胸椎</td>
+                            <td><select disabled="disabled" class="form-control" style="width:100px;color:black"
+                                        id="physical_jizhu_koujitong_xiongzhui"
+                                        name="physical-jizhu-koujitong">
+                                <option value="" disabled selected="selected">请选择</option>
+                            </select></td>
+                        </tr>
+                        <tr>
+                            <td>腰椎</td>
+                            <td><select disabled="disabled" class="form-control" style="width:100px;color:black"
+                                        id="physical_jizhu_koujitong_yaozhui" name="physical-jizhu-koujitong">
+                                <option value="" disabled selected="selected">请选择</option>
+
+                            </select></td>
+                        </tr>
                     </table>
 
                     <label>压颈试验:</label>
-                    <%--<input type="hidden" id="currentPhysicalJizhuYajingshiyan" name="currentPhysicalJizhuYajingshiyan"/>--%>
                     <select style="width:120px;color:black" disabled="disabled" id="physicalJizhuYajingshiyan"
                             name="physical-jizhu-shiyan"
                             class="form-control">
@@ -421,6 +480,7 @@
         initEthnicity();
         PhysicalJizhuCetujixingGet();
         PhysicalJizhuHuodongduGet();
+        PhysicalJizhuTongGet();
         PhysicalJizhuShiyanGet();
     });
 
@@ -487,6 +547,10 @@
         $("#physicalJizhuCetujixing").prop('disabled', false);
         $('#physicalJizhuCetujixing').css('background-color', '#F0F8FF'); // change the background color
         $(".huodongdu").prop('disabled', false);
+        $("select[name='physical-jizhu-yatong']").prop('disabled', false);
+        $("select[name='physical-jizhu-yatong']").css('background-color', '#F0F8FF');
+        $("select[name='physical-jizhu-koujitong']").prop('disabled', false);
+        $("select[name='physical-jizhu-koujitong']").css('background-color', '#F0F8FF');
         $("select[name='physical-jizhu-shiyan']").prop('disabled', false);
         $("select[name='physical-jizhu-shiyan']").css('background-color', '#F0F8FF');
         $("#savePhysical").show();
@@ -495,10 +559,16 @@
     $("#savePhysical").click(function () {
         $("#physicalJizhuCetujixing").prop('disabled', true);
         $(".huodongdu").prop('disabled', true);
+        $("select[name='physical-jizhu-yatong']").prop('disabled', true);
+        $("select[name='physical-jizhu-yatong']").css('background-color', '#FFFFFF');
+        $("select[name='physical-jizhu-koujitong']").prop('disabled', true);
+        $("select[name='physical-jizhu-koujitong']").css('background-color', '#FFFFFF');
         $("select[name='physical-jizhu-shiyan']").prop('disabled', true);
+        $("select[name='physical-jizhu-shiyan']").css('background-color', '#FFFFFF');
         $("#savePhysical").hide();
         PhysicalJizhuCetujixingSave();
         PhysicalJizhuHuodongduSave();
+        PhysicalJizhuTongSave();
         PhysicalJizhuShiyanSave();
     });
 
@@ -729,6 +799,117 @@
         }
     };
 
+
+    function PhysicalJizhuTongGet() {
+        var tongList = ["压痛", "叩击痛"];
+        var optionList4Jingzhui = ["颈1", "颈2", "颈3", "颈4", "颈5", "颈6", "颈7"];
+        var optionList4Xiongzhui = ["胸1", "胸2", "胸3", "胸4", "胸5", "胸6", "胸7", "胸8", "胸9", "胸10", "胸11", "胸12"];
+        var optionList4Yaozhui = ["腰1", "腰2", "腰3", "腰4", "腰5", "骶椎", "尾椎"];
+        var patientId = $("#patientId").val();
+        $.ajax({
+            url: "/hospital/patient/physical/jizhu/tong/" + patientId,
+            type: "GET",
+            dataType: "json",
+            contentType: "application/xhtml+xml; charset=utf-8",
+            success: function (answerList) {
+                console.log(answerList);
+                var answerMap = new Map();
+                if (answerList.length > 0) {
+                    for (var i = 0; i < answerList.length; i++) {
+                        var answer = answerList[i];
+                        answerMap.set(answer.examName, answer);
+                    }
+                }
+                console.log(answerMap);
+
+                for (var i = 0; i < tongList.length; i++) {
+                    var tong = tongList[i];
+                    var answer = answerMap.get(tong);
+
+                    var node4Jingzhui;
+                    if (tong == "压痛") {
+                        node4Jingzhui = $("#physical_jizhu_yatong_jingzhui");
+                    } else if (tong == "叩击痛") {
+                        node4Jingzhui = $("#physical_jizhu_koujitong_jingzhui");
+                    }
+                    for (var j = 0; j < optionList4Jingzhui.length; j++) {
+                        var optionElement = optionList4Jingzhui[j];
+                        if (answer && answer.examName == tong && answer.examJingzhui == optionElement) {
+                            node4Jingzhui.append("<option value=" + optionElement + " " + "selected>" + optionElement + "</option>");
+                        } else {
+                            node4Jingzhui.append("<option value=" + optionElement + ">" + optionElement + "</option>");
+                        }
+                    }
+
+                    var node4Xionghui;
+                    if (tong == "压痛") {
+                        node4Xionghui = $("#physical_jizhu_yatong_xiongzhui");
+                    } else if (tong == "叩击痛") {
+                        node4Xionghui = $("#physical_jizhu_koujitong_xiongzhui");
+                    }
+                    for (var j = 0; j < optionList4Xiongzhui.length; j++) {
+                        var optionElement = optionList4Xiongzhui[j];
+                        if (answer && answer.examName == tong && answer.examXiongzhui == optionElement) {
+                            node4Xionghui.append("<option value=" + optionElement + " " + "selected>" + optionElement + "</option>");
+                        } else {
+                            node4Xionghui.append("<option value=" + optionElement + ">" + optionElement + "</option>");
+                        }
+                    }
+
+                    var node4Yaohui;
+                    if (tong == "压痛") {
+                        node4Yaohui = $("#physical_jizhu_yatong_yaozhui");
+                    } else if (tong == "叩击痛") {
+                        node4Yaohui = $("#physical_jizhu_koujitong_yaozhui");
+                    }
+                    for (var j = 0; j < optionList4Yaozhui.length; j++) {
+                        var optionElement = optionList4Yaozhui[j];
+                        if (answer && answer.examName == tong && answer.examYaozhui == optionElement) {
+                            node4Yaohui.append("<option value=" + optionElement + " " + "selected>" + optionElement + "</option>");
+                        } else {
+                            node4Yaohui.append("<option value=" + optionElement + ">" + optionElement + "</option>");
+                        }
+                    }
+
+                }
+            },
+            error: function () {
+            }
+        });
+    };
+
+    function PhysicalJizhuTongSave() {
+        var tongList = ["压痛", "叩击痛"];
+        var data = {};
+        data.patientId = $("#patientId").val();
+        for (var i = 0; i < tongList.length; i++) {
+            var tong = tongList[i];
+            data.examName = tong;
+            if (tong == "压痛") {
+                data.examJingzhui = $("#physical_jizhu_yatong_jingzhui").val();
+                data.examXiongzhui = $("#physical_jizhu_yatong_xiongzhui").val();
+                data.examYaozhui = $("#physical_jizhu_yatong_yaozhui").val();
+            } else if (tong == "叩击痛") {
+                data.examJingzhui = $("#physical_jizhu_koujitong_jingzhui").val();
+                data.examXiongzhui = $("#physical_jizhu_koujitong_xiongzhui").val();
+                data.examYaozhui = $("#physical_jizhu_koujitong_yaozhui").val();
+            }
+            $.ajax({
+                    url: "/hospital/patient/physical/jizhu/tong",
+                    type: "post",
+                    data: JSON.stringify(data),
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (result) {
+                        console.log(result)
+                    },
+                    error: function () {
+
+                    }
+                }
+            );
+        }
+    };
 
 </script>
 
