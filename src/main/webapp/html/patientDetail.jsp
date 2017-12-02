@@ -162,35 +162,38 @@
 
     <div class="container-fluid">
         <div>
-            <%--<form class="navbar-form navbar-left" id="searchFrom" method="post" action="/hospital/patient/search">--%>
             <div class="navbar-form navbar-left" id="searchFrom">
                 <div class="form-group">
-                    <label>侧突畸形:</label>
-                    <%--<input type="hidden" id="currentPhysicalJizhuCetujixing" name="currentPhysicalJizhuCetujixing"/>--%>
-                    <select style="width:120px;color:black" id="physical_jizhu_cetujixing_has_symptom" name="physical_jizhu_cetujixing_has_symptom"
-                            class="form-control" disabled="true" onchange="PhysicalJizhuCetujixingOnChange(this.value)">
+                    <label style="font-weight:bold; font-size: larger;">侧突畸形:</label>
+                    <select style="width:120px;color:black" id="physical_jizhu_cetujixing_has_symptom"
+                            name="physical_jizhu_cetujixing_has_symptom"
+                            class="form-control" disabled="true"
+                            onchange="PhysicalJizhuCetujixingOnChange(this.value)">
                         <option value="" disabled selected="selected">请选择</option>
                     </select>
-                    <table class="table table-bordered table-striped" id="physical_jizhu_cetujixing_table" hidden="hidden">
+                    <br>
+
+                    <table class="table table-bordered table-striped" id="physical_jizhu_cetujixing_table"
+                           hidden="hidden">
                         <tr>
-                            <%--<th>部位</th>--%>
                             <th>前突</th>
                             <th>后突</th>
                             <th>侧突</th>
                         </tr>
                         <tr>
-                            <%--<td>颈椎</td>--%>
-                            <td><input disabled="disabled" class="physical_jizhu_cetujixing" style="width:100px" type="text"
+                            <td><input disabled="disabled" class="physical_jizhu_cetujixing" style="width:100px"
+                                       type="text"
                                        id="physical_jizhu_cetujixing_qiantu"/></td>
-                            <td><input disabled="disabled" class="physical_jizhu_cetujixing" style="width:100px" type="text"
+                            <td><input disabled="disabled" class="physical_jizhu_cetujixing" style="width:100px"
+                                       type="text"
                                        id="physical_jizhu_cetujixing_houtu"/></td>
-                            <td><input disabled="disabled" class="physical_jizhu_cetujixing" style="width:100px" type="text"
+                            <td><input disabled="disabled" class="physical_jizhu_cetujixing" style="width:100px"
+                                       type="text"
                                        id="physical_jizhu_cetujixing_cetu"/></td>
                         </tr>
                     </table>
-                    <br>
 
-                    <label>活动度:</label><br>
+                    <label style="font-weight:bold; font-size: larger;">活动度:</label><br>
                     <table class="table table-bordered table-striped">
                         <tr>
                             <th>部位</th>
@@ -248,7 +251,7 @@
                         </tr>
                     </table>
 
-                    <label>压痛:</label><br>
+                    <label style="font-weight:bold; font-size: larger;">压痛:</label><br>
                     <table class="table table-bordered table-striped">
                         <tr>
                             <th>部位</th>
@@ -277,7 +280,7 @@
                         </tr>
                     </table>
 
-                    <label>叩击痛:</label><br>
+                    <label style="font-weight:bold; font-size: larger;">叩击痛:</label><br>
                     <table class="table table-bordered table-striped">
                         <tr>
                             <th>部位</th>
@@ -309,52 +312,46 @@
                         </tr>
                     </table>
 
-                    <label>压颈试验:</label>
+                    <label style="font-weight:bold; font-size: larger;">压颈试验:</label>
                     <select style="width:120px;color:black" disabled="disabled" id="physicalJizhuYajingshiyan"
                             name="physical-jizhu-shiyan"
                             class="form-control">
                         <option value="" disabled selected="selected">请选择</option>
-                    </select>
-                    <br>
+                    </select> &nbsp;&nbsp;
 
-                    <label>臂丛牵拉试验:</label>
+                    <label style="font-weight:bold; font-size: larger;">臂丛牵拉试验:</label>
                     <select style="width:120px;color:black" disabled="disabled" id="physicalJizhuBiconglashiyan"
                             name="physical-jizhu-shiyan"
                             class="form-control">
                         <option value="" disabled selected="selected">请选择</option>
-                    </select>
-                    <br>
+                    </select> &nbsp;&nbsp;
 
-                    <label>拾物试验:</label>
+                    <label style="font-weight:bold; font-size: larger;">拾物试验:</label>
                     <select style="width:120px;color:black" disabled="disabled" id="physicalJizhuShiwushiyan"
                             name="physical-jizhu-shiyan"
                             class="form-control">
                         <option value="" disabled selected="selected">请选择</option>
-                    </select>
-                    <br>
+                    </select> &nbsp;&nbsp;
 
-                    <label>直腿抬高试验:</label>
+                    <label style="font-weight:bold; font-size: larger;">直腿抬高试验:</label>
                     <select style="width:120px;color:black" disabled="disabled" id="physicalJizhuZhituitaigaoshiyan"
                             name="physical-jizhu-shiyan"
                             class="form-control">
                         <option value="" disabled selected="selected">请选择</option>
-                    </select>
-                    <br>
+                    </select> &nbsp;&nbsp;
 
-                    <label>股神经牵拉试验:</label>
+                    <label style="font-weight:bold; font-size: larger;">股神经牵拉试验:</label>
                     <select style="width:120px;color:black" disabled="disabled" id="physicalJizhuGushenjingqianlashiyan"
                             name="physical-jizhu-shiyan"
                             class="form-control">
                         <option value="" disabled selected="selected">请选择</option>
                     </select>
-                    <br>
 
                 </div>
             </div>
         </div>
     </div>
     <button type="submit" id="savePhysical" hidden="hidden" class="btn btn-primary transition-duration">保存</button>
-    <%--</nav>--%>
 
     <c:if test="${empty scoreMarkList}">
         <p class="bg-warning">
