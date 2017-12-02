@@ -29,7 +29,7 @@
 <div class="container">
     <input type="hidden" id="patientId" name="patientId" value="${patient.id}"/>
     <h5 align="center">WOMAC 健康调查表
-        <button type="submit" id="modifyPhysical" class="btn btn-primary transition-duration">修改</button>
+        <button type="submit" id="modifyScore" class="btn btn-primary transition-duration">修改</button>
     </h5>
     <p align="center">请您根据过去一周里您的膝关节的状况，回答以下的各个问题。</p>
     <p align="center">（阴影部分为手术前情况，请在相应的空格中打勾。）</p>
@@ -405,7 +405,7 @@
             </div>
         </div>
     </div>
-    <button type="submit" id="savePhysical" hidden="hidden" class="btn btn-primary transition-duration">保存</button>
+    <button type="submit" id="saveScore" hidden="hidden" class="btn btn-primary transition-duration">保存</button>
 
 </div>
 
@@ -418,49 +418,20 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        $("#savePhysical").hide();
+        $("#saveScore").hide();
         scoreWomacGet();
         $(".womac").prop('disabled', true);
     });
 
-
-
-    function setUniqueQuestion1Before(current){
-        if(current.checked){
-            $("input[id*='question_1_before']").prop('checked', false);
-            $(current).prop('checked', true);
-        }
-    };
-
-    function setUniqueQuestion1After(current){
-        if(current){
-            $("input[id*='question_1_after']").prop('checked', false);
-            $(current).prop('checked', true);
-        }
-    };
-
-    function setUniqueQuestion2Before(current){
-        if(current.checked){
-            $("input[id*='question_2_before']").prop('checked', false);
-            $(current).prop('checked', true);
-        }
-    };
-
-    function setUniqueQuestion2After(current){
-        if(current){
-            $("input[id*='question_2_after']").prop('checked', false);
-            $(current).prop('checked', true);
-        }
-    };
-    $("#modifyPhysical").click(function () {
+    $("#modifyScore").click(function () {
         $(".womac").prop('disabled', false);
-        $("#savePhysical").show();
+        $("#saveScore").show();
     });
 
-    $("#savePhysical").click(function () {
+    $("#saveScore").click(function () {
         scoreWomacSave();
         $(".womac").prop('disabled', true);
-        $("#savePhysical").hide();
+        $("#saveScore").hide();
     });
 
     function scoreWomacGet() {
@@ -559,6 +530,355 @@
     };
 
 
+    function setUniqueQuestion1Before(current){
+        if(current.checked){
+            $("input[id*='question_1_before']").prop('checked', false);
+            $(current).prop('checked', true);
+        }
+    };
+
+    function setUniqueQuestion1After(current){
+        if(current){
+            $("input[id*='question_1_after']").prop('checked', false);
+            $(current).prop('checked', true);
+        }
+    };
+
+    function setUniqueQuestion2Before(current){
+        if(current.checked){
+            $("input[id*='question_2_before']").prop('checked', false);
+            $(current).prop('checked', true);
+        }
+    };
+
+    function setUniqueQuestion2After(current){
+        if(current){
+            $("input[id*='question_2_after']").prop('checked', false);
+            $(current).prop('checked', true);
+        }
+    };
+
+    function setUniqueQuestion3Before(current){
+        if(current.checked){
+            $("input[id*='question_3_before']").prop('checked', false);
+            $(current).prop('checked', true);
+        }
+    };
+
+    function setUniqueQuestion3After(current){
+        if(current){
+            $("input[id*='question_3_after']").prop('checked', false);
+            $(current).prop('checked', true);
+        }
+    };
+
+    function setUniqueQuestion4Before(current){
+        if(current.checked){
+            $("input[id*='question_4_before']").prop('checked', false);
+            $(current).prop('checked', true);
+        }
+    };
+
+    function setUniqueQuestion4After(current){
+        if(current){
+            $("input[id*='question_4_after']").prop('checked', false);
+            $(current).prop('checked', true);
+        }
+    };
+
+    function setUniqueQuestion5Before(current){
+        if(current.checked){
+            $("input[id*='question_5_before']").prop('checked', false);
+            $(current).prop('checked', true);
+        }
+    };
+
+    function setUniqueQuestion5After(current){
+        if(current){
+            $("input[id*='question_5_after']").prop('checked', false);
+            $(current).prop('checked', true);
+        }
+    };
+
+    function setUniqueQuestion6Before(current){
+        if(current.checked){
+            $("input[id*='question_6_before']").prop('checked', false);
+            $(current).prop('checked', true);
+        }
+    };
+
+    function setUniqueQuestion6After(current){
+        if(current){
+            $("input[id*='question_6_after']").prop('checked', false);
+            $(current).prop('checked', true);
+        }
+    };
+
+    function setUniqueQuestion7Before(current){
+        if(current.checked){
+            $("input[id*='question_7_before']").prop('checked', false);
+            $(current).prop('checked', true);
+        }
+    };
+
+    function setUniqueQuestion7After(current){
+        if(current){
+            $("input[id*='question_7_after']").prop('checked', false);
+            $(current).prop('checked', true);
+        }
+    };
+
+    function setUniqueQuestion8Before(current){
+        if(current.checked){
+            $("input[id*='question_8_before']").prop('checked', false);
+            $(current).prop('checked', true);
+        }
+    };
+
+    function setUniqueQuestion8After(current){
+        if(current){
+            $("input[id*='question_8_after']").prop('checked', false);
+            $(current).prop('checked', true);
+        }
+    };
+
+    function setUniqueQuestion9Before(current){
+        if(current.checked){
+            $("input[id*='question_9_before']").prop('checked', false);
+            $(current).prop('checked', true);
+        }
+    };
+
+    function setUniqueQuestion9After(current){
+        if(current){
+            $("input[id*='question_9_after']").prop('checked', false);
+            $(current).prop('checked', true);
+        }
+    };
+
+    function setUniqueQuestion10Before(current){
+        if(current.checked){
+            $("input[id*='question_10_before']").prop('checked', false);
+            $(current).prop('checked', true);
+        }
+    };
+
+    function setUniqueQuestion10After(current){
+        if(current){
+            $("input[id*='question_10_after']").prop('checked', false);
+            $(current).prop('checked', true);
+        }
+    };
+
+    function setUniqueQuestion11Before(current){
+        if(current.checked){
+            $("input[id*='question_11_before']").prop('checked', false);
+            $(current).prop('checked', true);
+        }
+    };
+
+    function setUniqueQuestion11After(current){
+        if(current){
+            $("input[id*='question_11_after']").prop('checked', false);
+            $(current).prop('checked', true);
+        }
+    };
+
+    function setUniqueQuestion12Before(current){
+        if(current.checked){
+            $("input[id*='question_12_before']").prop('checked', false);
+            $(current).prop('checked', true);
+        }
+    };
+
+    function setUniqueQuestion12After(current){
+        if(current){
+            $("input[id*='question_12_after']").prop('checked', false);
+            $(current).prop('checked', true);
+        }
+    };
+
+    function setUniqueQuestion13Before(current){
+        if(current.checked){
+            $("input[id*='question_13before']").prop('checked', false);
+            $(current).prop('checked', true);
+        }
+    };
+
+    function setUniqueQuestion13After(current){
+        if(current){
+            $("input[id*='question_13_after']").prop('checked', false);
+            $(current).prop('checked', true);
+        }
+    };
+
+    function setUniqueQuestion14Before(current){
+        if(current.checked){
+            $("input[id*='question_14_before']").prop('checked', false);
+            $(current).prop('checked', true);
+        }
+    };
+
+    function setUniqueQuestion14After(current){
+        if(current){
+            $("input[id*='question_14_after']").prop('checked', false);
+            $(current).prop('checked', true);
+        }
+    };
+
+    function setUniqueQuestion15Before(current){
+        if(current.checked){
+            $("input[id*='question_15_before']").prop('checked', false);
+            $(current).prop('checked', true);
+        }
+    };
+
+    function setUniqueQuestion15After(current){
+        if(current){
+            $("input[id*='question_15_after']").prop('checked', false);
+            $(current).prop('checked', true);
+        }
+    };
+
+    function setUniqueQuestion16Before(current){
+        if(current.checked){
+            $("input[id*='question_16_before']").prop('checked', false);
+            $(current).prop('checked', true);
+        }
+    };
+
+    function setUniqueQuestion16After(current){
+        if(current){
+            $("input[id*='question_16_after']").prop('checked', false);
+            $(current).prop('checked', true);
+        }
+    };
+
+    function setUniqueQuestion17Before(current){
+        if(current.checked){
+            $("input[id*='question_17_before']").prop('checked', false);
+            $(current).prop('checked', true);
+        }
+    };
+
+    function setUniqueQuestion17After(current){
+        if(current){
+            $("input[id*='question_17_after']").prop('checked', false);
+            $(current).prop('checked', true);
+        }
+    };
+
+    function setUniqueQuestion18Before(current){
+        if(current.checked){
+            $("input[id*='question_18_before']").prop('checked', false);
+            $(current).prop('checked', true);
+        }
+    };
+
+    function setUniqueQuestion18After(current){
+        if(current){
+            $("input[id*='question_18_after']").prop('checked', false);
+            $(current).prop('checked', true);
+        }
+    };
+
+    function setUniqueQuestion19Before(current){
+        if(current.checked){
+            $("input[id*='question_19_before']").prop('checked', false);
+            $(current).prop('checked', true);
+        }
+    };
+
+    function setUniqueQuestion19After(current){
+        if(current){
+            $("input[id*='question_19_after']").prop('checked', false);
+            $(current).prop('checked', true);
+        }
+    };
+
+    function setUniqueQuestion20Before(current){
+        if(current.checked){
+            $("input[id*='question_20_before']").prop('checked', false);
+            $(current).prop('checked', true);
+        }
+    };
+
+    function setUniqueQuestion20After(current){
+        if(current){
+            $("input[id*='question_20_after']").prop('checked', false);
+            $(current).prop('checked', true);
+        }
+    };
+
+    function setUniqueQuestion21Before(current){
+        if(current.checked){
+            $("input[id*='question_21_before']").prop('checked', false);
+            $(current).prop('checked', true);
+        }
+    };
+
+    function setUniqueQuestion21After(current){
+        if(current){
+            $("input[id*='question_21_after']").prop('checked', false);
+            $(current).prop('checked', true);
+        }
+    };
+
+    function setUniqueQuestion22Before(current){
+        if(current.checked){
+            $("input[id*='question_22_before']").prop('checked', false);
+            $(current).prop('checked', true);
+        }
+    };
+
+    function setUniqueQuestion22After(current){
+        if(current){
+            $("input[id*='question_22_after']").prop('checked', false);
+            $(current).prop('checked', true);
+        }
+    };
+
+    function setUniqueQuestion23Before(current){
+        if(current.checked){
+            $("input[id*='question_23_before']").prop('checked', false);
+            $(current).prop('checked', true);
+        }
+    };
+
+    function setUniqueQuestion23After(current){
+        if(current){
+            $("input[id*='question_23_after']").prop('checked', false);
+            $(current).prop('checked', true);
+        }
+    };
+
+    function setUniqueQuestion24Before(current){
+        if(current.checked){
+            $("input[id*='question_24_before']").prop('checked', false);
+            $(current).prop('checked', true);
+        }
+    };
+
+    function setUniqueQuestion24After(current){
+        if(current){
+            $("input[id*='question_24_after']").prop('checked', false);
+            $(current).prop('checked', true);
+        }
+    };
+
+    function setUniqueQuestion25Before(current){
+        if(current.checked){
+            $("input[id*='question_25_before']").prop('checked', false);
+            $(current).prop('checked', true);
+        }
+    };
+
+    function setUniqueQuestion25After(current){
+        if(current){
+            $("input[id*='question_25_after']").prop('checked', false);
+            $(current).prop('checked', true);
+        }
+    };
 </script>
 
 </body>
