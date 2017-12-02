@@ -4,17 +4,14 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "physical_jizhu_cetujixing")
-public class PhysicalJizhuCetujixingEntity {
+@Table(name = "score_womac")
+public class ScoreWomacEntity {
     private Integer id;
     private Integer patientId;
-    private String examType;
-    private String examCategory;
-    private String examName;
-    private Integer hasSymptom;
-    private String qiantu;
-    private String houtu;
-    private String cetu;
+    private String question;
+    private String period;
+    private String level;
+    private Integer levelScore;
     private Date updateTime;
     private String updateBy;
 
@@ -40,73 +37,43 @@ public class PhysicalJizhuCetujixingEntity {
     }
 
     @Basic
-    @Column(name = "exam_type", nullable = false, insertable = true, updatable = true, length = 200)
-    public String getExamType() {
-        return examType;
+    @Column(name = "question", nullable = false, insertable = true, updatable = true, length = 200)
+    public String getQuestion() {
+        return question;
     }
 
-    public void setExamType(String examType) {
-        this.examType = examType;
-    }
-
-    @Basic
-    @Column(name = "exam_category", nullable = false, insertable = true, updatable = true, length = 200)
-    public String getExamCategory() {
-        return examCategory;
-    }
-
-    public void setExamCategory(String examCategory) {
-        this.examCategory = examCategory;
+    public void setQuestion(String question) {
+        this.question = question;
     }
 
     @Basic
-    @Column(name = "exam_name", nullable = false, insertable = true, updatable = true, length = 200)
-    public String getExamName() {
-        return examName;
+    @Column(name = "period", nullable = false, insertable = true, updatable = true, length = 200)
+    public String getPeriod() {
+        return period;
     }
 
-    public void setExamName(String examName) {
-        this.examName = examName;
-    }
-
-    @Basic
-    @Column(name = "has_symptom", nullable = true, insertable = true, updatable = true, length = 200)
-    public Integer getHasSymptom() {
-        return hasSymptom;
-    }
-
-    public void setHasSymptom(Integer hasSymptom) {
-        this.hasSymptom = hasSymptom;
+    public void setPeriod(String period) {
+        this.period = period;
     }
 
     @Basic
-    @Column(name = "qiantu", nullable = true, insertable = true, updatable = true, length = 200)
-    public String getQiantu() {
-        return qiantu;
+    @Column(name = "level", nullable = false, insertable = true, updatable = true, length = 200)
+    public String getLevel() {
+        return level;
     }
 
-    public void setQiantu(String qiantu) {
-        this.qiantu = qiantu;
-    }
-
-    @Basic
-    @Column(name = "houtu", nullable = true, insertable = true, updatable = true, length = 200)
-    public String getHoutu() {
-        return houtu;
-    }
-
-    public void setHoutu(String houtu) {
-        this.houtu = houtu;
+    public void setLevel(String level) {
+        this.level = level;
     }
 
     @Basic
-    @Column(name = "cetu", nullable = true, insertable = true, updatable = true, length = 200)
-    public String getCetu() {
-        return cetu;
+    @Column(name = "level_score", nullable = true, insertable = true, updatable = true, length = 200)
+    public Integer getLevelScore() {
+        return levelScore;
     }
 
-    public void setCetu(String cetu) {
-        this.cetu = cetu;
+    public void setLevelScore(Integer levelScore) {
+        this.levelScore = levelScore;
     }
 
     @Basic

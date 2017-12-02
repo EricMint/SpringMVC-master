@@ -23,6 +23,11 @@ public class PatientService {
     @Autowired
     private PatientRepository patientRepository;
 
+    public PatientEntity getPatientById(Integer patientId) {
+        PatientEntity patientEntity = patientRepository.findOneById(PatientEntity.class, patientId);
+        return patientEntity;
+    }
+
     public PatientListResponse searchPatientList(PatientSearchRequest searchRequest) {
         PatientListResponse listResponse = new PatientListResponse();
         Map<String, CriteriaInfo> params = buildSearchParam(searchRequest);

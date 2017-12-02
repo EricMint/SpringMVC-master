@@ -3,15 +3,12 @@ package com.bysy.hospital.request;
 /**
  * Created by mint on 11/28/17.
  */
-public class PhysicalJizhuCetujixingRequest {
+public class ScoreWomacRequest {
     private Integer patientId;
-    private String examType;
-    private String examCategory;
-    private String examName;
-    private Integer hasSymptom;
-    private String qiantu;
-    private String houtu;
-    private String cetu;
+    private String question;
+    private String period;
+    private String level;
+    private Integer levelScore;
 
     public Integer getPatientId() {
         return patientId;
@@ -21,59 +18,35 @@ public class PhysicalJizhuCetujixingRequest {
         this.patientId = patientId;
     }
 
-    public String getExamType() {
-        return examType;
+    public String getQuestion() {
+        return question;
     }
 
-    public void setExamType(String examType) {
-        this.examType = examType;
+    public void setQuestion(String question) {
+        this.question = question;
     }
 
-    public String getExamCategory() {
-        return examCategory;
+    public String getPeriod() {
+        return period;
     }
 
-    public void setExamCategory(String examCategory) {
-        this.examCategory = examCategory;
+    public void setPeriod(String period) {
+        this.period = period;
     }
 
-    public String getExamName() {
-        return examName;
+    public String getLevel() {
+        return level;
     }
 
-    public void setExamName(String examName) {
-        this.examName = examName;
+    public void setLevel(String level) {
+        this.level = level;
     }
 
-    public Integer getHasSymptom() {
-        return hasSymptom;
+    public Integer getLevelScore() {
+        return levelScore;
     }
 
-    public void setHasSymptom(Integer hasSymptom) {
-        this.hasSymptom = hasSymptom;
-    }
-
-    public String getQiantu() {
-        return qiantu;
-    }
-
-    public void setQiantu(String qiantu) {
-        this.qiantu = qiantu;
-    }
-
-    public String getHoutu() {
-        return houtu;
-    }
-
-    public void setHoutu(String houtu) {
-        this.houtu = houtu;
-    }
-
-    public String getCetu() {
-        return cetu;
-    }
-
-    public void setCetu(String cetu) {
-        this.cetu = cetu;
+    public void setLevelScore(Integer levelScore) {
+        this.levelScore = levelScore;
     }
 }

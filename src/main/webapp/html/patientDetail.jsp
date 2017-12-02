@@ -418,6 +418,9 @@
     </div>
     <button type="submit" id="savePhysical" hidden="hidden" class="btn btn-primary transition-duration">保存</button>
 
+    <h5>WOMAC 健康调查表 <a href="/hospital/score/womac/${patient.id}" type="button"
+                  class="btn btn-sm btn-success">查看</a></h5>
+
     <c:if test="${empty scoreMarkList}">
         <p class="bg-warning">
         <c:if test="${isManager}">
