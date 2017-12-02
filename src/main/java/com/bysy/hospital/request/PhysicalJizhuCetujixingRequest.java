@@ -8,7 +8,10 @@ public class PhysicalJizhuCetujixingRequest {
     private String examType;
     private String examCategory;
     private String examName;
-    private String answer;
+    private Integer hasSymptom;
+    private String qiantu;
+    private String houtu;
+    private String cetu;
 
     public Integer getPatientId() {
         return patientId;
@@ -42,11 +45,35 @@ public class PhysicalJizhuCetujixingRequest {
         this.examName = examName;
     }
 
-    public String getAnswer() {
-        return answer;
+    public Integer getHasSymptom() {
+        return hasSymptom;
     }
 
-    public void setAnswer(String answer) {
-        this.answer = answer;
+    public void setHasSymptom(Integer hasSymptom) {
+        this.hasSymptom = hasSymptom;
+    }
+
+    public String getQiantu() {
+        return qiantu;
+    }
+
+    public void setQiantu(String qiantu) {
+        this.qiantu = qiantu;
+    }
+
+    public String getHoutu() {
+        return houtu;
+    }
+
+    public void setHoutu(String houtu) {
+        this.houtu = houtu;
+    }
+
+    public String getCetu() {
+        return cetu;
+    }
+
+    public void setCetu(String cetu) {
+        this.cetu = cetu;
     }
 }

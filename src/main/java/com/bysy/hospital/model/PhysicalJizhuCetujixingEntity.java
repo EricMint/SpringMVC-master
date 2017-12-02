@@ -11,7 +11,10 @@ public class PhysicalJizhuCetujixingEntity {
     private String examType;
     private String examCategory;
     private String examName;
-    private String answer;
+    private Integer hasSymptom;
+    private String qiantu;
+    private String houtu;
+    private String cetu;
     private Date updateTime;
     private String updateBy;
 
@@ -27,7 +30,7 @@ public class PhysicalJizhuCetujixingEntity {
     }
 
     @Basic
-    @Column(name = "patient_id", nullable = true, insertable = true, updatable = true, length = 200)
+    @Column(name = "patient_id", nullable = false, insertable = true, updatable = true, length = 200)
     public Integer getPatientId() {
         return patientId;
     }
@@ -37,7 +40,7 @@ public class PhysicalJizhuCetujixingEntity {
     }
 
     @Basic
-    @Column(name = "exam_type", nullable = true, insertable = true, updatable = true, length = 200)
+    @Column(name = "exam_type", nullable = false, insertable = true, updatable = true, length = 200)
     public String getExamType() {
         return examType;
     }
@@ -47,7 +50,7 @@ public class PhysicalJizhuCetujixingEntity {
     }
 
     @Basic
-    @Column(name = "exam_category", nullable = true, insertable = true, updatable = true, length = 200)
+    @Column(name = "exam_category", nullable = false, insertable = true, updatable = true, length = 200)
     public String getExamCategory() {
         return examCategory;
     }
@@ -57,7 +60,7 @@ public class PhysicalJizhuCetujixingEntity {
     }
 
     @Basic
-    @Column(name = "exam_name", nullable = true, insertable = true, updatable = true, length = 200)
+    @Column(name = "exam_name", nullable = false, insertable = true, updatable = true, length = 200)
     public String getExamName() {
         return examName;
     }
@@ -67,13 +70,43 @@ public class PhysicalJizhuCetujixingEntity {
     }
 
     @Basic
-    @Column(name = "answer", nullable = true, insertable = true, updatable = true, length = 200)
-    public String getAnswer() {
-        return answer;
+    @Column(name = "has_symptom", nullable = true, insertable = true, updatable = true, length = 200)
+    public Integer getHasSymptom() {
+        return hasSymptom;
     }
 
-    public void setAnswer(String answer) {
-        this.answer = answer;
+    public void setHasSymptom(Integer hasSymptom) {
+        this.hasSymptom = hasSymptom;
+    }
+
+    @Basic
+    @Column(name = "qiantu", nullable = true, insertable = true, updatable = true, length = 200)
+    public String getQiantu() {
+        return qiantu;
+    }
+
+    public void setQiantu(String qiantu) {
+        this.qiantu = qiantu;
+    }
+
+    @Basic
+    @Column(name = "houtu", nullable = true, insertable = true, updatable = true, length = 200)
+    public String getHoutu() {
+        return houtu;
+    }
+
+    public void setHoutu(String houtu) {
+        this.houtu = houtu;
+    }
+
+    @Basic
+    @Column(name = "cetu", nullable = true, insertable = true, updatable = true, length = 200)
+    public String getCetu() {
+        return cetu;
+    }
+
+    public void setCetu(String cetu) {
+        this.cetu = cetu;
     }
 
     @Basic

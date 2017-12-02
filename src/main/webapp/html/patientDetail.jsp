@@ -166,11 +166,28 @@
             <div class="navbar-form navbar-left" id="searchFrom">
                 <div class="form-group">
                     <label>侧突畸形:</label>
-                    <input type="hidden" id="currentPhysicalJizhuCetujixing" name="currentPhysicalJizhuCetujixing"/>
-                    <select style="width:120px;color:black" id="physicalJizhuCetujixing" name="physicalJizhuCetujixing"
-                            class="form-control">
+                    <%--<input type="hidden" id="currentPhysicalJizhuCetujixing" name="currentPhysicalJizhuCetujixing"/>--%>
+                    <select style="width:120px;color:black" id="physical_jizhu_cetujixing_has_symptom" name="physical_jizhu_cetujixing_has_symptom"
+                            class="form-control" disabled="true" onchange="PhysicalJizhuCetujixingOnChange(this.value)">
                         <option value="" disabled selected="selected">请选择</option>
                     </select>
+                    <table class="table table-bordered table-striped" id="physical_jizhu_cetujixing_table" hidden="hidden">
+                        <tr>
+                            <%--<th>部位</th>--%>
+                            <th>前突</th>
+                            <th>后突</th>
+                            <th>侧突</th>
+                        </tr>
+                        <tr>
+                            <%--<td>颈椎</td>--%>
+                            <td><input disabled="disabled" class="physical_jizhu_cetujixing" style="width:100px" type="text"
+                                       id="physical_jizhu_cetujixing_qiantu"/></td>
+                            <td><input disabled="disabled" class="physical_jizhu_cetujixing" style="width:100px" type="text"
+                                       id="physical_jizhu_cetujixing_houtu"/></td>
+                            <td><input disabled="disabled" class="physical_jizhu_cetujixing" style="width:100px" type="text"
+                                       id="physical_jizhu_cetujixing_cetu"/></td>
+                        </tr>
+                    </table>
                     <br>
 
                     <label>活动度:</label><br>
@@ -544,8 +561,9 @@
     };
 
     $("#modifyPhysical").click(function () {
-        $("#physicalJizhuCetujixing").prop('disabled', false);
-        $('#physicalJizhuCetujixing').css('background-color', '#F0F8FF'); // change the background color
+        $("#physical_jizhu_cetujixing_has_symptom").prop('disabled', false);
+        $('#physical_jizhu_cetujixing_has_symptom').css('background-color', '#F0F8FF'); // change the background color
+        $(".physical_jizhu_cetujixing").prop('disabled', false);
         $(".huodongdu").prop('disabled', false);
         $("select[name='physical-jizhu-yatong']").prop('disabled', false);
         $("select[name='physical-jizhu-yatong']").css('background-color', '#F0F8FF');
@@ -557,7 +575,9 @@
     });
 
     $("#savePhysical").click(function () {
-        $("#physicalJizhuCetujixing").prop('disabled', true);
+        $("#physical_jizhu_cetujixing_has_symptom").prop('disabled', true);
+        $('#physical_jizhu_cetujixing_has_symptom').css('background-color', '#FFFFFF'); // change the background color
+        $(".physical_jizhu_cetujixing").prop('disabled', true);
         $(".huodongdu").prop('disabled', true);
         $("select[name='physical-jizhu-yatong']").prop('disabled', true);
         $("select[name='physical-jizhu-yatong']").css('background-color', '#FFFFFF');
@@ -574,8 +594,6 @@
 
     function PhysicalJizhuCetujixingGet() {
         var patientId = $("#patientId").val();
-        $("#physicalJizhuCetujixing").prop('disabled', true);
-        var answerList = ["前突", "后突", "侧突", "无"];
         $.ajax({
                 url: "/hospital/patient/physical/jizhu/cetujixing/" + patientId,
                 type: "GET",
@@ -583,17 +601,21 @@
                 contentType: "application/xhtml+xml; charset=utf-8",
                 success: function (result) {
                     console.log(result);
-                    var current = result.answer;
-                    var physicalJizhuCetujixing = $("#physicalJizhuCetujixing");
-                    for (var i = 0; i < answerList.length; i++) {
-                        var answerElement = answerList[i];
-                        if (answerElement == current) {
-                            physicalJizhuCetujixing.append("<option value=" + answerElement + " " + "selected>" + answerElement + "</option>")
-                        } else {
-                            physicalJizhuCetujixing.append("<option value=" + answerElement + ">" + answerElement + "</option>")
-                        }
+                    var hasSymptom = result.hasSymptom;
+                    var physical_jizhu_cetujixing_has_symptom = $("#physical_jizhu_cetujixing_has_symptom");
+                    var physical_jizhu_cetujixing_table = $("#physical_jizhu_cetujixing_table");
+                    if (hasSymptom) {
+                        physical_jizhu_cetujixing_has_symptom.append("<option value=1 selected>有</option>");
+                        physical_jizhu_cetujixing_has_symptom.append("<option value=0>无</option>");
+                        physical_jizhu_cetujixing_table.show();
+                        $("#physical_jizhu_cetujixing_qiantu").val(result.qiantu);
+                        $("#physical_jizhu_cetujixing_houtu").val(result.houtu);
+                        $("#physical_jizhu_cetujixing_cetu").val(result.cetu);
+                    } else {
+                        physical_jizhu_cetujixing_has_symptom.append("<option value=1>有</option>");
+                        physical_jizhu_cetujixing_has_symptom.append("<option value=0 selected>无</option>");
+                        physical_jizhu_cetujixing_table.hide();
                     }
-
                 },
                 error: function () {
 
@@ -602,10 +624,22 @@
         );
     };
 
+    function PhysicalJizhuCetujixingOnChange(hasSymptom) {
+        var physical_jizhu_cetujixing_table = $("#physical_jizhu_cetujixing_table");
+        if (hasSymptom == 1) {
+            physical_jizhu_cetujixing_table.show();
+        } else {
+            physical_jizhu_cetujixing_table.hide();
+        }
+    };
+
     function PhysicalJizhuCetujixingSave() {
         var data = {};
         data.patientId = $("#patientId").val();
-        data.answer = $("#physicalJizhuCetujixing").val();
+        data.hasSymptom = $("#physical_jizhu_cetujixing_has_symptom").val();
+        data.qiantu = $("#physical_jizhu_cetujixing_qiantu").val();
+        data.houtu = $("#physical_jizhu_cetujixing_houtu").val();
+        data.cetu = $("#physical_jizhu_cetujixing_cetu").val();
         console.log(data);
         $.ajax({
                 url: "/hospital/patient/physical/jizhu/cetujixing",

@@ -45,19 +45,28 @@ public class PhysicalService {
     @Transactional
     public void updateOrCreateJizhuCetujixing(PhysicalJizhuCetujixingRequest request) {
         PhysicalJizhuCetujixingEntity entity = findJizhuCetujixing(request.getPatientId());
+        Integer hasSymptom = request.getHasSymptom();
         if (null != entity && null != entity.getId()) {
-            entity.setAnswer(request.getAnswer());
+            entity.setHasSymptom(hasSymptom);
             entity.setUpdateBy("system");
             entity.setUpdateTime(new Date());
+            if (hasSymptom == 1) {
+                entity.setQiantu(request.getQiantu());
+                entity.setHoutu(request.getHoutu());
+                entity.setCetu(request.getCetu());
+            } else {
+                entity.setQiantu("");
+                entity.setHoutu("");
+                entity.setCetu("");
+            }
             physicalRepository.update(entity);
         } else {
-            PhysicalJizhuCetujixingEntity physicalJizhuCetujixingEntity = new PhysicalJizhuCetujixingEntity();
-            physicalJizhuCetujixingEntity.setPatientId(request.getPatientId());
-            physicalJizhuCetujixingEntity.setAnswer(request.getAnswer());
-            physicalJizhuCetujixingEntity.setExamType("体格检查");
-            physicalJizhuCetujixingEntity.setExamCategory("脊柱组");
-            physicalJizhuCetujixingEntity.setExamName("侧突畸形");
-            physicalRepository.create(physicalJizhuCetujixingEntity);
+            PhysicalJizhuCetujixingEntity cetujixingEntity = new PhysicalJizhuCetujixingEntity();
+            BeanUtilsEx.copyProperties(request, cetujixingEntity);
+            cetujixingEntity.setExamType("体格检查");
+            cetujixingEntity.setExamCategory("脊柱组");
+            cetujixingEntity.setExamName("侧突畸形");
+            physicalRepository.create(cetujixingEntity);
         }
     }
 
