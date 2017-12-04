@@ -90,336 +90,302 @@
     <button type="button" id="saveUser" style="display: none" class="btn btn-sm btn-warning">保存</button>
     <hr>
 
-    <c:if test="${empty physicalRecordList}">
-        <p class="bg-warning">
-        <c:if test="${isManager}">
-            <h5>无体格检查记录 <a href="/hospital/physicalRecord/create/${patient.id}" type="button"
-                           class="btn btn-default btn-sm">添加</a>
-            </h5>
-        </c:if>
-        <c:if test="${!isManager}">
-            <h5>无体格检查记录 </h5>
+    <h4>体格检查
+        <div class="btn-group">
+            <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle" type="button">查看 <span
+                    class="caret"></span></button>
+            <ul role="menu" class="dropdown-menu">
+                <li>
+                    <a id="show_physical_jizhu">脊柱查体</a>
+                    <a id="show_physical_kuanguanjie">髋关节</a>
+                </li>
+            </ul>
+        </div>
+    </h4>
 
-        </c:if>
-        <br/>
-        </p>
-    </c:if>
-    <c:if test="${!empty physicalRecordList}">
-        <c:if test="${isManager}">
-            <h5>体格检查记录
-                <div class="btn-group">
-                    <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle" type="button">添加 <span
-                            class="caret"></span></button>
-                    <ul role="menu" class="dropdown-menu">
-                        <c:forEach items="${physicalClassAList}" var="physicalClassA">
-                            <li>
-                                <a href="/hospital/physicalRecord/create/${patient.id}/${physicalClassA.physicalClassAId}">${physicalClassA.physicalClassAName}</a>
-                            </li>
-                        </c:forEach>
-                    </ul>
-                </div>
-            </h5>
-        </c:if>
-        <c:if test="${!isManager}">
-            <h5>体格检查记录 </h5>
-        </c:if>
+    <div id="physical_jizhu">
+        <h5>脊柱查体
+            <button type="submit" id="modifyPhysical" class="btn btn-primary transition-duration">修改</button>
+        </h5>
 
-        <table class="table table-bordered table-striped">
-            <tr>
-                <th>ID</th>
-                <th>体格检查部位</th>
-                <th>检查关节</th>
-                <th>具体关节</th>
-                <th>关节方位</th>
-                <th>测量数值</th>
-            </tr>
+        <div class="container-fluid">
+            <div>
+                <div class="navbar-form navbar-left" id="searchFrom">
+                    <div class="form-group">
+                        <label style="font-weight:bold; font-size: larger;">侧突畸形:</label>
+                        <select style="width:120px;color:black" id="physical_jizhu_cetujixing_has_symptom"
+                                name="physical_jizhu_cetujixing_has_symptom"
+                                class="form-control" disabled="true"
+                                onchange="PhysicalJizhuCetujixingOnChange(this.value)">
+                            <option value="" disabled selected="selected">请选择</option>
+                        </select>
+                        <br>
 
-            <c:forEach items="${physicalRecordList}" var="physicalRecord">
-                <tr>
-                    <td>${physicalRecord.physicalRecordId}</td>
-                    <td>${physicalRecord.physicalClassAName}</td>
-                    <td>${physicalRecord.physicalClassBName}</td>
-                    <td>${physicalRecord.physicalClassCName}</td>
-                    <td>${physicalRecord.physicalClassDName}</td>
-                    <td>${physicalRecord.result}</td>
-                    <c:if test="${isManager}">
-                        <td>
-                            <a href="/hospital/physicalRecord/update/${physicalRecord.physicalRecordId}" type="button"
-                               class="btn btn-sm btn-warning">修改</a>
-                            <a href="/hospital/physicalRecord/delete/${physicalRecord.physicalRecordId}" type="button"
-                               class="btn btn-sm btn-danger">删除</a>
-                        </td>
-                    </c:if>
-                </tr>
-            </c:forEach>
-        </table>
-    </c:if>
+                        <table class="table table-bordered table-striped" id="physical_jizhu_cetujixing_table"
+                               hidden="hidden">
+                            <tr>
+                                <th>前突</th>
+                                <th>后突</th>
+                                <th>侧突</th>
+                            </tr>
+                            <tr>
+                                <td><input disabled="disabled" class="physical_jizhu_cetujixing" style="width:100px"
+                                           type="text"
+                                           id="physical_jizhu_cetujixing_qiantu"/></td>
+                                <td><input disabled="disabled" class="physical_jizhu_cetujixing" style="width:100px"
+                                           type="text"
+                                           id="physical_jizhu_cetujixing_houtu"/></td>
+                                <td><input disabled="disabled" class="physical_jizhu_cetujixing" style="width:100px"
+                                           type="text"
+                                           id="physical_jizhu_cetujixing_cetu"/></td>
+                            </tr>
+                        </table>
 
-    <%--<nav class="navbar navbar-default" role="navigation">--%>
-    <h5>脊柱查体
-        <button type="submit" id="modifyPhysical" class="btn btn-primary transition-duration">修改</button>
-    </h5>
+                        <label style="font-weight:bold; font-size: larger;">活动度:</label><br>
+                        <table class="table table-bordered table-striped">
+                            <tr>
+                                <th>部位</th>
+                                <th>前屈</th>
+                                <th>后伸</th>
+                                <th>左侧弯</th>
+                                <th>右侧弯</th>
+                                <th>左侧旋</th>
+                                <th>右侧旋</th>
+                            </tr>
+                            <tr>
+                                <td>颈椎</td>
+                                <td><input disabled="disabled" class="huodongdu" style="width:100px" type="text"
+                                           id="jingzhui_qianqu"/></td>
+                                <td><input disabled="disabled" class="huodongdu" style="width:100px" type="text"
+                                           id="jingzhui_houshen"/></td>
+                                <td><input disabled="disabled" class="huodongdu" style="width:100px" type="text"
+                                           id="jingzhui_zuocewan"/></td>
+                                <td><input disabled="disabled" class="huodongdu" style="width:100px" type="text"
+                                           id="jingzhui_youcewan"/></td>
+                                <td><input disabled="disabled" class="huodongdu" style="width:100px" type="text"
+                                           id="jingzhui_zuocexuan"/></td>
+                                <td><input disabled="disabled" class="huodongdu" style="width:100px" type="text"
+                                           id="jingzhui_youcexuan"/></td>
+                            </tr>
+                            <tr>
+                                <td>胸椎</td>
+                                <td><input disabled="disabled" class="huodongdu" style="width:100px" type="text"
+                                           id="xiongzhui_qianqu"/></td>
+                                <td><input disabled="disabled" class="huodongdu" style="width:100px" type="text"
+                                           id="xiongzhui_houshen"/></td>
+                                <td><input disabled="disabled" class="huodongdu" style="width:100px" type="text"
+                                           id="xiongzhui_zuocewan"/></td>
+                                <td><input disabled="disabled" class="huodongdu" style="width:100px" type="text"
+                                           id="xiongzhui_youcewan"/></td>
+                                <td><input disabled="disabled" class="huodongdu" style="width:100px" type="text"
+                                           id="xiongzhui_zuocexuan"/></td>
+                                <td><input disabled="disabled" class="huodongdu" style="width:100px" type="text"
+                                           id="xiongzhui_youcexuan"/></td>
+                            </tr>
+                            <tr>
+                                <td>腰椎</td>
+                                <td><input disabled="disabled" class="huodongdu" style="width:100px" type="text"
+                                           id="yaozhui_qianqu"/></td>
+                                <td><input disabled="disabled" class="huodongdu" style="width:100px" type="text"
+                                           id="yaozhui_houshen"/></td>
+                                <td><input disabled="disabled" class="huodongdu" style="width:100px" type="text"
+                                           id="yaozhui_zuocewan"/></td>
+                                <td><input disabled="disabled" class="huodongdu" style="width:100px" type="text"
+                                           id="yaozhui_youcewan"/></td>
+                                <td><input disabled="disabled" class="huodongdu" style="width:100px" type="text"
+                                           id="yaozhui_zuocexuan"/></td>
+                                <td><input disabled="disabled" class="huodongdu" style="width:100px" type="text"
+                                           id="yaozhui_youcexuan"/></td>
+                            </tr>
+                        </table>
 
-    <div class="container-fluid">
-        <div>
-            <div class="navbar-form navbar-left" id="searchFrom">
-                <div class="form-group">
-                    <label style="font-weight:bold; font-size: larger;">侧突畸形:</label>
-                    <select style="width:120px;color:black" id="physical_jizhu_cetujixing_has_symptom"
-                            name="physical_jizhu_cetujixing_has_symptom"
-                            class="form-control" disabled="true"
-                            onchange="PhysicalJizhuCetujixingOnChange(this.value)">
-                        <option value="" disabled selected="selected">请选择</option>
-                    </select>
-                    <br>
+                        <label style="font-weight:bold; font-size: larger;">压痛:</label><br>
+                        <table class="table table-bordered table-striped">
+                            <tr>
+                                <th>部位</th>
+                                <th>具体部位</th>
+                            </tr>
+                            <tr>
+                                <td>颈椎</td>
+                                <td>
+                                    <input type="checkbox" id="physical_jizhu_yatong_jing1"
+                                           name="physical_jizhu_yatong_jing1" value="颈1"><label
+                                        for="physical_jizhu_yatong_jing1">颈1</label>
+                                    <input type="checkbox" id="physical_jizhu_yatong_jing2"
+                                           name="physical_jizhu_yatong_jing2" value="颈1"><label
+                                        for="physical_jizhu_yatong_jing2">颈2</label>
+                                    <input type="checkbox" id="physical_jizhu_yatong_jing3"
+                                           name="physical_jizhu_yatong_jing3" value="颈1"><label
+                                        for="physical_jizhu_yatong_jing3">颈3</label>
+                                    <input type="checkbox" id="physical_jizhu_yatong_jing4"
+                                           name="physical_jizhu_yatong_jing4" value="颈1"><label
+                                        for="physical_jizhu_yatong_jing4">颈4</label>
+                                    <input type="checkbox" id="physical_jizhu_yatong_jing5"
+                                           name="physical_jizhu_yatong_jing5" value="颈1"><label
+                                        for="physical_jizhu_yatong_jing5">颈5</label>
+                                    <input type="checkbox" id="physical_jizhu_yatong_jing6"
+                                           name="physical_jizhu_yatong_jing6" value="颈1"><label
+                                        for="physical_jizhu_yatong_jing6">颈6</label>
+                                    <input type="checkbox" id="physical_jizhu_yatong_jing7"
+                                           name="physical_jizhu_yatong_jing7" value="颈1"><label
+                                        for="physical_jizhu_yatong_jing7">颈7</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>胸椎</td>
+                                <td>
+                                    <input type="checkbox" id="physical_jizhu_yatong_xiong1" name="physical_jizhu_yatong_xiong1" value="胸1"><label for="physical_jizhu_yatong_xiong1">胸1</label>
+                                    <input type="checkbox" id="physical_jizhu_yatong_xiong2" name="physical_jizhu_yatong_xiong2" value="胸2"><label for="physical_jizhu_yatong_xiong2">胸2</label>
+                                    <input type="checkbox" id="physical_jizhu_yatong_xiong3" name="physical_jizhu_yatong_xiong3" value="胸3"><label for="physical_jizhu_yatong_xiong3">胸3</label>
+                                    <input type="checkbox" id="physical_jizhu_yatong_xiong4" name="physical_jizhu_yatong_xiong4" value="胸4"><label for="physical_jizhu_yatong_xiong4">胸4</label>
+                                    <input type="checkbox" id="physical_jizhu_yatong_xiong5" name="physical_jizhu_yatong_xiong5" value="胸5"><label for="physical_jizhu_yatong_xiong5">胸5</label>
+                                    <input type="checkbox" id="physical_jizhu_yatong_xiong6" name="physical_jizhu_yatong_xiong6" value="胸6"><label for="physical_jizhu_yatong_xiong6">胸6</label>
+                                    <input type="checkbox" id="physical_jizhu_yatong_xiong7" name="physical_jizhu_yatong_xiong7" value="胸7"><label for="physical_jizhu_yatong_xiong7">胸7</label>
+                                    <input type="checkbox" id="physical_jizhu_yatong_xiong8" name="physical_jizhu_yatong_xiong8" value="胸8"><label for="physical_jizhu_yatong_xiong8">胸8</label>
+                                    <input type="checkbox" id="physical_jizhu_yatong_xiong9" name="physical_jizhu_yatong_xiong9" value="胸9"><label for="physical_jizhu_yatong_xiong9">胸9</label>
+                                    <input type="checkbox" id="physical_jizhu_yatong_xiong10" name="physical_jizhu_yatong_xiong10" value="胸10"><label for="physical_jizhu_yatong_xiong10">胸10</label>
+                                    <input type="checkbox" id="physical_jizhu_yatong_xiong11" name="physical_jizhu_yatong_xiong11" value="胸11"><label for="physical_jizhu_yatong_xiong11">胸11</label>
+                                    <input type="checkbox" id="physical_jizhu_yatong_xiong12" name="physical_jizhu_yatong_xiong12" value="胸12"><label for="physical_jizhu_yatong_xiong12">胸12</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>腰椎</td>
+                                <td>
+                                    <input type="checkbox" id="physical_jizhu_yatong_yao1" name="physical_jizhu_yatong_yao1" value="腰1"><label for="physical_jizhu_yatong_yao1">腰1</label>
+                                    <input type="checkbox" id="physical_jizhu_yatong_yao2" name="physical_jizhu_yatong_yao2" value="腰2"><label for="physical_jizhu_yatong_yao2">腰2</label>
+                                    <input type="checkbox" id="physical_jizhu_yatong_yao3" name="physical_jizhu_yatong_yao3" value="腰3"><label for="physical_jizhu_yatong_yao3">腰3</label>
+                                    <input type="checkbox" id="physical_jizhu_yatong_yao4" name="physical_jizhu_yatong_yao4" value="腰4"><label for="physical_jizhu_yatong_yao4">腰4</label>
+                                    <input type="checkbox" id="physical_jizhu_yatong_yao5" name="physical_jizhu_yatong_yao5" value="腰5"><label for="physical_jizhu_yatong_yao5">腰5</label>
+                                    <input type="checkbox" id="physical_jizhu_yatong_yao6" name="physical_jizhu_yatong_yao6" value="骶椎"><label for="physical_jizhu_yatong_yao6">骶椎</label>
+                                    <input type="checkbox" id="physical_jizhu_yatong_yao7" name="physical_jizhu_yatong_yao7" value="尾椎"><label for="physical_jizhu_yatong_yao7">尾椎</label>
+                                </td>
+                            </tr>
+                        </table>
 
-                    <table class="table table-bordered table-striped" id="physical_jizhu_cetujixing_table"
-                           hidden="hidden">
-                        <tr>
-                            <th>前突</th>
-                            <th>后突</th>
-                            <th>侧突</th>
-                        </tr>
-                        <tr>
-                            <td><input disabled="disabled" class="physical_jizhu_cetujixing" style="width:100px"
-                                       type="text"
-                                       id="physical_jizhu_cetujixing_qiantu"/></td>
-                            <td><input disabled="disabled" class="physical_jizhu_cetujixing" style="width:100px"
-                                       type="text"
-                                       id="physical_jizhu_cetujixing_houtu"/></td>
-                            <td><input disabled="disabled" class="physical_jizhu_cetujixing" style="width:100px"
-                                       type="text"
-                                       id="physical_jizhu_cetujixing_cetu"/></td>
-                        </tr>
-                    </table>
+                        <label style="font-weight:bold; font-size: larger;">叩击痛:</label><br>
+                        <table class="table table-bordered table-striped">
+                            <tr>
+                                <th>部位</th>
+                                <th>具体部位</th>
+                            </tr>
+                            <tr>
+                                <td>颈椎</td>
+                                <td>
+                                    <input type="checkbox" id="physical_jizhu_koujitong_jing1"
+                                           name="physical_jizhu_koujitong_jing1" value="颈1"><label
+                                        for="physical_jizhu_koujitong_jing1">颈1</label>
+                                    <input type="checkbox" id="physical_jizhu_koujitong_jing2"
+                                           name="physical_jizhu_koujitong_jing2" value="颈1"><label
+                                        for="physical_jizhu_koujitong_jing2">颈2</label>
+                                    <input type="checkbox" id="physical_jizhu_koujitong_jing3"
+                                           name="physical_jizhu_koujitong_jing3" value="颈1"><label
+                                        for="physical_jizhu_koujitong_jing3">颈3</label>
+                                    <input type="checkbox" id="physical_jizhu_koujitong_jing4"
+                                           name="physical_jizhu_koujitong_jing4" value="颈1"><label
+                                        for="physical_jizhu_koujitong_jing4">颈4</label>
+                                    <input type="checkbox" id="physical_jizhu_koujitong_jing5"
+                                           name="physical_jizhu_koujitong_jing5" value="颈1"><label
+                                        for="physical_jizhu_koujitong_jing5">颈5</label>
+                                    <input type="checkbox" id="physical_jizhu_koujitong_jing6"
+                                           name="physical_jizhu_koujitong_jing6" value="颈1"><label
+                                        for="physical_jizhu_koujitong_jing6">颈6</label>
+                                    <input type="checkbox" id="physical_jizhu_koujitong_jing7"
+                                           name="physical_jizhu_koujitong_jing7" value="颈1"><label
+                                        for="physical_jizhu_koujitong_jing7">颈7</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>胸椎</td>
+                                <td>
+                                    <input type="checkbox" id="physical_jizhu_koujitong_xiong1" name="physical_jizhu_koujitong_xiong1" value="胸1"><label for="physical_jizhu_koujitong_xiong1">胸1</label>
+                                    <input type="checkbox" id="physical_jizhu_koujitong_xiong2" name="physical_jizhu_koujitong_xiong2" value="胸2"><label for="physical_jizhu_koujitong_xiong2">胸2</label>
+                                    <input type="checkbox" id="physical_jizhu_koujitong_xiong3" name="physical_jizhu_koujitong_xiong3" value="胸3"><label for="physical_jizhu_koujitong_xiong3">胸3</label>
+                                    <input type="checkbox" id="physical_jizhu_koujitong_xiong4" name="physical_jizhu_koujitong_xiong4" value="胸4"><label for="physical_jizhu_koujitong_xiong4">胸4</label>
+                                    <input type="checkbox" id="physical_jizhu_koujitong_xiong5" name="physical_jizhu_koujitong_xiong5" value="胸5"><label for="physical_jizhu_koujitong_xiong5">胸5</label>
+                                    <input type="checkbox" id="physical_jizhu_koujitong_xiong6" name="physical_jizhu_koujitong_xiong6" value="胸6"><label for="physical_jizhu_koujitong_xiong6">胸6</label>
+                                    <input type="checkbox" id="physical_jizhu_koujitong_xiong7" name="physical_jizhu_koujitong_xiong7" value="胸7"><label for="physical_jizhu_koujitong_xiong7">胸7</label>
+                                    <input type="checkbox" id="physical_jizhu_koujitong_xiong8" name="physical_jizhu_koujitong_xiong8" value="胸8"><label for="physical_jizhu_koujitong_xiong8">胸8</label>
+                                    <input type="checkbox" id="physical_jizhu_koujitong_xiong9" name="physical_jizhu_koujitong_xiong9" value="胸9"><label for="physical_jizhu_koujitong_xiong9">胸9</label>
+                                    <input type="checkbox" id="physical_jizhu_koujitong_xiong10" name="physical_jizhu_koujitong_xiong10" value="胸10"><label for="physical_jizhu_koujitong_xiong10">胸10</label>
+                                    <input type="checkbox" id="physical_jizhu_koujitong_xiong11" name="physical_jizhu_koujitong_xiong11" value="胸11"><label for="physical_jizhu_koujitong_xiong11">胸11</label>
+                                    <input type="checkbox" id="physical_jizhu_koujitong_xiong12" name="physical_jizhu_koujitong_xiong12" value="胸12"><label for="physical_jizhu_koujitong_xiong12">胸12</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>腰椎</td>
+                                <td>
+                                    <input type="checkbox" id="physical_jizhu_koujitong_yao1" name="physical_jizhu_koujitong_yao1" value="腰1"><label for="physical_jizhu_koujitong_yao1">腰1</label>
+                                    <input type="checkbox" id="physical_jizhu_koujitong_yao2" name="physical_jizhu_koujitong_yao2" value="腰2"><label for="physical_jizhu_koujitong_yao2">腰2</label>
+                                    <input type="checkbox" id="physical_jizhu_koujitong_yao3" name="physical_jizhu_koujitong_yao3" value="腰3"><label for="physical_jizhu_koujitong_yao3">腰3</label>
+                                    <input type="checkbox" id="physical_jizhu_koujitong_yao4" name="physical_jizhu_koujitong_yao4" value="腰4"><label for="physical_jizhu_koujitong_yao4">腰4</label>
+                                    <input type="checkbox" id="physical_jizhu_koujitong_yao5" name="physical_jizhu_koujitong_yao5" value="腰5"><label for="physical_jizhu_koujitong_yao5">腰5</label>
+                                    <input type="checkbox" id="physical_jizhu_koujitong_yao6" name="physical_jizhu_koujitong_yao6" value="骶椎"><label for="physical_jizhu_koujitong_yao6">骶椎</label>
+                                    <input type="checkbox" id="physical_jizhu_koujitong_yao7" name="physical_jizhu_koujitong_yao7" value="尾椎"><label for="physical_jizhu_koujitong_yao7">尾椎</label>
+                                </td>
+                            </tr>
+                        </table>
 
-                    <label style="font-weight:bold; font-size: larger;">活动度:</label><br>
-                    <table class="table table-bordered table-striped">
-                        <tr>
-                            <th>部位</th>
-                            <th>前屈</th>
-                            <th>后伸</th>
-                            <th>左侧弯</th>
-                            <th>右侧弯</th>
-                            <th>左侧旋</th>
-                            <th>右侧旋</th>
-                        </tr>
-                        <tr>
-                            <td>颈椎</td>
-                            <td><input disabled="disabled" class="huodongdu" style="width:100px" type="text"
-                                       id="jingzhui_qianqu"/></td>
-                            <td><input disabled="disabled" class="huodongdu" style="width:100px" type="text"
-                                       id="jingzhui_houshen"/></td>
-                            <td><input disabled="disabled" class="huodongdu" style="width:100px" type="text"
-                                       id="jingzhui_zuocewan"/></td>
-                            <td><input disabled="disabled" class="huodongdu" style="width:100px" type="text"
-                                       id="jingzhui_youcewan"/></td>
-                            <td><input disabled="disabled" class="huodongdu" style="width:100px" type="text"
-                                       id="jingzhui_zuocexuan"/></td>
-                            <td><input disabled="disabled" class="huodongdu" style="width:100px" type="text"
-                                       id="jingzhui_youcexuan"/></td>
-                        </tr>
-                        <tr>
-                            <td>胸椎</td>
-                            <td><input disabled="disabled" class="huodongdu" style="width:100px" type="text"
-                                       id="xiongzhui_qianqu"/></td>
-                            <td><input disabled="disabled" class="huodongdu" style="width:100px" type="text"
-                                       id="xiongzhui_houshen"/></td>
-                            <td><input disabled="disabled" class="huodongdu" style="width:100px" type="text"
-                                       id="xiongzhui_zuocewan"/></td>
-                            <td><input disabled="disabled" class="huodongdu" style="width:100px" type="text"
-                                       id="xiongzhui_youcewan"/></td>
-                            <td><input disabled="disabled" class="huodongdu" style="width:100px" type="text"
-                                       id="xiongzhui_zuocexuan"/></td>
-                            <td><input disabled="disabled" class="huodongdu" style="width:100px" type="text"
-                                       id="xiongzhui_youcexuan"/></td>
-                        </tr>
-                        <tr>
-                            <td>腰椎</td>
-                            <td><input disabled="disabled" class="huodongdu" style="width:100px" type="text"
-                                       id="yaozhui_qianqu"/></td>
-                            <td><input disabled="disabled" class="huodongdu" style="width:100px" type="text"
-                                       id="yaozhui_houshen"/></td>
-                            <td><input disabled="disabled" class="huodongdu" style="width:100px" type="text"
-                                       id="yaozhui_zuocewan"/></td>
-                            <td><input disabled="disabled" class="huodongdu" style="width:100px" type="text"
-                                       id="yaozhui_youcewan"/></td>
-                            <td><input disabled="disabled" class="huodongdu" style="width:100px" type="text"
-                                       id="yaozhui_zuocexuan"/></td>
-                            <td><input disabled="disabled" class="huodongdu" style="width:100px" type="text"
-                                       id="yaozhui_youcexuan"/></td>
-                        </tr>
-                    </table>
+                        <label style="font-weight:bold; font-size: larger;">压颈试验:</label>
+                        <select style="width:120px;color:black" disabled="disabled" id="physicalJizhuYajingshiyan"
+                                name="physical-jizhu-shiyan"
+                                class="form-control">
+                            <option value="" disabled selected="selected">请选择</option>
+                        </select> &nbsp;&nbsp;
 
-                    <label style="font-weight:bold; font-size: larger;">压痛:</label><br>
-                    <table class="table table-bordered table-striped">
-                        <tr>
-                            <th>部位</th>
-                            <th>具体部位</th>
-                        </tr>
-                        <tr>
-                            <td>颈椎</td>
-                            <td>
-                                <input type="checkbox" id="physical_jizhu_yatong_jing1"
-                                       name="physical_jizhu_yatong_jing1" value="颈1"><label
-                                    for="physical_jizhu_yatong_jing1">颈1</label>
-                                <input type="checkbox" id="physical_jizhu_yatong_jing2"
-                                       name="physical_jizhu_yatong_jing2" value="颈1"><label
-                                    for="physical_jizhu_yatong_jing2">颈2</label>
-                                <input type="checkbox" id="physical_jizhu_yatong_jing3"
-                                       name="physical_jizhu_yatong_jing3" value="颈1"><label
-                                    for="physical_jizhu_yatong_jing3">颈3</label>
-                                <input type="checkbox" id="physical_jizhu_yatong_jing4"
-                                       name="physical_jizhu_yatong_jing4" value="颈1"><label
-                                    for="physical_jizhu_yatong_jing4">颈4</label>
-                                <input type="checkbox" id="physical_jizhu_yatong_jing5"
-                                       name="physical_jizhu_yatong_jing5" value="颈1"><label
-                                    for="physical_jizhu_yatong_jing5">颈5</label>
-                                <input type="checkbox" id="physical_jizhu_yatong_jing6"
-                                       name="physical_jizhu_yatong_jing6" value="颈1"><label
-                                    for="physical_jizhu_yatong_jing6">颈6</label>
-                                <input type="checkbox" id="physical_jizhu_yatong_jing7"
-                                       name="physical_jizhu_yatong_jing7" value="颈1"><label
-                                    for="physical_jizhu_yatong_jing7">颈7</label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>胸椎</td>
-                            <td>
-                                <input type="checkbox" id="physical_jizhu_yatong_xiong1" name="physical_jizhu_yatong_xiong1" value="胸1"><label for="physical_jizhu_yatong_xiong1">胸1</label>
-                                <input type="checkbox" id="physical_jizhu_yatong_xiong2" name="physical_jizhu_yatong_xiong2" value="胸2"><label for="physical_jizhu_yatong_xiong2">胸2</label>
-                                <input type="checkbox" id="physical_jizhu_yatong_xiong3" name="physical_jizhu_yatong_xiong3" value="胸3"><label for="physical_jizhu_yatong_xiong3">胸3</label>
-                                <input type="checkbox" id="physical_jizhu_yatong_xiong4" name="physical_jizhu_yatong_xiong4" value="胸4"><label for="physical_jizhu_yatong_xiong4">胸4</label>
-                                <input type="checkbox" id="physical_jizhu_yatong_xiong5" name="physical_jizhu_yatong_xiong5" value="胸5"><label for="physical_jizhu_yatong_xiong5">胸5</label>
-                                <input type="checkbox" id="physical_jizhu_yatong_xiong6" name="physical_jizhu_yatong_xiong6" value="胸6"><label for="physical_jizhu_yatong_xiong6">胸6</label>
-                                <input type="checkbox" id="physical_jizhu_yatong_xiong7" name="physical_jizhu_yatong_xiong7" value="胸7"><label for="physical_jizhu_yatong_xiong7">胸7</label>
-                                <input type="checkbox" id="physical_jizhu_yatong_xiong8" name="physical_jizhu_yatong_xiong8" value="胸8"><label for="physical_jizhu_yatong_xiong8">胸8</label>
-                                <input type="checkbox" id="physical_jizhu_yatong_xiong9" name="physical_jizhu_yatong_xiong9" value="胸9"><label for="physical_jizhu_yatong_xiong9">胸9</label>
-                                <input type="checkbox" id="physical_jizhu_yatong_xiong10" name="physical_jizhu_yatong_xiong10" value="胸10"><label for="physical_jizhu_yatong_xiong10">胸10</label>
-                                <input type="checkbox" id="physical_jizhu_yatong_xiong11" name="physical_jizhu_yatong_xiong11" value="胸11"><label for="physical_jizhu_yatong_xiong11">胸11</label>
-                                <input type="checkbox" id="physical_jizhu_yatong_xiong12" name="physical_jizhu_yatong_xiong12" value="胸12"><label for="physical_jizhu_yatong_xiong12">胸12</label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>腰椎</td>
-                            <td>
-                                <input type="checkbox" id="physical_jizhu_yatong_yao1" name="physical_jizhu_yatong_yao1" value="腰1"><label for="physical_jizhu_yatong_yao1">腰1</label>
-                                <input type="checkbox" id="physical_jizhu_yatong_yao2" name="physical_jizhu_yatong_yao2" value="腰2"><label for="physical_jizhu_yatong_yao2">腰2</label>
-                                <input type="checkbox" id="physical_jizhu_yatong_yao3" name="physical_jizhu_yatong_yao3" value="腰3"><label for="physical_jizhu_yatong_yao3">腰3</label>
-                                <input type="checkbox" id="physical_jizhu_yatong_yao4" name="physical_jizhu_yatong_yao4" value="腰4"><label for="physical_jizhu_yatong_yao4">腰4</label>
-                                <input type="checkbox" id="physical_jizhu_yatong_yao5" name="physical_jizhu_yatong_yao5" value="腰5"><label for="physical_jizhu_yatong_yao5">腰5</label>
-                                <input type="checkbox" id="physical_jizhu_yatong_yao6" name="physical_jizhu_yatong_yao6" value="骶椎"><label for="physical_jizhu_yatong_yao6">骶椎</label>
-                                <input type="checkbox" id="physical_jizhu_yatong_yao7" name="physical_jizhu_yatong_yao7" value="尾椎"><label for="physical_jizhu_yatong_yao7">尾椎</label>
-                            </td>
-                        </tr>
-                    </table>
+                        <label style="font-weight:bold; font-size: larger;">臂丛牵拉试验:</label>
+                        <select style="width:120px;color:black" disabled="disabled" id="physicalJizhuBiconglashiyan"
+                                name="physical-jizhu-shiyan"
+                                class="form-control">
+                            <option value="" disabled selected="selected">请选择</option>
+                        </select> &nbsp;&nbsp;
 
-                    <label style="font-weight:bold; font-size: larger;">叩击痛:</label><br>
-                    <table class="table table-bordered table-striped">
-                        <tr>
-                            <th>部位</th>
-                            <th>具体部位</th>
-                        </tr>
-                        <tr>
-                            <td>颈椎</td>
-                            <td>
-                                <input type="checkbox" id="physical_jizhu_koujitong_jing1"
-                                       name="physical_jizhu_koujitong_jing1" value="颈1"><label
-                                    for="physical_jizhu_koujitong_jing1">颈1</label>
-                                <input type="checkbox" id="physical_jizhu_koujitong_jing2"
-                                       name="physical_jizhu_koujitong_jing2" value="颈1"><label
-                                    for="physical_jizhu_koujitong_jing2">颈2</label>
-                                <input type="checkbox" id="physical_jizhu_koujitong_jing3"
-                                       name="physical_jizhu_koujitong_jing3" value="颈1"><label
-                                    for="physical_jizhu_koujitong_jing3">颈3</label>
-                                <input type="checkbox" id="physical_jizhu_koujitong_jing4"
-                                       name="physical_jizhu_koujitong_jing4" value="颈1"><label
-                                    for="physical_jizhu_koujitong_jing4">颈4</label>
-                                <input type="checkbox" id="physical_jizhu_koujitong_jing5"
-                                       name="physical_jizhu_koujitong_jing5" value="颈1"><label
-                                    for="physical_jizhu_koujitong_jing5">颈5</label>
-                                <input type="checkbox" id="physical_jizhu_koujitong_jing6"
-                                       name="physical_jizhu_koujitong_jing6" value="颈1"><label
-                                    for="physical_jizhu_koujitong_jing6">颈6</label>
-                                <input type="checkbox" id="physical_jizhu_koujitong_jing7"
-                                       name="physical_jizhu_koujitong_jing7" value="颈1"><label
-                                    for="physical_jizhu_koujitong_jing7">颈7</label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>胸椎</td>
-                            <td>
-                                <input type="checkbox" id="physical_jizhu_koujitong_xiong1" name="physical_jizhu_koujitong_xiong1" value="胸1"><label for="physical_jizhu_koujitong_xiong1">胸1</label>
-                                <input type="checkbox" id="physical_jizhu_koujitong_xiong2" name="physical_jizhu_koujitong_xiong2" value="胸2"><label for="physical_jizhu_koujitong_xiong2">胸2</label>
-                                <input type="checkbox" id="physical_jizhu_koujitong_xiong3" name="physical_jizhu_koujitong_xiong3" value="胸3"><label for="physical_jizhu_koujitong_xiong3">胸3</label>
-                                <input type="checkbox" id="physical_jizhu_koujitong_xiong4" name="physical_jizhu_koujitong_xiong4" value="胸4"><label for="physical_jizhu_koujitong_xiong4">胸4</label>
-                                <input type="checkbox" id="physical_jizhu_koujitong_xiong5" name="physical_jizhu_koujitong_xiong5" value="胸5"><label for="physical_jizhu_koujitong_xiong5">胸5</label>
-                                <input type="checkbox" id="physical_jizhu_koujitong_xiong6" name="physical_jizhu_koujitong_xiong6" value="胸6"><label for="physical_jizhu_koujitong_xiong6">胸6</label>
-                                <input type="checkbox" id="physical_jizhu_koujitong_xiong7" name="physical_jizhu_koujitong_xiong7" value="胸7"><label for="physical_jizhu_koujitong_xiong7">胸7</label>
-                                <input type="checkbox" id="physical_jizhu_koujitong_xiong8" name="physical_jizhu_koujitong_xiong8" value="胸8"><label for="physical_jizhu_koujitong_xiong8">胸8</label>
-                                <input type="checkbox" id="physical_jizhu_koujitong_xiong9" name="physical_jizhu_koujitong_xiong9" value="胸9"><label for="physical_jizhu_koujitong_xiong9">胸9</label>
-                                <input type="checkbox" id="physical_jizhu_koujitong_xiong10" name="physical_jizhu_koujitong_xiong10" value="胸10"><label for="physical_jizhu_koujitong_xiong10">胸10</label>
-                                <input type="checkbox" id="physical_jizhu_koujitong_xiong11" name="physical_jizhu_koujitong_xiong11" value="胸11"><label for="physical_jizhu_koujitong_xiong11">胸11</label>
-                                <input type="checkbox" id="physical_jizhu_koujitong_xiong12" name="physical_jizhu_koujitong_xiong12" value="胸12"><label for="physical_jizhu_koujitong_xiong12">胸12</label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>腰椎</td>
-                            <td>
-                                <input type="checkbox" id="physical_jizhu_koujitong_yao1" name="physical_jizhu_koujitong_yao1" value="腰1"><label for="physical_jizhu_koujitong_yao1">腰1</label>
-                                <input type="checkbox" id="physical_jizhu_koujitong_yao2" name="physical_jizhu_koujitong_yao2" value="腰2"><label for="physical_jizhu_koujitong_yao2">腰2</label>
-                                <input type="checkbox" id="physical_jizhu_koujitong_yao3" name="physical_jizhu_koujitong_yao3" value="腰3"><label for="physical_jizhu_koujitong_yao3">腰3</label>
-                                <input type="checkbox" id="physical_jizhu_koujitong_yao4" name="physical_jizhu_koujitong_yao4" value="腰4"><label for="physical_jizhu_koujitong_yao4">腰4</label>
-                                <input type="checkbox" id="physical_jizhu_koujitong_yao5" name="physical_jizhu_koujitong_yao5" value="腰5"><label for="physical_jizhu_koujitong_yao5">腰5</label>
-                                <input type="checkbox" id="physical_jizhu_koujitong_yao6" name="physical_jizhu_koujitong_yao6" value="骶椎"><label for="physical_jizhu_koujitong_yao6">骶椎</label>
-                                <input type="checkbox" id="physical_jizhu_koujitong_yao7" name="physical_jizhu_koujitong_yao7" value="尾椎"><label for="physical_jizhu_koujitong_yao7">尾椎</label>
-                            </td>
-                        </tr>
-                    </table>
+                        <label style="font-weight:bold; font-size: larger;">拾物试验:</label>
+                        <select style="width:120px;color:black" disabled="disabled" id="physicalJizhuShiwushiyan"
+                                name="physical-jizhu-shiyan"
+                                class="form-control">
+                            <option value="" disabled selected="selected">请选择</option>
+                        </select> &nbsp;&nbsp;
 
-                    <label style="font-weight:bold; font-size: larger;">压颈试验:</label>
-                    <select style="width:120px;color:black" disabled="disabled" id="physicalJizhuYajingshiyan"
-                            name="physical-jizhu-shiyan"
-                            class="form-control">
-                        <option value="" disabled selected="selected">请选择</option>
-                    </select> &nbsp;&nbsp;
+                        <label style="font-weight:bold; font-size: larger;">直腿抬高试验:</label>
+                        <select style="width:120px;color:black" disabled="disabled" id="physicalJizhuZhituitaigaoshiyan"
+                                name="physical-jizhu-shiyan"
+                                class="form-control">
+                            <option value="" disabled selected="selected">请选择</option>
+                        </select> &nbsp;&nbsp;
 
-                    <label style="font-weight:bold; font-size: larger;">臂丛牵拉试验:</label>
-                    <select style="width:120px;color:black" disabled="disabled" id="physicalJizhuBiconglashiyan"
-                            name="physical-jizhu-shiyan"
-                            class="form-control">
-                        <option value="" disabled selected="selected">请选择</option>
-                    </select> &nbsp;&nbsp;
+                        <label style="font-weight:bold; font-size: larger;">股神经牵拉试验:</label>
+                        <select style="width:120px;color:black" disabled="disabled" id="physicalJizhuGushenjingqianlashiyan"
+                                name="physical-jizhu-shiyan"
+                                class="form-control">
+                            <option value="" disabled selected="selected">请选择</option>
+                        </select>
 
-                    <label style="font-weight:bold; font-size: larger;">拾物试验:</label>
-                    <select style="width:120px;color:black" disabled="disabled" id="physicalJizhuShiwushiyan"
-                            name="physical-jizhu-shiyan"
-                            class="form-control">
-                        <option value="" disabled selected="selected">请选择</option>
-                    </select> &nbsp;&nbsp;
-
-                    <label style="font-weight:bold; font-size: larger;">直腿抬高试验:</label>
-                    <select style="width:120px;color:black" disabled="disabled" id="physicalJizhuZhituitaigaoshiyan"
-                            name="physical-jizhu-shiyan"
-                            class="form-control">
-                        <option value="" disabled selected="selected">请选择</option>
-                    </select> &nbsp;&nbsp;
-
-                    <label style="font-weight:bold; font-size: larger;">股神经牵拉试验:</label>
-                    <select style="width:120px;color:black" disabled="disabled" id="physicalJizhuGushenjingqianlashiyan"
-                            name="physical-jizhu-shiyan"
-                            class="form-control">
-                        <option value="" disabled selected="selected">请选择</option>
-                    </select>
-
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <button type="submit" id="savePhysical" hidden="hidden" class="btn btn-primary transition-duration">保存</button>
+        <button type="submit" id="savePhysical" hidden="hidden" class="btn btn-primary transition-duration">保存</button>
 
-    <h5>WOMAC 健康调查表 <a href="/hospital/score/womac/${patient.id}" type="button"
-                  class="btn btn-sm btn-success">查看</a></h5>
+    </div>
+
+    <div id="physical_kuanguanjie">
+        <h5>髋关节
+            <button type="submit" id="modify_physical_kuanguanjie" class="btn btn-primary transition-duration">修改
+            </button>
+        </h5>
+    </div>
+
+    <h5>功能评分记录
+        <div class="btn-group">
+            <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle" type="button">查看 <span
+                    class="caret"></span></button>
+            <ul role="menu" class="dropdown-menu">
+                <li>
+                    <a href="/hospital/score/womac/${patient.id}">WOMAC 健康调查表</a>
+                </li>
+            </ul>
+        </div>
+    </h5>
 
     <c:if test="${empty scoreMarkList}">
         <p class="bg-warning">
@@ -624,6 +590,17 @@
             }
         }
     };
+
+
+    $("#show_physical_jizhu").click(function () {
+        $("#physical_jizhu").show();
+        $("#physical_kuanguanjie").hide();
+    });
+
+    $("#show_physical_kuanguanjie").click(function () {
+        $("#physical_kuanguanjie").show();
+        $("#physical_jizhu").hide();
+    });
 
     $("#modifyPhysical").click(function () {
         $("#physical_jizhu_cetujixing_has_symptom").prop('disabled', false);
