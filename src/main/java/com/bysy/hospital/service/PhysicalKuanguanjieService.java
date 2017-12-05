@@ -3,8 +3,10 @@ package com.bysy.hospital.service;
 import com.bysy.hospital.Utils.BeanUtilsEx;
 import com.bysy.hospital.Utils.CriteriaInfo;
 import com.bysy.hospital.model.PhysicalKuanguanjieJixingEntity;
+import com.bysy.hospital.model.PhysicalKuanguanjieYatongEntity;
 import com.bysy.hospital.repository.PhysicalRepository;
 import com.bysy.hospital.request.PhysicalKuanguanjieJixingRequest;
+import com.bysy.hospital.request.PhysicalKuanguanjieYatongRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -63,6 +65,44 @@ public class PhysicalKuanguanjieService {
             jixingEntity.setExamCategory("髋关节");
             jixingEntity.setExamName("畸形");
             physicalRepository.create(jixingEntity);
+        }
+    }
+
+    public PhysicalKuanguanjieYatongEntity findKuanguanjieYatong(Integer patientId) {
+        PhysicalKuanguanjieYatongEntity entity = new PhysicalKuanguanjieYatongEntity();
+        if (null != patientId) {
+            Map<String, CriteriaInfo> params = new HashMap<String, CriteriaInfo>();
+            params.put("patientId", new CriteriaInfo(CriteriaInfo.CriteriaType.equal, patientId));
+            List<PhysicalKuanguanjieYatongEntity> entityList = physicalRepository.findByAttributes(PhysicalKuanguanjieYatongEntity.class, params, 0, 1, null);
+            if (!CollectionUtils.isEmpty(entityList)) {
+                entity = entityList.get(0);
+            }
+        }
+
+        return entity;
+    }
+
+    @Transactional
+    public void updateOrCreateKuanguanjieYatong(PhysicalKuanguanjieYatongRequest request) {
+        PhysicalKuanguanjieYatongEntity entity = findKuanguanjieYatong(request.getPatientId());
+        Integer hasSymptom = request.getHasSymptom();
+        if (null != entity && null != entity.getId()) {
+            entity.setHasSymptom(hasSymptom);
+            entity.setUpdateBy("system");
+            entity.setUpdateTime(new Date());
+            if (hasSymptom == 1) {
+                entity.setExamResult(request.getExamResult());
+            } else {
+                entity.setExamResult("");
+            }
+            physicalRepository.update(entity);
+        } else {
+            PhysicalKuanguanjieYatongEntity yatongEntity = new PhysicalKuanguanjieYatongEntity();
+            BeanUtilsEx.copyProperties(request, yatongEntity);
+            yatongEntity.setExamType("体格检查");
+            yatongEntity.setExamCategory("髋关节");
+            yatongEntity.setExamName("压痛");
+            physicalRepository.create(yatongEntity);
         }
     }
 

@@ -408,6 +408,18 @@
                             </tr>
                         </table>
 
+                        <label style="font-weight:bold; font-size: larger;">压痛:</label>
+                        <select style="width:120px;color:black" id="physical_kuanguanjie_yatong_has_symptom"
+                                name="physical_kuanguanjie_yatong_has_symptom"
+                                class="form-control" disabled="true"
+                                onchange="physicalKuanguanjieYatongOnChange(this.value)">
+                            <option value="" disabled selected="selected">请选择</option>
+                        </select>
+
+                        <input disabled="disabled" class="physical_kuanguanjie_yatong" type="text" id="physical_kuanguanjie_yatong"/>
+
+
+
                     </div>
                 </div>
             </div>
@@ -570,8 +582,9 @@
     $(document).ready(function () {
         $("#savePhysical").hide();
         initEthnicity();
-        physicalJizhuGet();
-        $("#physical_kuanguanjie").hide();
+        $("#physical_kuanguanjie").show();
+        $("#physical_jizhu").hide();
+        physicalKuanguanjieGet();
     });
 
     $("#modifyUser").click(function () {
