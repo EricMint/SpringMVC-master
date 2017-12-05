@@ -3,6 +3,7 @@ function physicalKuanguanjieGet() {
     physicalKuanguanjieYatongGet();
     physicalKuanguanjieButaiGet();
     physicalKuanguanjieHuodongduGet();
+    physicalKuanguanjieShiyanGet();
 }
 
 $("#modify_physical_kuanguanjie").click(function () {
@@ -18,12 +19,9 @@ $("#modify_physical_kuanguanjie").click(function () {
 
     $(".physical_kuanguanjie_huodongdu").prop('disabled', false);
 
+    $("select[name='physical_kuanguanjie_shiyan']").prop('disabled', false);
+    $("select[name='physical_kuanguanjie_shiyan']").css('background-color', '#F0F8FF');
 
-    // $(".huodongdu").prop('disabled', false);
-    // $("input[name*='physical_jizhu_yatong']").prop('disabled', false);
-    // $("input[name*='physical_jizhu_koujitong']").prop('disabled', false);
-    // $("select[name='physical-jizhu-shiyan']").prop('disabled', false);
-    // $("select[name='physical-jizhu-shiyan']").css('background-color', '#F0F8FF');
     $("#save_physical_kuanguanjie").show();
 });
 
@@ -40,14 +38,15 @@ $("#save_physical_kuanguanjie").click(function () {
 
     $(".physical_kuanguanjie_huodongdu").prop('disabled', true);
 
-    // $(".huodongdu").prop('disabled', true);
-    // $("select[name='physical-jizhu-shiyan']").prop('disabled', true);
-    // $("select[name='physical-jizhu-shiyan']").css('background-color', '#FFFFFF');
+    $("select[name='physical_kuanguanjie_shiyan']").prop('disabled', true);
+    $("select[name='physical_kuanguanjie_shiyan']").css('background-color', '#FFFFFF');
+
     $("#save_physical_kuanguanjie").hide();
     physicalKuanguanjieJixingSave();
     physicalKuanguanjieYatongSave();
     physicalKuanguanjieButaiSave();
     PhysicalKuanguanjieHuodongduSave();
+    physicalKuanguanjieShiyanSave();
 });
 
 function physicalKuanguanjieButaiGet() {
@@ -265,4 +264,91 @@ function PhysicalKuanguanjieHuodongduSave() {
             }
         }
     );
+};
+
+
+function physicalKuanguanjieShiyanGet() {
+    var shiyanList = ["纵向叩击痛", "Alice征", "Trendlenburg征", "单足站立试验", "4字试验"];
+    var optionsList = ["阳性", "阴性"];
+    var patientId = $("#patientId").val();
+    $.ajax({
+        url: "/hospital/patient/physical/kuanguanjie/shiyan/" + patientId,
+        type: "GET",
+        dataType: "json",
+        contentType: "application/xhtml+xml; charset=utf-8",
+        success: function (answerList) {
+            console.log(answerList);
+            var answerMap = new Map();
+            if (answerList.length > 0) {
+                for (var i = 0; i < answerList.length; i++) {
+                    var answer = answerList[i];
+                    answerMap.set(answer.examName, answer.examResult);
+                }
+            }
+            console.log(answerMap);
+
+            for (var i = 0; i < shiyanList.length; i++) {
+                var shiyan = shiyanList[i];
+                var answer = answerMap.get(shiyan);
+                var node;
+                if (shiyan == "纵向叩击痛") {
+                    node = $("#physical_kuanguanjie_zongxiangkoujitong");
+                } else if (shiyan == "Alice征") {
+                    node = $("#physical_kuanguanjie_alice");
+                } else if (shiyan == "Trendlenburg征") {
+                    node = $("#physical_kuanguanjie_trendlenburg");
+                } else if (shiyan == "单足站立试验") {
+                    node = $("#physical_kuanguanjie_danzuzhanlishiyan");
+                } else if (shiyan == "4字试验") {
+                    node = $("#physical_kuanguanjie_4zishiyan");
+                }
+
+                for (var j = 0; j < optionsList.length; j++) {
+                    var optionElement = optionsList[j];
+                    if (answer && answer == optionElement) {
+                        node.append("<option value=" + optionElement + " " + "selected>" + optionElement + "</option>");
+                    } else {
+                        node.append("<option value=" + optionElement + ">" + optionElement + "</option>");
+                    }
+                }
+            }
+        },
+        error: function () {
+        }
+    });
+};
+
+function physicalKuanguanjieShiyanSave() {
+    var shiyanList = ["纵向叩击痛", "Alice征", "Trendlenburg征", "单足站立试验", "4字试验"];
+    var data = {};
+    data.patientId = $("#patientId").val();
+    for (var i = 0; i < shiyanList.length; i++) {
+        var shiyan = shiyanList[i];
+        data.examName = shiyan;
+        if (shiyan == "纵向叩击痛") {
+            data.examResult = $("#physical_kuanguanjie_zongxiangkoujitong").val();
+        } else if (shiyan == "Alice征") {
+            data.examResult = $("#physical_kuanguanjie_alice").val();
+        } else if (shiyan == "Trendlenburg征") {
+            data.examResult = $("#physical_kuanguanjie_trendlenburg").val();
+        } else if (shiyan == "单足站立试验") {
+            data.examResult = $("#physical_kuanguanjie_danzuzhanlishiyan").val();
+        } else if (shiyan == "4字试验") {
+            data.examResult = $("#physical_kuanguanjie_4zishiyan").val();
+        }
+        $.ajax({
+                url: "/hospital/patient/physical/kuanguanjie/shiyan",
+                type: "post",
+                data: JSON.stringify(data),
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (result) {
+                    console.log(result)
+                },
+                error: function () {
+
+                }
+            }
+        );
+    }
 };

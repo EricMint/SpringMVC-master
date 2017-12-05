@@ -62,7 +62,7 @@ public class PhysicalKuanguanjieController {
 
     @ResponseBody
     @RequestMapping(value = "/patient/physical/kuanguanjie/huodongdu/{patientId}", method = RequestMethod.GET, produces = "application/json")
-    public PhysicalKuanguanjieHuodongduEntity physicalJizhuKuanguanjieHuodongduGet(@PathVariable("patientId") Integer patientId) {
+    public PhysicalKuanguanjieHuodongduEntity physicalKuanguanjieKuanguanjieHuodongduGet(@PathVariable("patientId") Integer patientId) {
         PhysicalKuanguanjieHuodongduEntity entity = physicalKuanguanjieService.findKuanguanjieHuodongdu(patientId);
         return entity;
     }
@@ -72,5 +72,19 @@ public class PhysicalKuanguanjieController {
     @ResponseBody
     public void physicalKuanguanjieHuodongduUpdate(@RequestBody PhysicalKuanguanjieHuodongduRequest request) {
         physicalKuanguanjieService.updateOrCreateKuanguanjieHuodongdu(request);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/patient/physical/kuanguanjie/shiyan/{patientId}", method = RequestMethod.GET, produces = "application/json")
+    public List<PhysicalKuanguanjieShiyanEntity> physicalKuanguanjieShiyanGet(@PathVariable("patientId") Integer patientId) {
+        List<PhysicalKuanguanjieShiyanEntity> entityList = physicalKuanguanjieService.findKuanguanjieShiyan(patientId);
+        return entityList;
+    }
+
+    @Transactional
+    @RequestMapping(value = "/patient/physical/kuanguanjie/shiyan", method = RequestMethod.POST)
+    @ResponseBody
+    public void physicalKuanguanjieShiyanUpdate(@RequestBody PhysicalKuanguanjieShiyanRequest request) {
+        physicalKuanguanjieService.updateOrCreateKuanguanjieShiyan(request);
     }
 }

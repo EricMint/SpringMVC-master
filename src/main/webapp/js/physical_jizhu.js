@@ -6,7 +6,7 @@ function physicalJizhuGet() {
     PhysicalJizhuShiyanGet();
 }
 
-$("#modifyPhysical").click(function () {
+$("#modify_physical_jizhu").click(function () {
     $("#physical_jizhu_cetujixing_has_symptom").prop('disabled', false);
     $('#physical_jizhu_cetujixing_has_symptom').css('background-color', '#F0F8FF'); // change the background color
     $(".physical_jizhu_cetujixing").prop('disabled', false);
@@ -15,17 +15,17 @@ $("#modifyPhysical").click(function () {
     $("input[name*='physical_jizhu_koujitong']").prop('disabled', false);
     $("select[name='physical-jizhu-shiyan']").prop('disabled', false);
     $("select[name='physical-jizhu-shiyan']").css('background-color', '#F0F8FF');
-    $("#savePhysical").show();
+    $("#save_physical_jizhu").show();
 });
 
-$("#savePhysical").click(function () {
+$("#save_physical_jizhu").click(function () {
     $("#physical_jizhu_cetujixing_has_symptom").prop('disabled', true);
     $('#physical_jizhu_cetujixing_has_symptom').css('background-color', '#FFFFFF'); // change the background color
     $(".physical_jizhu_cetujixing").prop('disabled', true);
     $(".huodongdu").prop('disabled', true);
     $("select[name='physical-jizhu-shiyan']").prop('disabled', true);
     $("select[name='physical-jizhu-shiyan']").css('background-color', '#FFFFFF');
-    $("#savePhysical").hide();
+    $("#save_physical_jizhu").hide();
     PhysicalJizhuCetujixingSave();
     PhysicalJizhuHuodongduSave();
     PhysicalJizhuTongSave();

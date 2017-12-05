@@ -105,7 +105,7 @@
 
     <div id="physical_jizhu">
         <h5>脊柱查体
-            <button type="submit" id="modifyPhysical" class="btn btn-primary transition-duration">修改</button>
+            <button type="submit" id="modify_physical_jizhu" class="btn btn-primary transition-duration">修改</button>
         </h5>
 
         <div class="container-fluid">
@@ -364,7 +364,7 @@
                 </div>
             </div>
         </div>
-        <button type="submit" id="savePhysical" hidden="hidden" class="btn btn-primary transition-duration">保存</button>
+        <button type="submit" id="save_physical_jizhu" hidden="hidden" class="btn btn-primary transition-duration">保存</button>
 
     </div>
 
@@ -440,6 +440,31 @@
                                 <td><input disabled="disabled" class="physical_kuanguanjie_huodongdu" style="width:100px" type="text" id="physical_kuanguanjie_huodongdu_waizhan"/></td>
                             </tr>
                         </table>
+
+                        <label style="font-weight:bold; font-size: larger;">纵向叩击痛:</label>
+                        <select style="width:120px;color:black" disabled="disabled" id="physical_kuanguanjie_zongxiangkoujitong" name="physical_kuanguanjie_shiyan" class="form-control">
+                            <option value="" disabled selected="selected">请选择</option>
+                        </select> &nbsp;&nbsp;
+
+                        <label style="font-weight:bold; font-size: larger;">Alice征:</label>
+                        <select style="width:120px;color:black" disabled="disabled" id="physical_kuanguanjie_alice" name="physical_kuanguanjie_shiyan" class="form-control">
+                            <option value="" disabled selected="selected">请选择</option>
+                        </select> &nbsp;&nbsp;
+
+                        <label style="font-weight:bold; font-size: larger;">Trendlenburg征:</label>
+                        <select style="width:120px;color:black" disabled="disabled" id="physical_kuanguanjie_trendlenburg" name="physical_kuanguanjie_shiyan" class="form-control">
+                            <option value="" disabled selected="selected">请选择</option>
+                        </select> &nbsp;&nbsp;
+
+                        <label style="font-weight:bold; font-size: larger;">单足站立试验:</label>
+                        <select style="width:120px;color:black" disabled="disabled" id="physical_kuanguanjie_danzuzhanlishiyan" name="physical_kuanguanjie_shiyan" class="form-control">
+                            <option value="" disabled selected="selected">请选择</option>
+                        </select> &nbsp;&nbsp;
+
+                        <label style="font-weight:bold; font-size: larger;">4字试验:</label>
+                        <select style="width:120px;color:black" disabled="disabled" id="physical_kuanguanjie_4zishiyan" name="physical_kuanguanjie_shiyan" class="form-control">
+                            <option value="" disabled selected="selected">请选择</option>
+                        </select> &nbsp;&nbsp;
 
                     </div>
                 </div>
@@ -601,7 +626,8 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        $("#savePhysical").hide();
+        $("#save_physical_jizhu").hide();
+        $("#save_physical_kuanguanjie").hide();
         initEthnicity();
         $("#physical_kuanguanjie").show();
         $("#physical_jizhu").hide();
