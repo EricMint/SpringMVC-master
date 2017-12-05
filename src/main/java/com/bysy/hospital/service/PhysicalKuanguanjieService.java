@@ -3,21 +3,21 @@ package com.bysy.hospital.service;
 import com.bysy.hospital.Utils.BeanUtilsEx;
 import com.bysy.hospital.Utils.CriteriaInfo;
 import com.bysy.hospital.model.PhysicalKuanguanjieButaiEntity;
+import com.bysy.hospital.model.PhysicalKuanguanjieHuodongduEntity;
 import com.bysy.hospital.model.PhysicalKuanguanjieJixingEntity;
 import com.bysy.hospital.model.PhysicalKuanguanjieYatongEntity;
 import com.bysy.hospital.repository.PhysicalRepository;
 import com.bysy.hospital.request.PhysicalKuanguanjieButaiRequest;
+import com.bysy.hospital.request.PhysicalKuanguanjieHuodongduRequest;
 import com.bysy.hospital.request.PhysicalKuanguanjieJixingRequest;
 import com.bysy.hospital.request.PhysicalKuanguanjieYatongRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by mint on 12/05/17.
@@ -140,5 +140,60 @@ public class PhysicalKuanguanjieService {
             physicalRepository.create(yatongEntity);
         }
     }
+
+    public PhysicalKuanguanjieHuodongduEntity findKuanguanjieHuodongdu(Integer patientId) {
+        PhysicalKuanguanjieHuodongduEntity entity = new PhysicalKuanguanjieHuodongduEntity();
+        if (null != patientId) {
+            Map<String, CriteriaInfo> params = new HashMap<String, CriteriaInfo>();
+            params.put("patientId", new CriteriaInfo(CriteriaInfo.CriteriaType.equal, patientId));
+            List<PhysicalKuanguanjieHuodongduEntity> entityList = physicalRepository.findByAttributes(PhysicalKuanguanjieHuodongduEntity.class, params, null);
+            if (!CollectionUtils.isEmpty(entityList)) {
+                entity = entityList.get(0);
+            }
+        }
+
+        return entity;
+    }
+
+    public void updateOrCreateKuanguanjieHuodongdu(PhysicalKuanguanjieHuodongduRequest request) {
+        Integer patientId = request.getPatientId();
+        if (null == patientId) {
+            return;
+        }
+        Map<String, CriteriaInfo> params = new HashMap<String, CriteriaInfo>();
+        params.put("patientId", new CriteriaInfo(CriteriaInfo.CriteriaType.equal, patientId));
+        List<PhysicalKuanguanjieHuodongduEntity> entityList = physicalRepository.findByAttributes(PhysicalKuanguanjieHuodongduEntity.class, params, null);
+        if (CollectionUtils.isEmpty(entityList)) {
+            PhysicalKuanguanjieHuodongduEntity huodongduEntity = new PhysicalKuanguanjieHuodongduEntity();
+            BeanUtilsEx.copyProperties(request, huodongduEntity);
+            huodongduEntity.setExamType("体格检查");
+            huodongduEntity.setExamCategory("髋关节");
+            huodongduEntity.setExamName("活动度");
+            physicalRepository.create(huodongduEntity);
+        } else {
+            PhysicalKuanguanjieHuodongduEntity updateEntity = entityList.get(0);
+            if (StringUtils.hasText(request.getQuqu())) {
+                updateEntity.setQuqu(request.getQuqu());
+            }
+            if (StringUtils.hasText(request.getHoushen())) {
+                updateEntity.setHoushen(request.getHoushen());
+            }
+            if (StringUtils.hasText(request.getNeixuan())) {
+                updateEntity.setNeixuan(request.getNeixuan());
+            }
+            if (StringUtils.hasText(request.getWaixuan())) {
+                updateEntity.setWaixuan(request.getWaixuan());
+            }
+            if (StringUtils.hasText(request.getNeishou())) {
+                updateEntity.setNeishou(request.getNeishou());
+            }
+            if (StringUtils.hasText(request.getWaizhan())) {
+                updateEntity.setWaizhan(request.getWaizhan());
+            }
+            physicalRepository.update(updateEntity);
+        }
+
+    }
+
 
 }

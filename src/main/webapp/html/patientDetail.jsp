@@ -419,8 +419,27 @@
                             <option value="" disabled selected="selected">请选择</option>
                         </select>
                         <input disabled="disabled" class="physical_kuanguanjie_yatong" type="text" id="physical_kuanguanjie_yatong" placeholder="请输入部位"/>
+                        <br>
 
-
+                        <label style="font-weight:bold; font-size: larger;">活动度:</label><br>
+                        <table class="table table-bordered table-striped">
+                            <tr>
+                                <th>屈曲</th>
+                                <th>后伸</th>
+                                <th>内旋</th>
+                                <th>外旋</th>
+                                <th>内收</th>
+                                <th>外展</th>
+                            </tr>
+                            <tr>
+                                <td><input disabled="disabled" class="physical_kuanguanjie_huodongdu" style="width:100px" type="text" id="physical_kuanguanjie_huodongdu_ququ"/></td>
+                                <td><input disabled="disabled" class="physical_kuanguanjie_huodongdu" style="width:100px" type="text" id="physical_kuanguanjie_huodongdu_houshen"/></td>
+                                <td><input disabled="disabled" class="physical_kuanguanjie_huodongdu" style="width:100px" type="text" id="physical_kuanguanjie_huodongdu_neixuan"/></td>
+                                <td><input disabled="disabled" class="physical_kuanguanjie_huodongdu" style="width:100px" type="text" id="physical_kuanguanjie_huodongdu_waixuan"/></td>
+                                <td><input disabled="disabled" class="physical_kuanguanjie_huodongdu" style="width:100px" type="text" id="physical_kuanguanjie_huodongdu_neishou"/></td>
+                                <td><input disabled="disabled" class="physical_kuanguanjie_huodongdu" style="width:100px" type="text" id="physical_kuanguanjie_huodongdu_waizhan"/></td>
+                            </tr>
+                        </table>
 
                     </div>
                 </div>

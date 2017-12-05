@@ -1,16 +1,14 @@
 package com.bysy.hospital.controller;
 
-import com.bysy.hospital.model.PhysicalKuanguanjieButaiEntity;
-import com.bysy.hospital.model.PhysicalKuanguanjieJixingEntity;
-import com.bysy.hospital.model.PhysicalKuanguanjieYatongEntity;
-import com.bysy.hospital.request.PhysicalKuanguanjieButaiRequest;
-import com.bysy.hospital.request.PhysicalKuanguanjieJixingRequest;
-import com.bysy.hospital.request.PhysicalKuanguanjieYatongRequest;
+import com.bysy.hospital.model.*;
+import com.bysy.hospital.request.*;
 import com.bysy.hospital.service.PhysicalKuanguanjieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 @Controller
@@ -62,4 +60,17 @@ public class PhysicalKuanguanjieController {
         physicalKuanguanjieService.updateOrCreateKuanguanjieYatong(request);
     }
 
+    @ResponseBody
+    @RequestMapping(value = "/patient/physical/kuanguanjie/huodongdu/{patientId}", method = RequestMethod.GET, produces = "application/json")
+    public PhysicalKuanguanjieHuodongduEntity physicalJizhuKuanguanjieHuodongduGet(@PathVariable("patientId") Integer patientId) {
+        PhysicalKuanguanjieHuodongduEntity entity = physicalKuanguanjieService.findKuanguanjieHuodongdu(patientId);
+        return entity;
+    }
+
+    @Transactional
+    @RequestMapping(value = "/patient/physical/kuanguanjie/huodongdu", method = RequestMethod.POST)
+    @ResponseBody
+    public void physicalKuanguanjieHuodongduUpdate(@RequestBody PhysicalKuanguanjieHuodongduRequest request) {
+        physicalKuanguanjieService.updateOrCreateKuanguanjieHuodongdu(request);
+    }
 }

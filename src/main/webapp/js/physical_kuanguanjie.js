@@ -2,6 +2,7 @@ function physicalKuanguanjieGet() {
     physicalKuanguanjieJixingGet();
     physicalKuanguanjieYatongGet();
     physicalKuanguanjieButaiGet();
+    physicalKuanguanjieHuodongduGet();
 }
 
 $("#modify_physical_kuanguanjie").click(function () {
@@ -14,6 +15,9 @@ $("#modify_physical_kuanguanjie").click(function () {
     $(".physical_kuanguanjie_yatong").prop('disabled', false);
 
     $(".physical_kuanguanjie_butai").prop('disabled', false);
+
+    $(".physical_kuanguanjie_huodongdu").prop('disabled', false);
+
 
     // $(".huodongdu").prop('disabled', false);
     // $("input[name*='physical_jizhu_yatong']").prop('disabled', false);
@@ -34,13 +38,16 @@ $("#save_physical_kuanguanjie").click(function () {
 
     $(".physical_kuanguanjie_butai").prop('disabled', true);
 
+    $(".physical_kuanguanjie_huodongdu").prop('disabled', true);
+
     // $(".huodongdu").prop('disabled', true);
     // $("select[name='physical-jizhu-shiyan']").prop('disabled', true);
     // $("select[name='physical-jizhu-shiyan']").css('background-color', '#FFFFFF');
     $("#save_physical_kuanguanjie").hide();
     physicalKuanguanjieJixingSave();
     physicalKuanguanjieYatongSave();
-    physicalKuanguanjieButaiSave()
+    physicalKuanguanjieButaiSave();
+    PhysicalKuanguanjieHuodongduSave();
 });
 
 function physicalKuanguanjieButaiGet() {
@@ -197,6 +204,55 @@ function physicalKuanguanjieYatongSave() {
     console.log(data);
     $.ajax({
             url: "/hospital/patient/physical/kuanguanjie/yatong",
+            type: "post",
+            data: JSON.stringify(data),
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            success: function (result) {
+                console.log(result)
+            },
+            error: function () {
+
+            }
+        }
+    );
+};
+
+
+function physicalKuanguanjieHuodongduGet() {
+    var patientId = $("#patientId").val();
+    $.ajax({
+            url: "/hospital/patient/physical/kuanguanjie/huodongdu/" + patientId,
+            type: "GET",
+            dataType: "json",
+            contentType: "application/xhtml+xml; charset=utf-8",
+            success: function (result) {
+                console.log(result);
+                $("#physical_kuanguanjie_huodongdu_ququ").val(result.ququ);
+                $("#physical_kuanguanjie_huodongdu_houshen").val(result.houshen);
+                $("#physical_kuanguanjie_huodongdu_neixuan").val(result.neixuan);
+                $("#physical_kuanguanjie_huodongdu_waixuan").val(result.waixuan);
+                $("#physical_kuanguanjie_huodongdu_neishou").val(result.neishou);
+                $("#physical_kuanguanjie_huodongdu_waizhan").val(result.waizhan);
+            },
+            error: function () {
+
+            }
+        }
+    );
+};
+
+function PhysicalKuanguanjieHuodongduSave() {
+    var data = {};
+    data.patientId = $("#patientId").val();
+    data.ququ = $("#physical_kuanguanjie_huodongdu_ququ").val();
+    data.houshen = $("#physical_kuanguanjie_huodongdu_houshen").val();
+    data.neixuan = $("#physical_kuanguanjie_huodongdu_neixuan").val();
+    data.waixuan = $("#physical_kuanguanjie_huodongdu_waixuan").val();
+    data.neishou = $("#physical_kuanguanjie_huodongdu_neishou").val();
+    data.waizhan = $("#physical_kuanguanjie_huodongdu_waizhan").val();
+    $.ajax({
+            url: "/hospital/patient/physical/kuanguanjie/huodongdu",
             type: "post",
             data: JSON.stringify(data),
             dataType: "json",
