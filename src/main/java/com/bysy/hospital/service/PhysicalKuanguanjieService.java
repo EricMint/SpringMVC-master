@@ -2,9 +2,11 @@ package com.bysy.hospital.service;
 
 import com.bysy.hospital.Utils.BeanUtilsEx;
 import com.bysy.hospital.Utils.CriteriaInfo;
+import com.bysy.hospital.model.PhysicalKuanguanjieButaiEntity;
 import com.bysy.hospital.model.PhysicalKuanguanjieJixingEntity;
 import com.bysy.hospital.model.PhysicalKuanguanjieYatongEntity;
 import com.bysy.hospital.repository.PhysicalRepository;
+import com.bysy.hospital.request.PhysicalKuanguanjieButaiRequest;
 import com.bysy.hospital.request.PhysicalKuanguanjieJixingRequest;
 import com.bysy.hospital.request.PhysicalKuanguanjieYatongRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +27,39 @@ public class PhysicalKuanguanjieService {
 
     @Autowired
     private PhysicalRepository physicalRepository;
+
+    public PhysicalKuanguanjieButaiEntity findKuanguanjieButai(Integer patientId) {
+        PhysicalKuanguanjieButaiEntity entity = new PhysicalKuanguanjieButaiEntity();
+        if (null != patientId) {
+            Map<String, CriteriaInfo> params = new HashMap<String, CriteriaInfo>();
+            params.put("patientId", new CriteriaInfo(CriteriaInfo.CriteriaType.equal, patientId));
+            List<PhysicalKuanguanjieButaiEntity> entityList = physicalRepository.findByAttributes(PhysicalKuanguanjieButaiEntity.class, params, 0, 1, null);
+            if (!CollectionUtils.isEmpty(entityList)) {
+                entity = entityList.get(0);
+            }
+        }
+
+        return entity;
+    }
+
+    @Transactional
+    public void updateOrCreateKuanguanjieButai(PhysicalKuanguanjieButaiRequest request) {
+        PhysicalKuanguanjieButaiEntity entity = findKuanguanjieButai(request.getPatientId());
+        if (null != entity && null != entity.getId()) {
+            entity.setUpdateBy("system");
+            entity.setUpdateTime(new Date());
+            entity.setExamResult(request.getExamResult());
+            physicalRepository.update(entity);
+        } else {
+            PhysicalKuanguanjieButaiEntity butaiEntity = new PhysicalKuanguanjieButaiEntity();
+            BeanUtilsEx.copyProperties(request, butaiEntity);
+            butaiEntity.setExamType("体格检查");
+            butaiEntity.setExamCategory("髋关节");
+            butaiEntity.setExamName("步态");
+            physicalRepository.create(butaiEntity);
+        }
+    }
+
 
     public PhysicalKuanguanjieJixingEntity findKuanguanjieJixing(Integer patientId) {
         PhysicalKuanguanjieJixingEntity entity = new PhysicalKuanguanjieJixingEntity();

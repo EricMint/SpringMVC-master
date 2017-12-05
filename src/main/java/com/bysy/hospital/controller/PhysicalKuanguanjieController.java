@@ -1,7 +1,9 @@
 package com.bysy.hospital.controller;
 
+import com.bysy.hospital.model.PhysicalKuanguanjieButaiEntity;
 import com.bysy.hospital.model.PhysicalKuanguanjieJixingEntity;
 import com.bysy.hospital.model.PhysicalKuanguanjieYatongEntity;
+import com.bysy.hospital.request.PhysicalKuanguanjieButaiRequest;
 import com.bysy.hospital.request.PhysicalKuanguanjieJixingRequest;
 import com.bysy.hospital.request.PhysicalKuanguanjieYatongRequest;
 import com.bysy.hospital.service.PhysicalKuanguanjieService;
@@ -17,6 +19,20 @@ public class PhysicalKuanguanjieController {
     @Autowired
     private PhysicalKuanguanjieService physicalKuanguanjieService;
 
+
+    @ResponseBody
+    @RequestMapping(value = "/patient/physical/kuanguanjie/butai/{patientId}", method = RequestMethod.GET, produces = "application/json")
+    public PhysicalKuanguanjieButaiEntity physicalKuanguanjieButaiGet(@PathVariable("patientId") Integer patientId) {
+        PhysicalKuanguanjieButaiEntity entity = physicalKuanguanjieService.findKuanguanjieButai(patientId);
+        return entity;
+    }
+
+    @Transactional
+    @RequestMapping(value = "/patient/physical/kuanguanjie/butai", method = RequestMethod.POST)
+    @ResponseBody
+    public void physicalKuanguanjieButaiUpdate(@RequestBody PhysicalKuanguanjieButaiRequest request) {
+        physicalKuanguanjieService.updateOrCreateKuanguanjieButai(request);
+    }
 
     @ResponseBody
     @RequestMapping(value = "/patient/physical/kuanguanjie/jixing/{patientId}", method = RequestMethod.GET, produces = "application/json")

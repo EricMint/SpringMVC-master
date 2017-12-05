@@ -1,6 +1,7 @@
 function physicalKuanguanjieGet() {
     physicalKuanguanjieJixingGet();
     physicalKuanguanjieYatongGet();
+    physicalKuanguanjieButaiGet();
 }
 
 $("#modify_physical_kuanguanjie").click(function () {
@@ -11,6 +12,8 @@ $("#modify_physical_kuanguanjie").click(function () {
     $("#physical_kuanguanjie_yatong_has_symptom").prop('disabled', false);
     $('#physical_kuanguanjie_yatong_has_symptom').css('background-color', '#F0F8FF'); // change the background color
     $(".physical_kuanguanjie_yatong").prop('disabled', false);
+
+    $(".physical_kuanguanjie_butai").prop('disabled', false);
 
     // $(".huodongdu").prop('disabled', false);
     // $("input[name*='physical_jizhu_yatong']").prop('disabled', false);
@@ -29,16 +32,56 @@ $("#save_physical_kuanguanjie").click(function () {
     $('#physical_kuanguanjie_yatong_has_symptom').css('background-color', '#FFFFFF'); // change the background color
     $(".physical_kuanguanjie_yatong").prop('disabled', true);
 
+    $(".physical_kuanguanjie_butai").prop('disabled', true);
+
     // $(".huodongdu").prop('disabled', true);
     // $("select[name='physical-jizhu-shiyan']").prop('disabled', true);
     // $("select[name='physical-jizhu-shiyan']").css('background-color', '#FFFFFF');
     $("#save_physical_kuanguanjie").hide();
     physicalKuanguanjieJixingSave();
     physicalKuanguanjieYatongSave();
-    // PhysicalJizhuHuodongduSave();
-    // PhysicalJizhuTongSave();
-    // PhysicalJizhuShiyanSave();
+    physicalKuanguanjieButaiSave()
 });
+
+function physicalKuanguanjieButaiGet() {
+    var patientId = $("#patientId").val();
+    $.ajax({
+            url: "/hospital/patient/physical/kuanguanjie/butai/" + patientId,
+            type: "GET",
+            dataType: "json",
+            contentType: "application/xhtml+xml; charset=utf-8",
+            success: function (result) {
+                console.log(result);
+                $("#physical_kuanguanjie_butai").val(result.examResult);
+
+            },
+            error: function () {
+
+            }
+        }
+    );
+};
+
+function physicalKuanguanjieButaiSave() {
+    var data = {};
+    data.patientId = $("#patientId").val();
+    data.examResult = $("#physical_kuanguanjie_butai").val();
+    console.log(data);
+    $.ajax({
+            url: "/hospital/patient/physical/kuanguanjie/butai",
+            type: "post",
+            data: JSON.stringify(data),
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            success: function (result) {
+                console.log(result)
+            },
+            error: function () {
+
+            }
+        }
+    );
+};
 
 
 function physicalKuanguanjieJixingGet() {

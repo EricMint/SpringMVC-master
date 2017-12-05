@@ -379,6 +379,10 @@
             <div>
                 <div class="navbar-form navbar-left">
                     <div class="form-group">
+                        <label style="font-weight:bold; font-size: larger;">步态:</label>
+                        <input disabled="disabled" class="physical_kuanguanjie_butai" type="text" id="physical_kuanguanjie_butai" placeholder="请输入形态"/>
+                        <br>
+
                         <label style="font-weight:bold; font-size: larger;">畸形:</label>
                         <select style="width:120px;color:black" id="physical_kuanguanjie_jixing_has_symptom"
                                 name="physical_kuanguanjie_jixing_has_symptom"
@@ -387,7 +391,6 @@
                             <option value="" disabled selected="selected">请选择</option>
                         </select>
                         <br>
-
                         <table class="table table-bordered table-striped" id="physical_kuanguanjie_jixing_table"
                                hidden="hidden">
                             <tr>
@@ -415,8 +418,7 @@
                                 onchange="physicalKuanguanjieYatongOnChange(this.value)">
                             <option value="" disabled selected="selected">请选择</option>
                         </select>
-
-                        <input disabled="disabled" class="physical_kuanguanjie_yatong" type="text" id="physical_kuanguanjie_yatong"/>
+                        <input disabled="disabled" class="physical_kuanguanjie_yatong" type="text" id="physical_kuanguanjie_yatong" placeholder="请输入部位"/>
 
 
 
