@@ -536,6 +536,145 @@
         </table>
     </c:if>
 
+    <h4>影像检查
+        <div class="btn-group">
+            <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle" type="button">查看 <span
+                    class="caret"></span></button>
+            <ul role="menu" class="dropdown-menu">
+                <li>
+                    <a id="show_image_kuanjiuce">髋臼侧数据测量</a>
+                    <a id="show_image_guguce">股骨侧</a>
+                </li>
+            </ul>
+        </div>
+    </h4>
+
+    <div id="image_kuanjiuce">
+        <h5>髋臼侧数据测量
+            <button type="submit" id="modify_image_kuanjiuce" class="btn btn-primary transition-duration">修改
+            </button>
+        </h5>
+
+        <div class="container-fluid">
+            <div>
+                <div class="navbar-form navbar-left">
+                    <div class="form-group">
+                        <label style="font-weight:bold; font-size: larger;" id="image_kuanjiuce_name_1">1.髋臼周长:</label>
+                        <input disabled="disabled" class="image_kuanjiuce" type="text" id="image_kuanjiuce_1" placeholder="请输入"/>
+                        <br>
+                        <label style="font-weight:bold; font-size: larger;">2.横断位髋臼直径:</label>
+                        <input disabled="disabled" class="image_kuanjiuce" type="text" id="image_kuanjiuce_2" placeholder="请输入"/>
+                        <br>
+                        <label style="font-weight:bold; font-size: larger;">3.矢状位髋臼直径:</label>
+                        <input disabled="disabled" class="image_kuanjiuce" type="text" id="image_kuanjiuce_3" placeholder="请输入"/>
+                        <br>
+                        <label style="font-weight:bold; font-size: larger;">4.横断位前方髋臼-股骨间距离:</label>
+                        <input disabled="disabled" class="image_kuanjiuce" type="text" id="image_kuanjiuce_4" placeholder="请输入"/>
+                        <br>
+                        <label style="font-weight:bold; font-size: larger;">5.横断位后方髋臼-股骨间距离:</label>
+                        <input disabled="disabled" class="image_kuanjiuce" type="text" id="image_kuanjiuce_5" placeholder="请输入"/>
+                        <br>
+                        <label style="font-weight:bold; font-size: larger;">6.冠状位外侧缘髋臼-股骨头间距离:</label>
+                        <input disabled="disabled" class="image_kuanjiuce" type="text" id="image_kuanjiuce_6" placeholder="请输入"/>
+                        <br>
+                        <label style="font-weight:bold; font-size: larger;">7.冠状位最高点髋臼-股骨头间距离:</label>
+                        <input disabled="disabled" class="image_kuanjiuce" type="text" id="image_kuanjiuce_7" placeholder="请输入"/>
+                        <br>
+                        <label style="font-weight:bold; font-size: larger;">8.横断位髋臼最薄的厚度:</label>
+                        <input disabled="disabled" class="image_kuanjiuce" type="text" id="image_kuanjiuce_8" placeholder="请输入"/>
+                        <br>
+                        <label style="font-weight:bold; font-size: larger;">9.横断位卵圆窝宽度:</label>
+                        <input disabled="disabled" class="image_kuanjiuce" type="text" id="image_kuanjiuce_9" placeholder="请输入"/>
+                        <br>
+                        <label style="font-weight:bold; font-size: larger;">10.横断位卵圆窝深度:</label>
+                        <input disabled="disabled" class="image_kuanjiuce" type="text" id="image_kuanjiuce_10" placeholder="请输入"/>
+                        <br>
+                        <label style="font-weight:bold; font-size: larger;">11.冠状位髋臼最薄的厚度:</label>
+                        <input disabled="disabled" class="image_kuanjiuce" type="text" id="image_kuanjiuce_11" placeholder="请输入"/>
+                        <br>
+                        <label style="font-weight:bold; font-size: larger;">12.冠状位卵圆窝的宽度:</label>
+                        <input disabled="disabled" class="image_kuanjiuce" type="text" id="image_kuanjiuce_12" placeholder="请输入"/>
+                        <br>
+                        <label style="font-weight:bold; font-size: larger;">13.冠状位卵圆窝的深度:</label>
+                        <input disabled="disabled" class="image_kuanjiuce" type="text" id="image_kuanjiuce_13" placeholder="请输入"/>
+                        <br>
+                        <label style="font-weight:bold; font-size: larger;">14.横断位髋臼前后缘连线与髋臼围成的面积:</label>
+                        <input disabled="disabled" class="image_kuanjiuce" type="text" id="image_kuanjiuce_14" placeholder="请输入"/>
+                        <br>
+                        <label style="font-weight:bold; font-size: larger;">15.横断位髋臼-股骨头间面积:</label>
+                        <input disabled="disabled" class="image_kuanjiuce" type="text" id="image_kuanjiuce_15" placeholder="请输入"/>
+                        <br>
+                        <label style="font-weight:bold; font-size: larger;">16.横断位股骨头未被髋臼包容的面积:</label>
+                        <input disabled="disabled" class="image_kuanjiuce" type="text" id="image_kuanjiuce_16" placeholder="请输入"/>
+                        <br>
+                        <label style="font-weight:bold; font-size: larger;">17.水平线与髋臼最上缘和最前缘连线的夹角:</label>
+                        <input disabled="disabled" class="image_kuanjiuce" type="text" id="image_kuanjiuce_17" placeholder="请输入"/>
+                        <br>
+                        <label style="font-weight:bold; font-size: larger;">18.横断位冠状轴与股骨头中心和髋臼前缘连线夹角:</label>
+                        <input disabled="disabled" class="image_kuanjiuce" type="text" id="image_kuanjiuce_18" placeholder="请输入"/>
+                        <br>
+                        <label style="font-weight:bold; font-size: larger;">19.横断位冠状轴与股骨头中心和髋臼后缘连线夹角:</label>
+                        <input disabled="disabled" class="image_kuanjiuce" type="text" id="image_kuanjiuce_19" placeholder="请输入"/>
+                        <br>
+                        <label style="font-weight:bold; font-size: larger;">20.冠状位CE角:</label>
+                        <input disabled="disabled" class="image_kuanjiuce" type="text" id="image_kuanjiuce_20" placeholder="请输入"/>
+                        <br>
+                        <label style="font-weight:bold; font-size: larger;">21.冠状位髋臼最下缘和垂线夹角:</label>
+                        <input disabled="disabled" class="image_kuanjiuce" type="text" id="image_kuanjiuce_21" placeholder="请输入"/>
+                        <br>
+                        <label style="font-weight:bold; font-size: larger;">22.横断位髋臼前后缘连线与矢状面夹角:</label>
+                        <input disabled="disabled" class="image_kuanjiuce" type="text" id="image_kuanjiuce_22" placeholder="请输入"/>
+                        <br>
+                        <label style="font-weight:bold; font-size: larger;">23.冠状位髋臼上下缘连线与垂线夹角:</label>
+                        <input disabled="disabled" class="image_kuanjiuce" type="text" id="image_kuanjiuce_23" placeholder="请输入"/>
+                        <br>
+                        <label style="font-weight:bold; font-size: larger;">24.横断位上髋臼前缘与卵圆窝后缘连线与冠状轴夹角:</label>
+                        <input disabled="disabled" class="image_kuanjiuce" type="text" id="image_kuanjiuce_24" placeholder="请输入"/>
+                        <br>
+                        <label style="font-weight:bold; font-size: larger;">25.横断位上髋臼后缘与卵圆窝后缘连线与冠状轴夹角:</label>
+                        <input disabled="disabled" class="image_kuanjiuce" type="text" id="image_kuanjiuce_25" placeholder="请输入"/>
+                        <br>
+                        <label style="font-weight:bold; font-size: larger;">26.冠状位髋臼上缘及卵圆窝上缘连线与水平面夹角:</label>
+                        <input disabled="disabled" class="image_kuanjiuce" type="text" id="image_kuanjiuce_26" placeholder="请输入"/>
+                        <br>
+                        <label style="font-weight:bold; font-size: larger;">27.冠状位髋臼下缘及卵圆窝上缘连线与水平面夹角:</label>
+                        <input disabled="disabled" class="image_kuanjiuce" type="text" id="image_kuanjiuce_27" placeholder="请输入"/>
+                        <br>
+                        <label style="font-weight:bold; font-size: larger;">28.冠状位髋臼深度:</label>
+                        <input disabled="disabled" class="image_kuanjiuce" type="text" id="image_kuanjiuce_28" placeholder="请输入"/>
+                        <br>
+                        <label style="font-weight:bold; font-size: larger;">29.横断面髋臼深度:</label>
+                        <input disabled="disabled" class="image_kuanjiuce" type="text" id="image_kuanjiuce_29" placeholder="请输入"/>
+                        <br>
+                        <label style="font-weight:bold; font-size: larger;">30.冠状位髋臼最高点水平线与髋臼最外缘水平线间垂直距离:</label>
+                        <input disabled="disabled" class="image_kuanjiuce" type="text" id="image_kuanjiuce_30" placeholder="请输入"/>
+                        <br>
+                        <label style="font-weight:bold; font-size: larger;">31.股骨头内侧缘与髋臼外侧缘垂线间距离:</label>
+                        <input disabled="disabled" class="image_kuanjiuce" type="text" id="image_kuanjiuce_31" placeholder="请输入"/>
+                        <br>
+                        <label style="font-weight:bold; font-size: larger;">32.股骨头直径:</label>
+                        <input disabled="disabled" class="image_kuanjiuce" type="text" id="image_kuanjiuce_32" placeholder="请输入"/>
+                        <br>
+                        <label style="font-weight:bold; font-size: larger;">33.颈干角:</label>
+                        <input disabled="disabled" class="image_kuanjiuce" type="text" id="image_kuanjiuce_33" placeholder="请输入"/>
+                        <br>
+                        <label style="font-weight:bold; font-size: larger;">34.覆盖率是15/14:</label>
+                        <input disabled="disabled" class="image_kuanjiuce" type="text" id="image_kuanjiuce_34" placeholder="请输入"/>
+                        <br>
+                        <label style="font-weight:bold; font-size: larger;">35.髋臼头指数是31/32:</label>
+                        <input disabled="disabled" class="image_kuanjiuce" type="text" id="image_kuanjiuce_35" placeholder="请输入"/>
+                        <br>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <button type="submit" id="save_image_kuanjiuce" hidden="hidden"
+                class="btn btn-primary transition-duration">保存
+        </button>
+
+    </div>
 
     <c:if test="${empty imageRecordList}">
         <p class="bg-warning">
@@ -623,6 +762,7 @@
 
 <script src="/hospital/js/physical_jizhu.js"></script>
 <script src="/hospital/js/physical_kuanguanjie.js"></script>
+<script src="/hospital/js/image_kuanjiuce.js"></script>
 
 <script type="text/javascript">
     $(document).ready(function () {
@@ -632,6 +772,8 @@
         $("#physical_kuanguanjie").show();
         $("#physical_jizhu").hide();
         physicalKuanguanjieGet();
+
+        imageKuanjiuceGet();
     });
 
     $("#modifyUser").click(function () {
@@ -704,6 +846,18 @@
         $("#physical_kuanguanjie").show();
         $("#physical_jizhu").hide();
         physicalKuanguanjieGet();
+    });
+
+    $("#show_image_kuanjiuce").click(function () {
+        $("#image_kuanjiuce").show();
+        $("#image_guguce").hide();
+        imageKuanjiuceGet();
+    });
+
+    $("#show_image_guguce").click(function () {
+        // $("#image_guguce").show();
+        $("#image_kuanjiuce").hide();
+        // imageGuguceGet();
     });
 
 </script>
