@@ -666,11 +666,140 @@
                         <br>
 
                     </div>
-
                 </div>
             </div>
         </div>
         <button type="submit" id="save_image_kuanjiuce" hidden="hidden"
+                class="btn btn-primary transition-duration">保存
+        </button>
+
+    </div>
+
+    <div id="image_guguce">
+        <h5>股骨侧测量
+            <button type="submit" id="modify_image_guguce" class="btn btn-primary transition-duration">修改
+            </button>
+        </h5>
+
+        <div class="container-fluid">
+            <div>
+                <div class="navbar-form navbar-left">
+                    <div class="form-group">
+                        <label style="font-weight:bold; font-size: larger;">活动度:</label><br>
+                        <table class="table table-bordered table-striped">
+                            <tr>
+                                <th>方向</th>
+                                <th>横径(mm)</th>
+                                <th>矢状径(mm)</th>
+                                <th>髓腔截面积</th>
+
+                            </tr>
+                            <tr>
+                                <td>-25水平</td>
+                                <td><input disabled="disabled" class="image_guguce" style="width:100px" type="text"id="image_guguce_-25_hengjing"/></td>
+                                <td><input disabled="disabled" class="image_guguce" style="width:100px" type="text"id="image_guguce_-25_shizhuangjing"/></td>
+                                <td><input disabled="disabled" class="image_guguce" style="width:100px" type="text"id="image_guguce_-25_suiqiang"/></td>
+                            </tr>
+                            <tr>
+                                <td>-15水平</td>
+                                <td><input disabled="disabled" class="image_guguce" style="width:100px" type="text"id="image_guguce_-15_hengjing"/></td>
+                                <td><input disabled="disabled" class="image_guguce" style="width:100px" type="text"id="image_guguce_-15_shizhuangjing"/></td>
+                                <td><input disabled="disabled" class="image_guguce" style="width:100px" type="text"id="image_guguce_-15_suiqiang"/></td>
+                            </tr>
+                            <tr>
+                                <td>-10水平</td>
+                                <td><input disabled="disabled" class="image_guguce" style="width:100px" type="text"id="image_guguce_-10_hengjing"/></td>
+                                <td><input disabled="disabled" class="image_guguce" style="width:100px" type="text"id="image_guguce_-10_shizhuangjing"/></td>
+                                <td><input disabled="disabled" class="image_guguce" style="width:100px" type="text"id="image_guguce_-10_suiqiang"/></td>
+                            </tr>
+                            <tr>
+                                <td>-5水平</td>
+                                <td><input disabled="disabled" class="image_guguce" style="width:100px" type="text"id="image_guguce_-5_hengjing"/></td>
+                                <td><input disabled="disabled" class="image_guguce" style="width:100px" type="text"id="image_guguce_-5_shizhuangjing"/></td>
+                                <td><input disabled="disabled" class="image_guguce" style="width:100px" type="text"id="image_guguce_-5_suiqiang"/></td>
+                            </tr>
+                            <tr>
+                                <td>0水平</td>
+                                <td><input disabled="disabled" class="image_guguce" style="width:100px" type="text"id="image_guguce_0_hengjing"/></td>
+                                <td><input disabled="disabled" class="image_guguce" style="width:100px" type="text"id="image_guguce_0_shizhuangjing"/></td>
+                                <td><input disabled="disabled" class="image_guguce" style="width:100px" type="text"id="image_guguce_0_suiqiang"/></td>
+                            </tr>
+                            <tr>
+                                <td>5水平</td>
+                                <td><input disabled="disabled" class="image_guguce" style="width:100px" type="text"id="image_guguce_5_hengjing"/></td>
+                                <td><input disabled="disabled" class="image_guguce" style="width:100px" type="text"id="image_guguce_5_shizhuangjing"/></td>
+                                <td><input disabled="disabled" class="image_guguce" style="width:100px" type="text"id="image_guguce_5_suiqiang"/></td>
+                            </tr>
+                            <tr>
+                                <td>10水平</td>
+                                <td><input disabled="disabled" class="image_guguce" style="width:100px" type="text"id="image_guguce_10_hengjing"/></td>
+                                <td><input disabled="disabled" class="image_guguce" style="width:100px" type="text"id="image_guguce_10_shizhuangjing"/></td>
+                                <td><input disabled="disabled" class="image_guguce" style="width:100px" type="text"id="image_guguce_10_suiqiang"/></td>
+                            </tr>
+                            <tr>
+                                <td>15水平</td>
+                                <td><input disabled="disabled" class="image_guguce" style="width:100px" type="text"id="image_guguce_15_hengjing"/></td>
+                                <td><input disabled="disabled" class="image_guguce" style="width:100px" type="text"id="image_guguce_15_shizhuangjing"/></td>
+                                <td><input disabled="disabled" class="image_guguce" style="width:100px" type="text"id="image_guguce_15_suiqiang"/></td>
+                            </tr>
+                            <tr>
+                                <td>20水平</td>
+                                <td><input disabled="disabled" class="image_guguce" style="width:100px" type="text"id="image_guguce_20_hengjing"/></td>
+                                <td><input disabled="disabled" class="image_guguce" style="width:100px" type="text"id="image_guguce_20_shizhuangjing"/></td>
+                                <td><input disabled="disabled" class="image_guguce" style="width:100px" type="text"id="image_guguce_20_suiqiang"/></td>
+                            </tr>
+                            <tr>
+                                <td>30水平</td>
+                                <td><input disabled="disabled" class="image_guguce" style="width:100px" type="text"id="image_guguce_30_hengjing"/></td>
+                                <td><input disabled="disabled" class="image_guguce" style="width:100px" type="text"id="image_guguce_30_shizhuangjing"/></td>
+                                <td><input disabled="disabled" class="image_guguce" style="width:100px" type="text"id="image_guguce_30_suiqiang"/></td>
+                            </tr>
+                            <tr>
+                                <td>40水平</td>
+                                <td><input disabled="disabled" class="image_guguce" style="width:100px" type="text"id="image_guguce_40_hengjing"/></td>
+                                <td><input disabled="disabled" class="image_guguce" style="width:100px" type="text"id="image_guguce_40_shizhuangjing"/></td>
+                                <td><input disabled="disabled" class="image_guguce" style="width:100px" type="text"id="image_guguce_40_suiqiang"/></td>
+                            </tr>
+                            <tr>
+                                <td>50水平</td>
+                                <td><input disabled="disabled" class="image_guguce" style="width:100px" type="text"id="image_guguce_50_hengjing"/></td>
+                                <td><input disabled="disabled" class="image_guguce" style="width:100px" type="text"id="image_guguce_50_shizhuangjing"/></td>
+                                <td><input disabled="disabled" class="image_guguce" style="width:100px" type="text"id="image_guguce_50_suiqiang"/></td>
+                            </tr>
+                            <tr>
+                                <td>60水平</td>
+                                <td><input disabled="disabled" class="image_guguce" style="width:100px" type="text"id="image_guguce_60_hengjing"/></td>
+                                <td><input disabled="disabled" class="image_guguce" style="width:100px" type="text"id="image_guguce_60_shizhuangjing"/></td>
+                                <td><input disabled="disabled" class="image_guguce" style="width:100px" type="text"id="image_guguce_60_suiqiang"/></td>
+                            </tr>
+                            <tr>
+                                <td>70水平</td>
+                                <td><input disabled="disabled" class="image_guguce" style="width:100px" type="text"id="image_guguce_70_hengjing"/></td>
+                                <td><input disabled="disabled" class="image_guguce" style="width:100px" type="text"id="image_guguce_70_shizhuangjing"/></td>
+                                <td><input disabled="disabled" class="image_guguce" style="width:100px" type="text"id="image_guguce_70_suiqiang"/></td>
+                            </tr>
+                            <tr>
+                                <td>80水平</td>
+                                <td><input disabled="disabled" class="image_guguce" style="width:100px" type="text"id="image_guguce_80_hengjing"/></td>
+                                <td><input disabled="disabled" class="image_guguce" style="width:100px" type="text"id="image_guguce_80_shizhuangjing"/></td>
+                                <td><input disabled="disabled" class="image_guguce" style="width:100px" type="text"id="image_guguce_80_suiqiang"/></td>
+                            </tr>
+                            <tr>
+                                <td>90水平</td>
+                                <td><input disabled="disabled" class="image_guguce" style="width:100px" type="text"id="image_guguce_90_hengjing"/></td>
+                                <td><input disabled="disabled" class="image_guguce" style="width:100px" type="text"id="image_guguce_90_shizhuangjing"/></td>
+                                <td><input disabled="disabled" class="image_guguce" style="width:100px" type="text"id="image_guguce_90_suiqiang"/></td>
+                            </tr>
+                        </table>
+
+                        <label style="font-weight:bold; font-size: larger;">股骨前倾角:</label>
+                        <input disabled="disabled" class="image_guguce" type="text" id="image_guguce_guguqian_hengjing" placeholder="请输入"/>
+                        <br>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button type="submit" id="save_image_guguce" hidden="hidden"
                 class="btn btn-primary transition-duration">保存
         </button>
 
@@ -763,6 +892,7 @@
 <script src="/hospital/js/physical_jizhu.js"></script>
 <script src="/hospital/js/physical_kuanguanjie.js"></script>
 <script src="/hospital/js/image_kuanjiuce.js"></script>
+<script src="/hospital/js/image_guguce.js"></script>
 
 <script type="text/javascript">
     $(document).ready(function () {
@@ -774,6 +904,12 @@
         physicalKuanguanjieGet();
 
         imageKuanjiuceGet();
+        imageGuguceGet();
+        $("#image_guguce").hide();
+
+        $("#save_image_kuanjiuce").hide();
+        $("#save_image_guguce").hide();
+
     });
 
     $("#modifyUser").click(function () {
@@ -855,9 +991,9 @@
     });
 
     $("#show_image_guguce").click(function () {
-        // $("#image_guguce").show();
+        $("#image_guguce").show();
         $("#image_kuanjiuce").hide();
-        // imageGuguceGet();
+        imageGuguceGet();
     });
 
 </script>
