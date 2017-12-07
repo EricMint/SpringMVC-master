@@ -10,7 +10,7 @@ import com.bysy.hospital.response.PhysicalClassB;
 import com.bysy.hospital.response.PhysicalClassDListResponse;
 import com.bysy.hospital.response.PhysicalClassBListResponse;
 import com.bysy.hospital.response.PhysicalClassCListResponse;
-import com.bysy.hospital.service.PhysicalService;
+import com.bysy.hospital.service.PhysicalJizhuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,10 +22,10 @@ import java.util.List;
 
 
 @Controller
-public class PhysicalRecordController {
+public class PhysicalJizhuController {
 
     @Autowired
-    private PhysicalService physicalService;
+    private PhysicalJizhuService physicalJizhuService;
 
     @Autowired
     private PatientRepositoryDeprecated patientRepositoryDeprecated;
@@ -50,7 +50,7 @@ public class PhysicalRecordController {
     @ResponseBody
     @RequestMapping(value = "/patient/physical/jizhu/cetujixing/{patientId}", method = RequestMethod.GET, produces = "application/json")
     public PhysicalJizhuCetujixingEntity physicalJizhuCetujixingGet(@PathVariable("patientId") Integer patientId) {
-        PhysicalJizhuCetujixingEntity physicalJizhuCetujixingEntity = physicalService.findJizhuCetujixing(patientId);
+        PhysicalJizhuCetujixingEntity physicalJizhuCetujixingEntity = physicalJizhuService.findJizhuCetujixing(patientId);
         return physicalJizhuCetujixingEntity;
     }
 
@@ -58,13 +58,13 @@ public class PhysicalRecordController {
     @RequestMapping(value = "/patient/physical/jizhu/cetujixing", method = RequestMethod.POST)
     @ResponseBody
     public void physicalJizhuCetujixingUpdate(@RequestBody PhysicalJizhuCetujixingRequest request) {
-        physicalService.updateOrCreateJizhuCetujixing(request);
+        physicalJizhuService.updateOrCreateJizhuCetujixing(request);
     }
 
     @ResponseBody
     @RequestMapping(value = "/patient/physical/jizhu/huodongdu/{patientId}", method = RequestMethod.GET, produces = "application/json")
     public List<PhysicalJizhuHuodongduEntity> physicalJizhuHuodongduGet(@PathVariable("patientId") Integer patientId) {
-        List<PhysicalJizhuHuodongduEntity> entityList= physicalService.findJizhuHuodongdu(patientId);
+        List<PhysicalJizhuHuodongduEntity> entityList= physicalJizhuService.findJizhuHuodongdu(patientId);
         return entityList;
     }
 
@@ -72,13 +72,13 @@ public class PhysicalRecordController {
     @RequestMapping(value = "/patient/physical/jizhu/huodongdu", method = RequestMethod.POST)
     @ResponseBody
     public void physicalJizhuHuodongduUpdate(@RequestBody PhysicalJizhuHuodongduRequest request) {
-        physicalService.updateOrCreateJizhuHuodongdu(request);
+        physicalJizhuService.updateOrCreateJizhuHuodongdu(request);
     }
 
     @ResponseBody
     @RequestMapping(value = "/patient/physical/jizhu/shiyan/{patientId}", method = RequestMethod.GET, produces = "application/json")
     public List<PhysicalJizhuShiyanEntity> physicalJizhuShiyanGet(@PathVariable("patientId") Integer patientId) {
-        List<PhysicalJizhuShiyanEntity> entityList= physicalService.findJizhuShiyan(patientId);
+        List<PhysicalJizhuShiyanEntity> entityList= physicalJizhuService.findJizhuShiyan(patientId);
         return entityList;
     }
 
@@ -86,13 +86,13 @@ public class PhysicalRecordController {
     @RequestMapping(value = "/patient/physical/jizhu/shiyan", method = RequestMethod.POST)
     @ResponseBody
     public void physicalJizhuShiyanUpdate(@RequestBody PhysicalJizhuShiyanRequest request) {
-        physicalService.updateOrCreateJizhuShiyan(request);
+        physicalJizhuService.updateOrCreateJizhuShiyan(request);
     }
 
     @ResponseBody
     @RequestMapping(value = "/patient/physical/jizhu/tong/{patientId}", method = RequestMethod.GET, produces = "application/json")
     public List<PhysicalJizhuTongEntity> physicalJizhuTongGet(@PathVariable("patientId") Integer patientId) {
-        List<PhysicalJizhuTongEntity> entityList= physicalService.findJizhuTong(patientId);
+        List<PhysicalJizhuTongEntity> entityList= physicalJizhuService.findJizhuTong(patientId);
         return entityList;
     }
 
@@ -100,7 +100,7 @@ public class PhysicalRecordController {
     @RequestMapping(value = "/patient/physical/jizhu/tong", method = RequestMethod.POST)
     @ResponseBody
     public void physicalJizhuTongUpdate(@RequestBody PhysicalJizhuTongRequest request) {
-        physicalService.updateOrCreateJizhuTong(request);
+        physicalJizhuService.updateOrCreateJizhuTong(request);
     }
 
     // 影像检查部位页面

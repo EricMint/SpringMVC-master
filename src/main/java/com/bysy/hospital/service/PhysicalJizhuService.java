@@ -23,7 +23,7 @@ import java.util.*;
  * Created by mint on 11/25/17.
  */
 @Service
-public class PhysicalService {
+public class PhysicalJizhuService {
 
     @Autowired
     private PhysicalRepository physicalRepository;
