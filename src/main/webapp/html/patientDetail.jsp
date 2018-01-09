@@ -486,55 +486,55 @@
         </div>
     </h5>
 
-    <c:if test="${empty scoreMarkList}">
-        <p class="bg-warning">
-        <c:if test="${isManager}">
-            <h5>无功能评分记录 <a href="/hospital/scoreRecord/create/${patient.id}" type="button"
-                           class="btn btn-default btn-sm">添加</a>
-        </c:if>
-        <c:if test="${!isManager}">
-            <h5>无功能评分记录 </h5>
-        </c:if>
-        </h5>
-        <br/>
-        </p>
-    </c:if>
-    <c:if test="${!empty scoreMarkList}">
-        <c:if test="${isManager}">
-            <h5>功能评分记录 <a href="/hospital/scoreRecord/create/${patient.id}" type="button"
-                          class="btn btn-default btn-sm">添加</a>
-        </c:if>
-        <c:if test="${!isManager}">
-            <h5>功能评分记录 </h5>
-        </c:if>
-        </h5>
+    <%--<c:if test="${empty scoreMarkList}">--%>
+        <%--<p class="bg-warning">--%>
+        <%--<c:if test="${isManager}">--%>
+            <%--<h5>无功能评分记录 <a href="/hospital/scoreRecord/create/${patient.id}" type="button"--%>
+                           <%--class="btn btn-default btn-sm">添加</a>--%>
+        <%--</c:if>--%>
+        <%--<c:if test="${!isManager}">--%>
+            <%--<h5>无功能评分记录 </h5>--%>
+        <%--</c:if>--%>
+        <%--</h5>--%>
+        <%--<br/>--%>
+        <%--</p>--%>
+    <%--</c:if>--%>
+    <%--<c:if test="${!empty scoreMarkList}">--%>
+        <%--<c:if test="${isManager}">--%>
+            <%--<h5>功能评分记录 <a href="/hospital/scoreRecord/create/${patient.id}" type="button"--%>
+                          <%--class="btn btn-default btn-sm">添加</a>--%>
+        <%--</c:if>--%>
+        <%--<c:if test="${!isManager}">--%>
+            <%--<h5>功能评分记录 </h5>--%>
+        <%--</c:if>--%>
+        <%--</h5>--%>
 
-        <table class="table table-bordered table-striped">
-            <tr>
-                <th>ID</th>
-                <th>功能评分名称</th>
-                <th>得分</th>
-            </tr>
+        <%--<table class="table table-bordered table-striped">--%>
+            <%--<tr>--%>
+                <%--<th>ID</th>--%>
+                <%--<th>功能评分名称</th>--%>
+                <%--<th>得分</th>--%>
+            <%--</tr>--%>
 
-            <c:forEach items="${scoreMarkList}" var="scoreMarkRecord">
-                <tr>
-                    <td>${scoreMarkRecord.scoreMarkId}</td>
-                    <td>${scoreMarkRecord.scoreClassAName}</td>
-                    <td>${scoreMarkRecord.result}</td>
-                    <c:if test="${isManager}">
-                        <td>
-                            <a href="/hospital/scoreRecord/createDetail/${patient.id}/${scoreMarkRecord.scoreClassAId}"
-                               type="button"
-                               class="btn btn-sm btn-warning">修改</a>
-                            <a href="/hospital/scoreMark/delete/${scoreMarkRecord.scoreMarkId}" type="button"
-                               class="btn btn-sm btn-danger">删除</a>
-                        </td>
-                    </c:if>
+            <%--<c:forEach items="${scoreMarkList}" var="scoreMarkRecord">--%>
+                <%--<tr>--%>
+                    <%--<td>${scoreMarkRecord.scoreMarkId}</td>--%>
+                    <%--<td>${scoreMarkRecord.scoreClassAName}</td>--%>
+                    <%--<td>${scoreMarkRecord.result}</td>--%>
+                    <%--<c:if test="${isManager}">--%>
+                        <%--<td>--%>
+                            <%--<a href="/hospital/scoreRecord/createDetail/${patient.id}/${scoreMarkRecord.scoreClassAId}"--%>
+                               <%--type="button"--%>
+                               <%--class="btn btn-sm btn-warning">修改</a>--%>
+                            <%--<a href="/hospital/scoreMark/delete/${scoreMarkRecord.scoreMarkId}" type="button"--%>
+                               <%--class="btn btn-sm btn-danger">删除</a>--%>
+                        <%--</td>--%>
+                    <%--</c:if>--%>
 
-                </tr>
-            </c:forEach>
-        </table>
-    </c:if>
+                <%--</tr>--%>
+            <%--</c:forEach>--%>
+        <%--</table>--%>
+    <%--</c:if>--%>
 
     <h4>影像检查
         <div class="btn-group">
@@ -542,13 +542,17 @@
                     class="caret"></span></button>
             <ul role="menu" class="dropdown-menu">
                 <li>
-                    <a id="show_image_kuanjiuce">髋臼侧数据测量</a>
-                    <a id="show_image_guguce">股骨侧</a>
+                    <a id="show_image_jizhu">脊柱</a>
+                    <a id="show_image_kuanguanjie">髋关节</a>
+                    <a id="show_image_xiguanjie">膝关节</a>
+                    <a id="show_image_huaiguanjie">踝关节</a>
                 </li>
             </ul>
         </div>
     </h4>
 
+    <div id="image_kuanguanjie">
+        <h5>髋关节</h5>
     <div id="image_kuanjiuce">
         <h5>髋臼侧数据测量
             <button type="submit" id="modify_image_kuanjiuce" class="btn btn-primary transition-duration">修改
@@ -805,71 +809,72 @@
 
     </div>
 
-    <c:if test="${empty imageRecordList}">
-        <p class="bg-warning">
-        <c:if test="${isManager}">
-            <h5>无影像检查记录 <a href="/hospital/imageRecord/create/${patient.id}" type="button"
-                           class="btn btn-default btn-sm">添加</a>
-            </h5>
-        </c:if>
-        <c:if test="${!isManager}">
-            <h5>无影像检查记录</h5>
-        </c:if>
-        <br/>
-        </p>
-    </c:if>
-    <c:if test="${!empty imageRecordList}">
-        <c:if test="${isManager}">
-            <h5>影像检查记录
-                <div class="btn-group">
-                    <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle" type="button">添加 <span
-                            class="caret"></span></button>
-                    <ul role="menu" class="dropdown-menu">
-                        <c:forEach items="${imageClassAList}" var="imageClassA">
-                            <li>
-                                <a href="/hospital/imageRecord/create/${patient.id}/${imageClassA.imageClassAId}">${imageClassA.imageClassAName}</a>
-                            </li>
-                        </c:forEach>
-                    </ul>
-                </div>
-            </h5>
-        </c:if>
-        <c:if test="${!isManager}">
-            <h5>影像检查记录</h5>
-        </c:if>
-        <table class="table table-bordered table-striped">
-            <tr>
-                <th>ID</th>
-                <th>影像检查部位</th>
-                <th>检查关节</th>
-                <th>具体关节</th>
-                <th>关节方位</th>
-                <th>具体位置</th>
-                <th>测量数值</th>
-            </tr>
+    </div>
+    <%--<c:if test="${empty imageRecordList}">--%>
+        <%--<p class="bg-warning">--%>
+        <%--<c:if test="${isManager}">--%>
+            <%--<h5>无影像检查记录 <a href="/hospital/imageRecord/create/${patient.id}" type="button"--%>
+                           <%--class="btn btn-default btn-sm">添加</a>--%>
+            <%--</h5>--%>
+        <%--</c:if>--%>
+        <%--<c:if test="${!isManager}">--%>
+            <%--<h5>无影像检查记录</h5>--%>
+        <%--</c:if>--%>
+        <%--<br/>--%>
+        <%--</p>--%>
+    <%--</c:if>--%>
+    <%--<c:if test="${!empty imageRecordList}">--%>
+        <%--<c:if test="${isManager}">--%>
+            <%--<h5>影像检查记录--%>
+                <%--<div class="btn-group">--%>
+                    <%--<button data-toggle="dropdown" class="btn btn-primary dropdown-toggle" type="button">添加 <span--%>
+                            <%--class="caret"></span></button>--%>
+                    <%--<ul role="menu" class="dropdown-menu">--%>
+                        <%--<c:forEach items="${imageClassAList}" var="imageClassA">--%>
+                            <%--<li>--%>
+                                <%--<a href="/hospital/imageRecord/create/${patient.id}/${imageClassA.imageClassAId}">${imageClassA.imageClassAName}</a>--%>
+                            <%--</li>--%>
+                        <%--</c:forEach>--%>
+                    <%--</ul>--%>
+                <%--</div>--%>
+            <%--</h5>--%>
+        <%--</c:if>--%>
+        <%--<c:if test="${!isManager}">--%>
+            <%--<h5>影像检查记录</h5>--%>
+        <%--</c:if>--%>
+        <%--<table class="table table-bordered table-striped">--%>
+            <%--<tr>--%>
+                <%--<th>ID</th>--%>
+                <%--<th>影像检查部位</th>--%>
+                <%--<th>检查关节</th>--%>
+                <%--<th>具体关节</th>--%>
+                <%--<th>关节方位</th>--%>
+                <%--<th>具体位置</th>--%>
+                <%--<th>测量数值</th>--%>
+            <%--</tr>--%>
 
-            <c:forEach items="${imageRecordList}" var="imageRecord">
-                <tr>
-                    <td>${imageRecord.imageRecordId}</td>
-                    <td>${imageRecord.imageClassAName}</td>
-                    <td>${imageRecord.imageClassBName}</td>
-                    <td>${imageRecord.imageClassCName}</td>
-                    <td>${imageRecord.imageClassDName}</td>
-                    <td>${imageRecord.imageClassEName}</td>
-                    <td>${imageRecord.result}</td>
-                    <c:if test="${isManager}">
-                        <td>
-                            <a href="/hospital/imageRecord/update/${imageRecord.imageRecordId}" type="button"
-                               class="btn btn-sm btn-warning">修改</a>
-                            <a href="/hospital/imageRecord/delete/${imageRecord.imageRecordId}" type="button"
-                               class="btn btn-sm btn-danger">删除</a>
-                        </td>
-                    </c:if>
+            <%--<c:forEach items="${imageRecordList}" var="imageRecord">--%>
+                <%--<tr>--%>
+                    <%--<td>${imageRecord.imageRecordId}</td>--%>
+                    <%--<td>${imageRecord.imageClassAName}</td>--%>
+                    <%--<td>${imageRecord.imageClassBName}</td>--%>
+                    <%--<td>${imageRecord.imageClassCName}</td>--%>
+                    <%--<td>${imageRecord.imageClassDName}</td>--%>
+                    <%--<td>${imageRecord.imageClassEName}</td>--%>
+                    <%--<td>${imageRecord.result}</td>--%>
+                    <%--<c:if test="${isManager}">--%>
+                        <%--<td>--%>
+                            <%--<a href="/hospital/imageRecord/update/${imageRecord.imageRecordId}" type="button"--%>
+                               <%--class="btn btn-sm btn-warning">修改</a>--%>
+                            <%--<a href="/hospital/imageRecord/delete/${imageRecord.imageRecordId}" type="button"--%>
+                               <%--class="btn btn-sm btn-danger">删除</a>--%>
+                        <%--</td>--%>
+                    <%--</c:if>--%>
 
-                </tr>
-            </c:forEach>
-        </table>
-    </c:if>
+                <%--</tr>--%>
+            <%--</c:forEach>--%>
+        <%--</table>--%>
+    <%--</c:if>--%>
 
     <c:if test="${isManager}">
         <a href="/hospital/patient/list/isManager" type="button" class="btn btn-sm btn-success">返回列表页</a>
@@ -905,7 +910,7 @@
 
         imageKuanjiuceGet();
         imageGuguceGet();
-        $("#image_guguce").hide();
+        // $("#image_guguce").hide();
 
         $("#save_image_kuanjiuce").hide();
         $("#save_image_guguce").hide();
@@ -984,17 +989,18 @@
         physicalKuanguanjieGet();
     });
 
-    $("#show_image_kuanjiuce").click(function () {
-        $("#image_kuanjiuce").show();
-        $("#image_guguce").hide();
+    $("#show_image_kuanguanjie").click(function () {
+        $("#image_kuanguanjie").show();
+        // $("#image_guguce").hide();
         imageKuanjiuceGet();
-    });
-
-    $("#show_image_guguce").click(function () {
-        $("#image_guguce").show();
-        $("#image_kuanjiuce").hide();
         imageGuguceGet();
     });
+
+    // $("#show_image_guguce").click(function () {
+    //     $("#image_guguce").show();
+    //     $("#image_kuanjiuce").hide();
+    //     imageGuguceGet();
+    // });
 
 </script>
 
