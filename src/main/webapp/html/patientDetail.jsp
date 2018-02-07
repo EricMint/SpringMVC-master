@@ -544,12 +544,14 @@
                 <li>
                     <a id="show_image_jizhu">脊柱</a>
                     <a id="show_image_kuanguanjie">髋关节</a>
-                    <a id="show_image_xiguanjie">膝关节</a>
-                    <a id="show_image_huaiguanjie">踝关节</a>
+                    <%--<a id="show_image_xiguanjie">膝关节</a>--%>
+                    <%--<a id="show_image_huaiguanjie">踝关节</a>--%>
                 </li>
             </ul>
         </div>
     </h4>
+
+    <jsp:include page="imageJizhu.jsp"/>
 
     <div id="image_kuanguanjie">
         <h5>髋关节</h5>
@@ -915,6 +917,12 @@
         $("#save_image_kuanjiuce").hide();
         $("#save_image_guguce").hide();
 
+        $("#image_jizhu").show();
+        ImageJizhuGet();
+        $("#image_kuanguanjie").hide();
+
+        $("#save_image_jizhu").hide();
+
     });
 
     $("#modifyUser").click(function () {
@@ -989,8 +997,19 @@
         physicalKuanguanjieGet();
     });
 
+    $("#show_image_jizhu").click(function () {
+        $("#image_jizhu").show();
+        $("#image_kuanguanjie").hide();
+
+        ImageJizhuGet();
+        // $("#image_guguce").hide();
+        // imageKuanjiuceGet();
+        // imageGuguceGet();
+    });
+
     $("#show_image_kuanguanjie").click(function () {
         $("#image_kuanguanjie").show();
+        $("#image_jizhu").hide();
         // $("#image_guguce").hide();
         imageKuanjiuceGet();
         imageGuguceGet();
