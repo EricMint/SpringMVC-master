@@ -90,18 +90,13 @@
     <button type="button" id="saveUser" style="display: none" class="btn btn-sm btn-warning">保存</button>
     <hr>
 
-    <h4>体格检查
-        <div class="btn-group">
-            <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle" type="button">查看 <span
-                    class="caret"></span></button>
-            <ul role="menu" class="dropdown-menu">
-                <li>
-                    <a id="show_physical_jizhu">脊柱查体</a>
-                    <a id="show_physical_kuanguanjie">髋关节</a>
-                </li>
-            </ul>
+    <div class="row">
+        <h4 style="display: inline-block">体格检查</h4>
+        <div class="btn-group" style="bottom: 5px">
+            <button type="button" class="btn btn-info" id="show_physical_jizhu">脊柱组</button>
+            <button type="button" class="btn btn-info" id="show_physical_kuanguanjie">髋关节</button>
         </div>
-    </h4>
+    </div>
 
     <div id="physical_jizhu">
         <h5>脊柱查体
@@ -536,20 +531,14 @@
         <%--</table>--%>
     <%--</c:if>--%>
 
-    <h4>影像检查
-        <div class="btn-group">
-            <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle" type="button">查看 <span
-                    class="caret"></span></button>
-            <ul role="menu" class="dropdown-menu">
-                <li>
-                    <a id="show_image_jizhu">脊柱</a>
-                    <a id="show_image_kuanguanjie">髋关节</a>
-                    <%--<a id="show_image_xiguanjie">膝关节</a>--%>
-                    <%--<a id="show_image_huaiguanjie">踝关节</a>--%>
-                </li>
-            </ul>
+
+    <div class="row">
+        <h4 style="display: inline-block">影像检查</h4>
+        <div class="btn-group" style="bottom: 5px">
+            <button type="button" class="btn btn-info" id="show_image_jizhu">脊柱</button>
+            <button type="button" class="btn btn-info" id="show_image_kuanguanjie">髋关节</button>
         </div>
-    </h4>
+    </div>
 
     <jsp:include page="imageJizhu.jsp"/>
 
@@ -906,8 +895,8 @@
         $("#save_physical_jizhu").hide();
         $("#save_physical_kuanguanjie").hide();
         initEthnicity();
-        $("#physical_kuanguanjie").show();
-        $("#physical_jizhu").hide();
+        $("#physical_jizhu").show();
+        $("#physical_kuanguanjie").hide();
         physicalKuanguanjieGet();
 
         imageKuanjiuceGet();
